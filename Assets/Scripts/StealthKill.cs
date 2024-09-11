@@ -45,10 +45,8 @@ public class StealthKill : MonoBehaviour
 
     private void VictimDeath()
     {
-        Debug.Log("Victim Death");
         if (_player.Sneak.InitAttack && !_isDead && Vector3.Distance(_player.transform.position, _enemy.transform.position) < 5f)
         {
-            Debug.Log("Sneaking");
             _enemy.transform.rotation = _player.transform.rotation;
             _isDead = true;
             _enemy.transform.position =

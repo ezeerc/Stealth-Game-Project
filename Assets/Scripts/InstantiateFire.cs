@@ -4,47 +4,28 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Update = UnityEngine.PlayerLoop.Update;
 
 public class InstantiateFire : MonoBehaviour
 {
-    private void OnPointerExit(PointerEventData eventData)
+    [SerializeField] private GameObject cancelCollider;
+    private bool _cancel = false;
+    
+    void OnTriggerEnter2D(Collider2D other) 
     {
-        InstantiateLaser();
+        _cancel = true;
+        Debug.Log ("Triggered");
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        _cancel = false;
+    }
+
     public void InstantiateLaser()
     {
+        if (_cancel) return;
             Debug.Log("Piuuu, piuuuuu");
     }
-    
-    public void CancelLaser()
-    {
-        Debug.Log("Laser cancelado");
-    }
 
-    private void OnEndDrag(PointerEventData eventData)
-    {
-        Ray ray = Camera.main.ScreenPointToRay( Input.GetTouch(0).position );
-        RaycastHit hit;
-
-        if (!Physics.Raycast(ray, out hit) || hit.transform.gameObject.name != "AimJoystick")
-            Debug.Log("funca");
-    }
-    /*private bool Shot()
-    {
-        if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Ended) 
-        {
-            Ray ray = Camera.main.ScreenPointToRay( Input.GetTouch(0).position );
-            RaycastHit hit;
-
-            if (!Physics.Raycast(ray, out hit) || hit.transform.gameObject.name != "AimJoystick") return true;
-            Debug.Log("Funca");
-            return false;
-        }
-
-        return true;
-    }*/
-
-    private void Update()
-    {
-    }
 }

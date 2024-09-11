@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 
     public void FrozenMove(int time)
     {
-        StartCoroutine(FrozenCoroutine(5));
+        StartCoroutine(FrozenCoroutine(time));
     }
     
     private IEnumerator FrozenCoroutine(int time)
