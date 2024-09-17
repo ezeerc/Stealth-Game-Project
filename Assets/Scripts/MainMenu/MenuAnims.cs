@@ -30,7 +30,7 @@ public class MenuAnims : MonoBehaviour
                 _anim.SetInteger("Animation_int", 9);
                 break;
             case IdleState.Smoking:
-                randomSpeed = Random.Range(0.01f, 0.7f);
+                randomSpeed = Random.Range(0.2f, 0.7f);
                 _anim.SetInteger("Animation_int", 5);
                 break;
             case IdleState.CheckWatch:
