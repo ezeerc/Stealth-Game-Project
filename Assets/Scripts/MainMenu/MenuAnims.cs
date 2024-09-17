@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuAnim : MonoBehaviour
+public class MenuAnims : MonoBehaviour
 {
     private Animator _anim;
     public AnimationState animationState;
