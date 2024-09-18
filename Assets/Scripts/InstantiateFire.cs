@@ -11,7 +11,7 @@ public class InstantiateFire : Joystick
     [SerializeField] private GameObject cancelCollider;
     private bool _cancel = false;
     public Weapon _weapon;
-
+    
     void OnTriggerEnter2D(Collider2D other) 
     {
         _cancel = true;
@@ -27,5 +27,5 @@ public class InstantiateFire : Joystick
         if (_cancel) return;
         _weapon.Shot();
     }
-
+    
 }

@@ -5,8 +5,10 @@ public class PlayerMovement
     private static readonly int Run = Animator.StringToHash("Run");
     private static readonly int Aiming = Animator.StringToHash("Aiming");
     private static readonly int Sneak = Animator.StringToHash("Sneak");
+    private static readonly int Direction = Animator.StringToHash("direction");
     private readonly Player _player;
     private bool _notMoving;
+    private bool _rotating;
 
     public PlayerMovement(Player player)
     {
@@ -20,10 +22,10 @@ public class PlayerMovement
         rigidbody.velocity = directionFix;
         if (controller.GetMovementInput().x != 0f || controller.GetMovementInput().y != 0f)
         {
-            _player.transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
             animator.SetBool( Run, true);
-            Debug.Log(controller.GetMovementInput().x);
-            animator.SetFloat("direction", controller.GetMovementInput().x);
+            animator.SetFloat(Direction, controller.GetMovementInput().x);
+            if (_rotating) return;
+            _player.transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
         }
         else
         {
@@ -38,6 +40,7 @@ public class PlayerMovement
         _player.transform.LookAt(lookAtPoint);
         if (controller.GetMovementInput().x != 0f || controller.GetMovementInput().y != 0f)
         {
+            _rotating = true;
             //_notMoving = true;
             animator.SetBool(Aiming, true);
             animator.SetBool(Sneak, false);
@@ -45,6 +48,7 @@ public class PlayerMovement
         else
         {
             animator.SetBool(Aiming, false);
+            _rotating = false;
             //_notMoving = false;
         }
     }

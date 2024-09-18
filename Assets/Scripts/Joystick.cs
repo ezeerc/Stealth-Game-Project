@@ -10,16 +10,17 @@ public class Joystick : Controller, IDragHandler, IEndDragHandler
     private Transform _camera;
     [SerializeField] private float maxMagnitude = 75;
     private Transform _iso;
+
     private void Start()
     {
-        _iso = new GameObject ().transform;
+        _iso = new GameObject().transform;
         _initialPosition = transform.position;
         if (Camera.main != null) _camera = Camera.main.transform;
     }
 
     public override Vector3 GetMovementInput()
     {
-        _iso.rotation = Quaternion.Euler (0, 0, 45); // modify angle rotation of the input relative to camera angle (45°)
+        _iso.rotation = Quaternion.Euler(0, 0, 45); // modify angle rotation of the input relative to camera angle (45°)
         var modifiedDir = new Vector3(_moveDir.x, _moveDir.y, 0);
         modifiedDir = _iso.TransformDirection(modifiedDir);
         modifiedDir /= maxMagnitude;
