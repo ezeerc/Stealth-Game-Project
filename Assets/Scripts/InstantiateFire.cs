@@ -6,15 +6,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Update = UnityEngine.PlayerLoop.Update;
 
-public class InstantiateFire : MonoBehaviour
+public class InstantiateFire : Joystick
 {
     [SerializeField] private GameObject cancelCollider;
     private bool _cancel = false;
-    
+    public Weapon _weapon;
+
     void OnTriggerEnter2D(Collider2D other) 
     {
         _cancel = true;
-        Debug.Log ("Triggered");
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -22,10 +22,10 @@ public class InstantiateFire : MonoBehaviour
         _cancel = false;
     }
 
-    public void InstantiateLaser()
+    public void InstantiateBullet()
     {
         if (_cancel) return;
-            Debug.Log("Piuuu, piuuuuu");
+        _weapon.Shot();
     }
 
 }

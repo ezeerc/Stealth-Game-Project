@@ -5,12 +5,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     private static readonly int Run = Animator.StringToHash("Run");
     [SerializeField] private Controller controller;
     [SerializeField] private Controller aimController;
-    [field: SerializeField] public float Speed{get;set;}
     public Transform Target { get; private set; }
     private Rigidbody _rb;
     private Animator _animator;
