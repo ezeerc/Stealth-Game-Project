@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement
@@ -9,7 +10,7 @@ public class PlayerMovement
     private readonly Player _player;
     private bool _notMoving;
     private bool _rotating;
-
+        
     public PlayerMovement(Player player)
     {
         _player = player;
@@ -18,11 +19,12 @@ public class PlayerMovement
     public void PlayerMovementMethod(Rigidbody rigidbody, Controller controller, float speed, Animator animator)
     {
         if (_notMoving) return;
-        var directionFix = new Vector3(controller.GetMovementInput().x * speed, rigidbody.velocity.y, controller.GetMovementInput().z * speed);
+        var directionFix = new Vector3(controller.GetMovementInput().x * speed, rigidbody.velocity.y,
+            controller.GetMovementInput().z * speed);
         rigidbody.velocity = directionFix;
         if (controller.GetMovementInput().x != 0f || controller.GetMovementInput().y != 0f)
         {
-            animator.SetBool( Run, true);
+            animator.SetBool(Run, true);
             animator.SetFloat(Direction, controller.GetMovementInput().x);
             if (_rotating) return;
             _player.transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
@@ -41,16 +43,14 @@ public class PlayerMovement
         if (controller.GetMovementInput().x != 0f || controller.GetMovementInput().y != 0f)
         {
             _rotating = true;
-            //_notMoving = true;
             animator.SetBool(Aiming, true);
             animator.SetBool(Sneak, false);
+
         }
         else
         {
             animator.SetBool(Aiming, false);
             _rotating = false;
-            //_notMoving = false;
         }
     }
-    
 }

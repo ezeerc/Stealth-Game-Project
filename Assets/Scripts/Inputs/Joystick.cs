@@ -11,6 +11,7 @@ public class Joystick : Controller, IDragHandler, IEndDragHandler
     [SerializeField] private float maxMagnitude = 75;
     private Transform _iso;
 
+
     private void Start()
     {
         _iso = new GameObject().transform;
@@ -31,11 +32,13 @@ public class Joystick : Controller, IDragHandler, IEndDragHandler
     {
         _moveDir = Vector3.ClampMagnitude((Vector3)eventData.position - _initialPosition, maxMagnitude);
         transform.position = _initialPosition + _moveDir;
+        MovingStick = true;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         transform.position = _initialPosition;
         _moveDir = Vector3.zero;
+        MovingStick = false;
     }
 }

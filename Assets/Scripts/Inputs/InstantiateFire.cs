@@ -6,11 +6,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Update = UnityEngine.PlayerLoop.Update;
 
-public class InstantiateFire : Joystick
+public class InstantiateFire : Joystick, IPointerUpHandler, ICanShoot
 {
     [SerializeField] private GameObject cancelCollider;
     private bool _cancel = false;
-    public Weapon _weapon;
+    public bool FireOn { get; set; }
     
     void OnTriggerEnter2D(Collider2D other) 
     {
@@ -21,11 +21,11 @@ public class InstantiateFire : Joystick
     {
         _cancel = false;
     }
-
-    public void InstantiateBullet()
+    
+    public void OnPointerUp(PointerEventData eventData)
     {
         if (_cancel) return;
-        _weapon.Shot();
+        FireOn = true;
+        MovingStick = false;
     }
-    
 }

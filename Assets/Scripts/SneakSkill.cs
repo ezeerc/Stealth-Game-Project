@@ -5,13 +5,11 @@ public class SneakSkill : Skill
     private static readonly int Sneak = Animator.StringToHash("Sneak");
     private static readonly int Strangling = Animator.StringToHash("Strangling");
     private static readonly int Run = Animator.StringToHash("Run");
-    private readonly Animator _animator;
-    private readonly Player _player;
-    public bool Sneaking { get; set; }
-    public bool CanStrangling { get; set; }
-    public bool InitAttack { get; set; }
+    private Animator _animator;
+    private PlayerMediator _player;
 
-    public SneakSkill(Player player, Animator animator)
+
+    public void Configure(PlayerMediator player, Animator animator)
     {
         _player = player;
         _animator = animator;
@@ -20,36 +18,36 @@ public class SneakSkill : Skill
     {
         if ((Input.touchCount > 1) && (Input.GetTouch(1).phase == TouchPhase.Began))
         {
-            if (!Sneaking)
+            if (!_player.Sneaking)
             {
                 _animator.SetBool(Sneak, false);
-                _player.Speed = 10;
-                Sneaking = true;
+                _player.ChangeSpeed(10);
+                _player.Sneaking = true;
             }
             else
             {
                 _animator.SetBool(Sneak, true);
-                Sneaking = false;
-                _player.Speed = 5;
+                _player.Sneaking = false;
+                _player.ChangeSpeed(5);
             }
         }
 
         if ((Input.touchCount <= 1) || (Input.GetTouch(1).phase != TouchPhase.Began)) return;
-        if (!Sneaking || !CanStrangling) return;
-        InitAttack = true;
+        if (!_player.Sneaking || !_player.CanStrangling) return;
+        _player.InitAttack = true;
         StealthAttack();
     }
 
     private void StealthAttack()
     {
-        if (Sneaking && CanStrangling)
+        if (_player.Sneaking && _player.CanStrangling)
         {
             _player.FrozenMove(3);
             _animator.SetBool(Sneak, false);
             _animator.SetBool(Run, false);
             _animator.SetTrigger(Strangling);
-            Sneaking = false;
-            CanStrangling = false;
+            _player.Sneaking = false;
+            _player.CanStrangling = false;
         }
     }
 }

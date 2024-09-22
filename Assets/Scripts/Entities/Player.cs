@@ -23,7 +23,7 @@ public class Player : Entity
         Target = this.transform.GetChild(0);
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
-        Sneak = new SneakSkill(this, _animator);
+        //Sneak = new SneakSkill(this, _animator);
         _playerMovement = new PlayerMovement(this);
     }
 

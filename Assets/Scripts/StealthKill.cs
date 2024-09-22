@@ -4,7 +4,7 @@ using UnityEngine;
 public class StealthKill : MonoBehaviour
 {
     private static readonly int Strangled = Animator.StringToHash("Strangled");
-    private Player _player;
+    private PlayerMediator _player;
     private Vector3 _target;
     private Animator _animator;
     private SneakSkill _skill;
@@ -15,7 +15,7 @@ public class StealthKill : MonoBehaviour
 
     private void Awake()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMediator>();
     }
 
     private void Start()
@@ -32,27 +32,26 @@ public class StealthKill : MonoBehaviour
    private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        _player.Sneak.CanStrangling = true;
-        _player = other.GetComponent<Player>();
-        _target = other.GetComponent<Player>().Target.transform.position;
+        _player.CanStrangling = true;
+        _target = other.GetComponent<PlayerMediator>().Target.transform.position;
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        _player.Sneak.CanStrangling = false;
+        _player.CanStrangling = false;
     }
 
     private void VictimDeath()
     {
-        if (_player.Sneak.InitAttack && !_isDead && Vector3.Distance(_player.transform.position, _enemy.transform.position) < 5f)
+        if (_player.InitAttack && !_isDead && Vector3.Distance(_player.transform.position, _enemy.transform.position) < 5f)
         {
             _enemy.transform.rotation = _player.transform.rotation;
             _isDead = true;
             _enemy.transform.position =
                 Vector3.SmoothDamp(_enemy.transform.position, _target, ref _velocity, Time.deltaTime);
             _animator.SetTrigger(Strangled);
-            _player.Sneak.InitAttack = false;
+            _player.InitAttack = false;
         }
     }
 
