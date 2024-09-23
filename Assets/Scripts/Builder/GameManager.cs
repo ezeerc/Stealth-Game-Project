@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Controller aimMoveController;
     [SerializeField] private Vector3 initialPosition;
     [SerializeField] private int speed;
-    private void Start()
+    private void Awake()
     {
         Player player = Instantiate(playerPrefab);
         
