@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerTest : Entity, IDamageable
+public class Player : Entity, IDamageable
 {
     public MovementController movementController;
     public WeaponController weaponController;

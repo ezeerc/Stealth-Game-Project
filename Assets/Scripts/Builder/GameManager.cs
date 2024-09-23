@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PlayerTest playerPrefab;
+    [SerializeField] private Player playerPrefab;
     [SerializeField] private Controller moveController;
     [SerializeField] private Controller aimMoveController;
     [SerializeField] private Vector3 initialPosition;
     [SerializeField] private int speed;
     private void Start()
     {
-        PlayerTest player = Instantiate(playerPrefab);
+        Player player = Instantiate(playerPrefab);
         
         PlayerBuilder builder = new PlayerBuilder()
             .SetMoveController(moveController)

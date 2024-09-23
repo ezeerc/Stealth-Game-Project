@@ -50,7 +50,7 @@ public class PlayerBuilder
         _speed = speed;
         return this;
     }
-    public PlayerTest Build(PlayerTest player)
+    public Player Build(Player player)
     {
         player.moveController = _moveController;
         player.aimMoveController = _aimMoveController;
