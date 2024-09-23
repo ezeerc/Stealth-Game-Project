@@ -4,7 +4,7 @@ using UnityEngine;
 public class StealthKill : MonoBehaviour
 {
     private static readonly int Strangled = Animator.StringToHash("Strangled");
-    private Player _player;
+    private PlayerTest _player;
     private Vector3 _target;
     private Animator _animator;
     private SneakSkill _skill;
@@ -12,14 +12,11 @@ public class StealthKill : MonoBehaviour
     private Vector3 _velocity = Vector3.zero;
     private SneakSkill _sneakSkill;
     private bool _isDead;
-
-    private void Awake()
-    {
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-    }
+    
 
     private void Start()
     {
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerTest>();
         _animator = GetComponentInParent<Animator>();
         _enemy = this.transform.parent.gameObject;
     }
@@ -33,7 +30,7 @@ public class StealthKill : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         _player.CanStrangling = true;
-        _target = other.GetComponent<Player>().Target.transform.position;
+        _target = other.GetComponent<PlayerTest>().Target.transform.position;
     }
 
     private void OnTriggerExit(Collider other)

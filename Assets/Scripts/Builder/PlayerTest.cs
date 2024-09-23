@@ -1,48 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
-public class Player : Entity, IDamageable
+public class PlayerTest : Entity, IDamageable
 {
-    [SerializeField] MovementController movementController;
-    [SerializeField] WeaponController weaponController;
+    public MovementController movementController;
+    public WeaponController weaponController;
     
-    [SerializeField] private Controller moveController;
-    [SerializeField] private Controller aimMoveController;
-    [SerializeField] private HealthController healthController;
-
-    private ICanShoot _canShoot;
+    public Controller moveController;
+    public Controller aimMoveController;
+    public HealthController healthController;
+    public Transform Target { get; set; }
     public bool Sneaking { get; set; }
     public bool CanStrangling { get; set; }
     public bool InitAttack { get; set; }
-    public Transform Target { get; private set; }
+
+    
     private Rigidbody _rb;
     private Animator _animator;
     private SneakSkill _sneakSkill;
     private bool _frozen = false;
+    private ICanShoot _canShoot;
     
-    [SerializeField] private int minHealth;
+    public int minHealth;
 
 
-    private void Configure(Controller controller, Controller aimController)
+    public void Configure(Controller controller, Controller aimController)
     {
-
-        _rb = GetComponent<Rigidbody>();
-        _animator = GetComponent<Animator>();
-        Target = this.transform.GetChild(0);
         moveController = controller;
         aimMoveController = aimController;
-        movementController.Configure(_animator, _rb, Speed);
+        
+        movementController = GetComponent<MovementController>();
+        weaponController = GetComponent<WeaponController>();
+        healthController = GetComponent<HealthController>();
+        
+        _rb = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
+        
         _canShoot = aimController.GetComponent<ICanShoot>();
-        _sneakSkill = new SneakSkill();
-        //_sneakSkill.Configure(this, _animator);
+        
+        Target = this.transform.GetChild(0);
+        
+        movementController.Configure(_animator, _rb, Speed);
         healthController.Configure(minHealth, Health);
+        
+        _sneakSkill = new SneakSkill();
+        _sneakSkill.Configure(this, _animator);
     }
 
 
-    private void Start()
+    public void InitPlayer(PlayerBuilder builder)
     {
+        builder.Build(this);
         this.Configure(moveController, aimMoveController);
     }
 
@@ -119,5 +129,7 @@ public class Player : Entity, IDamageable
     public void TakeDamage(int amount)
     {
         healthController.TakeDamage(amount);
+        Debug.Log("funca");
     }
+
 }

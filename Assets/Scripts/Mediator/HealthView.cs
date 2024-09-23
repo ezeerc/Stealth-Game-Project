@@ -12,6 +12,7 @@ public class HealthView : MonoBehaviour
 
     private void Start()
     {
+        healthModel = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthController>();
         if (healthModel != null)
         {
             healthModel.HealthChanged += OnHealthChanged;
