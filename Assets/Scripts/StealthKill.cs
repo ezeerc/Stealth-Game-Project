@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class StealthKill : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class StealthKill : MonoBehaviour
     private Vector3 _velocity = Vector3.zero;
     private SneakSkill _sneakSkill;
     private bool _isDead;
+    
     
 
     private void Start()
@@ -43,6 +45,8 @@ public class StealthKill : MonoBehaviour
     {
         if (_player.InitAttack && !_isDead && Vector3.Distance(_player.transform.position, _enemy.transform.position) < 5f)
         {
+            var enemy = _enemy.GetComponent<NavMeshAgent>();
+            enemy.isStopped = true;
             _enemy.transform.rotation = _player.transform.rotation;
             _isDead = true;
             _enemy.transform.position =
