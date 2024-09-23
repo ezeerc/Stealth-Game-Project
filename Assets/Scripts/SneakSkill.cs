@@ -6,10 +6,10 @@ public class SneakSkill : Skill
     private static readonly int Strangling = Animator.StringToHash("Strangling");
     private static readonly int Run = Animator.StringToHash("Run");
     private Animator _animator;
-    private PlayerMediator _player;
+    private Player _player;
 
 
-    public void Configure(PlayerMediator player, Animator animator)
+    public void Configure(Player player, Animator animator)
     {
         _player = player;
         _animator = animator;

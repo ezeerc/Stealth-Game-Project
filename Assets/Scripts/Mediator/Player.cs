@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerMediator : MonoBehaviour, IPlayer
+public class Player : Entity, IDamageable
 {
     [SerializeField] MovementController movementController;
     [SerializeField] WeaponController weaponController;
     
     [SerializeField] private Controller moveController;
     [SerializeField] private Controller aimMoveController;
-    
+    [SerializeField] private HealthController healthController;
 
     private ICanShoot _canShoot;
     public bool Sneaking { get; set; }
@@ -20,18 +21,23 @@ public class PlayerMediator : MonoBehaviour, IPlayer
     private Animator _animator;
     private SneakSkill _sneakSkill;
     private bool _frozen = false;
+    
+    [SerializeField] private int minHealth;
 
-    public void Configure(Controller controller, Controller aimController)
+
+    private void Configure(Controller controller, Controller aimController)
     {
+
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
         Target = this.transform.GetChild(0);
         moveController = controller;
         aimMoveController = aimController;
-        movementController.Configure(_animator, _rb);
+        movementController.Configure(_animator, _rb, Speed);
         _canShoot = aimController.GetComponent<ICanShoot>();
         _sneakSkill = new SneakSkill();
         _sneakSkill.Configure(this, _animator);
+        healthController.Configure(minHealth, Health);
     }
 
 
@@ -42,19 +48,34 @@ public class PlayerMediator : MonoBehaviour, IPlayer
 
     private void FixedUpdate()
     {
-        if(_frozen) return;
-        var direction = moveController.GetMovementInput();
-        movementController.Move(direction);
+        Move();
     }
 
     private void Update()
     {
         _sneakSkill.GetSkill();
+        MoveAim();
+        Shot(_canShoot);
+
+        if(Input.anyKeyDown)
+        {
+            Debug.Log("Hola");
+            TakeDamage(10);
+        }
+    }
+
+    public override void Move()
+    {
+        if(_frozen) return;
+        var direction = moveController.GetMovementInput();
+        movementController.Move(direction);
+    }
+    
+    private void MoveAim()
+    {
         var direction = aimMoveController.GetMovementInput();
         movementController.MoveAim(direction);
         CheckAimMovement(aimMoveController);
-        Shot(_canShoot);
-        
     }
 
     public void FrozenMove(int time)
@@ -94,5 +115,9 @@ public class PlayerMediator : MonoBehaviour, IPlayer
     {
         movementController.Speed = speed;
     }
-    
+
+    public void TakeDamage(int amount)
+    {
+        healthController.TakeDamage(amount);
+    }
 }

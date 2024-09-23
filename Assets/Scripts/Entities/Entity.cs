@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Entity : MonoBehaviour, IDamageable
+public abstract class Entity : MonoBehaviour
 {
-    protected int Health;
-    [field: SerializeField] public float Speed{get;set;}
-    
-    public void AddDamage(int amount)
+    [field: SerializeField] public int Health { get; set; }
+    [field: SerializeField] public int Speed{get;set;}
+
+
+    public virtual void Move()
     {
-        Health -= amount;
+        
     }
+    
 }

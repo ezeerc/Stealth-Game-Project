@@ -12,16 +12,15 @@ public class MovementController : MonoBehaviour
     private IPlayer _player;
     private bool _notMoving;
     private bool _rotating;
-    public static Action RotateObserver;
     private Animator _animator;
     private Rigidbody _rigidbody;
     
     [field: SerializeField] public int Speed {get; set;}
     [SerializeField] private Transform _myTransform;
 
-    public void Configure(Animator animator, Rigidbody rigidbody)
+    public void Configure(Animator animator, Rigidbody rigidbody, int speed)
     {
-        //_player = player;
+        Speed = speed;
         _animator = animator;
         _rigidbody = rigidbody;
     }
@@ -52,7 +51,6 @@ public class MovementController : MonoBehaviour
         _myTransform.LookAt(lookAtPoint);
         if (direction.x != 0f || direction.y != 0f)
         {
-            //RotateObserver();
             _rotating = true;
             _animator.SetBool(Aiming, true);
             _animator.SetBool(Sneak, false);

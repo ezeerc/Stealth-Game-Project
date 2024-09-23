@@ -24,7 +24,7 @@ public class ProjectileObjectPool : RecyclableObject
         var damageable = other.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.AddDamage(_damage);
+            damageable.TakeDamage(_damage);
         }
     }
 }
