@@ -69,7 +69,6 @@ public class PlayerTest : Entity, IDamageable
 
         if(Input.anyKeyDown)
         {
-            Debug.Log("Hola");
             TakeDamage(10);
         }
     }
@@ -129,7 +128,6 @@ public class PlayerTest : Entity, IDamageable
     public void TakeDamage(int amount)
     {
         healthController.TakeDamage(amount);
-        Debug.Log("funca");
     }
 
 }
