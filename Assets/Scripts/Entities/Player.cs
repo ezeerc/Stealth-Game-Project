@@ -50,6 +50,8 @@ public class Player : Entity, IDamageable
         
         _sneakSkill = new SneakSkill();
         _sneakSkill.Configure(this, _animator);
+        
+         gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
 
