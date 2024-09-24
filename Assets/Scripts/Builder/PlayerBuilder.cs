@@ -14,6 +14,7 @@ public class PlayerBuilder
     private Transform _target;
     private Vector3 _instantiationPoint = new Vector3(0.35f, 0.04f, -4.35f);
     private int _speed;
+    private LayerMask _playerMask;
 
     public PlayerBuilder SetMoveController(Controller moveController)
     {
@@ -50,6 +51,12 @@ public class PlayerBuilder
         _speed = speed;
         return this;
     }
+
+    public PlayerBuilder SetLayerMask(LayerMask playerMask)
+    {
+        _playerMask = playerMask;
+        return this;
+    }
     public Player Build(Player player)
     {
         player.moveController = _moveController;
@@ -58,6 +65,7 @@ public class PlayerBuilder
         player.Target = _target;
         player.transform.position = _instantiationPoint;
         player.Speed = _speed;
+        player.playerMask = _playerMask;
         return player;
     }
 }

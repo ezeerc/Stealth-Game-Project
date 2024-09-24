@@ -708,6 +708,9 @@ MonoBehaviour:
   aimMoveController: {fileID: 151004677}
   initialPosition: {x: 0, y: 0, z: 0}
   speed: 10
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &480570245
 Transform:
   m_ObjectHideFlags: 0

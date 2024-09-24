@@ -24,6 +24,7 @@ public class Player : Entity, IDamageable
     private bool _frozen = false;
     private ICanShoot _canShoot;
 
+    public LayerMask playerMask;
     
     public int minHealth;
 
