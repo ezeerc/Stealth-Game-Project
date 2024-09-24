@@ -17,3 +17,14 @@ MonoBehaviour:
   damage: 34
   armour: 1
   fireRate: 2
+  viewRadius: 10
+  viewAngle: 55
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 54
+  meshResolution: 1
+  edgeResolveIterations: 0
+  edgeDstThreshold: 0

@@ -16,12 +16,15 @@ public class Player : Entity, IDamageable
     public bool CanStrangling { get; set; }
     public bool InitAttack { get; set; }
 
-    
+    [field: SerializeField] public int Speed { get; set; }
+
     private Rigidbody _rb;
     private Animator _animator;
     private SneakSkill _sneakSkill;
     private bool _frozen = false;
     private ICanShoot _canShoot;
+
+    public LayerMask playerMask;
     
     public int minHealth;
 
