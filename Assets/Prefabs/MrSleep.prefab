@@ -2583,12 +2583,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Health>k__BackingField: 100
-  <Speed>k__BackingField: 10
+  stats: {fileID: 0}
   movementController: {fileID: 0}
   weaponController: {fileID: 0}
   moveController: {fileID: 0}
   aimMoveController: {fileID: 0}
   healthController: {fileID: 0}
+  <Speed>k__BackingField: 10
   minHealth: 0
 --- !u!1 &7172856496259878907
 GameObject:
@@ -2973,7 +2974,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1180564685727896819}
   - component: {fileID: 3581180205640295021}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MS_SpecialForces_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

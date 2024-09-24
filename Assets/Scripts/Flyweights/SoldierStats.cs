@@ -10,4 +10,11 @@ public class SoldierStats : ScriptableObject
     public int damage;
     public float armour;
     public float fireRate;
+    public float viewRadius;
+    public float viewAngle;
+    public LayerMask targetMask;
+    public LayerMask obstacleMask;
+    public float meshResolution;
+    public float edgeResolveIterations;
+    public float edgeDstThreshold;
 }

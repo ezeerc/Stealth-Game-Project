@@ -8,6 +8,7 @@ public class Enemy : Entity, IDamageable
 {
     public Transform[] wayPoints;
 
+
     private NavMeshAgent navMeshAgent;
     
     private int currentWayPointIndex = 0;
@@ -18,7 +19,7 @@ public class Enemy : Entity, IDamageable
     {
         Health = 100;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.speed = Speed;
+        navMeshAgent.speed = stats.baseSpeed;
     }
 
     private void Update()

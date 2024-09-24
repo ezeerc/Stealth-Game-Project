@@ -6,7 +6,8 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour
 {
     [field: SerializeField] public int Health { get; set; }
-    [field: SerializeField] public int Speed{get;set;}
+
+    public SoldierStats stats;
 
 
     public virtual void Move()
