@@ -52,12 +52,18 @@ public class CamFader : MonoBehaviour
                         _fader1 = hit.collider.gameObject.GetComponent<ObjectFader>();
                         _fader1.doFade = true;
                     }
-                    else if (_fader1 != null && hit.collider.gameObject != _player)
+                    else if (_fader1 != null)
                     {
                         _fader1.doFade = false;
                         _fader1 = null;
                         _fader2 = hit.collider.gameObject.GetComponent<ObjectFader>();
                         _fader2.doFade = true;
+                    }
+                    else if (_fader1 != null && _fader2 != null)
+                    {
+                        _fader1.doFade = false;
+                        _fader1 = hit.collider.gameObject.GetComponent<ObjectFader>();
+                        _fader1.doFade = true;
                     }
                     
                     if (_fader2 == null)
