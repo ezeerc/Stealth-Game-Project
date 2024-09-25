@@ -72,10 +72,6 @@ public class Player : Entity, IDamageable
         MoveAim();
         Shot(_canShoot);
 
-        if(Input.anyKeyDown)
-        {
-            TakeDamage(10);
-        }
     }
 
     public override void Move()
