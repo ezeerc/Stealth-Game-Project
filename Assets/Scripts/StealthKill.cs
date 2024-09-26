@@ -31,14 +31,16 @@ public class StealthKill : MonoBehaviour
    private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        _player.CanStrangling = true;
+        if (_isDead) return;
+        _player.CanStranglingFunc();
         _target = other.GetComponent<Player>().Target.transform.position;
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        _player.CanStrangling = false;
+        if (_isDead) return;
+        _player.CanStranglingFunc();
     }
 
     private void VictimDeath()
@@ -52,6 +54,7 @@ public class StealthKill : MonoBehaviour
             _enemy.transform.position =
                 Vector3.SmoothDamp(_enemy.transform.position, _target, ref _velocity, Time.deltaTime);
             _animator.SetTrigger(Strangled);
+            _player.OnStranglingOut();
             _player.InitAttack = false;
         }
     }

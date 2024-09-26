@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector3 initialPosition;
     [SerializeField] private int speed;
     [SerializeField] private LayerMask playerMask;
-
+    [SerializeField] private SneakSkill sneakSkill;
     private void Awake()
     {
         Player player = Instantiate(playerPrefab);
@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
             .SetMaxHealth(100)
             .SetPosition(initialPosition)
             .SetSpeed(speed)
-            .SetLayerMask(playerMask);
+            .SetLayerMask(playerMask)
+            .SetSneakSkill(sneakSkill);
 
 
         player.InitPlayer(builder);
