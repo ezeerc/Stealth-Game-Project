@@ -9,7 +9,6 @@ public class MovementController : MonoBehaviour
     private static readonly int Aiming = Animator.StringToHash("Aiming");
     private static readonly int Sneak = Animator.StringToHash("Sneak");
     private static readonly int Direction = Animator.StringToHash("direction");
-    private IPlayer _player;
     private bool _notMoving;
     private bool _rotating;
     private Animator _animator;
@@ -54,7 +53,6 @@ public class MovementController : MonoBehaviour
             _rotating = true;
             _animator.SetBool(Aiming, true);
             _animator.SetBool(Sneak, false);
-
         }
         else
         {

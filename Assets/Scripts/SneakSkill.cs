@@ -44,13 +44,16 @@ public class SneakSkill : Skill
         {
             GetSkill();
             _animator.SetBool(Sneak, false);
+            _animator.SetInteger("WeaponType_int", 1);
             _player.ChangeSpeed(10);
             _player.Sneaking = false;
+            
             
         }
         else
         {
             _animator.SetBool(Sneak, true);
+            _animator.SetInteger("WeaponType_int", 0);
             _player.Sneaking = true;
             _player.ChangeSpeed(5);
         }
@@ -61,6 +64,7 @@ public class SneakSkill : Skill
         {
             _player.Sneaking = false;
             _player.CanStrangling = false;
+            _animator.SetInteger("WeaponType_int", 0);
             _player.FrozenMove(3);
             _animator.SetBool(Sneak, false);
             _animator.SetBool(Run, false);

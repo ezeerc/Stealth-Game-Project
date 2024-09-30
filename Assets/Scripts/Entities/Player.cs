@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Player : Entity, IDamageable
 {
+    private static readonly int Sneak = Animator.StringToHash("Sneak");
+    private static readonly int Run = Animator.StringToHash("Run");
     public MovementController movementController;
     public WeaponController weaponController;
     
@@ -70,6 +72,7 @@ public class Player : Entity, IDamageable
     {
         MoveAim();
         Shot(_canShoot);
+        
 
     }
 
@@ -96,6 +99,11 @@ public class Player : Entity, IDamageable
     {
         _frozen = true;
         yield return new WaitForSeconds(time);
+        _animator.SetInteger("WeaponType_int", 1);
+        Sneaking = false;
+        CanStrangling = false;
+        _animator.SetBool(Sneak, false);
+        _animator.SetBool(Run, false);
         _frozen = false;
     }
 
@@ -103,6 +111,7 @@ public class Player : Entity, IDamageable
     {
         if (shot.FireOn)
         {
+            FrozenMove(1);
             weaponController.Shot();
             shot.FireOn = false;
         }
@@ -113,6 +122,7 @@ public class Player : Entity, IDamageable
         if (controller.MovingStick)
         {
             weaponController.LaserOn = true;
+            ChangeSpeed(10);
         }
         else
         {

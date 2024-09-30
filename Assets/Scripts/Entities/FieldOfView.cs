@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -183,4 +184,9 @@ public class FieldOfView : MonoBehaviour
 		}
 	}
 
+	public void Destroy()
+	{
+		viewMeshFilter.mesh = null;
+		Destroy(this);
+	}
 }

@@ -16,7 +16,7 @@ public class LaserScript : MonoBehaviour
 
     void Start()
     {
-        _lineRenderer = GetComponent<LineRenderer>();
+        _lineRenderer = GetComponentInChildren<LineRenderer>();
     }
 
     public void LaserOn()

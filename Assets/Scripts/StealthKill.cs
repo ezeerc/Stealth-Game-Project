@@ -12,7 +12,8 @@ public class StealthKill : MonoBehaviour
     private GameObject _enemy;
     private Vector3 _velocity = Vector3.zero;
     private SneakSkill _sneakSkill;
-    private bool _isDead;
+    private Enemy _enemyScript;
+    public bool _isDead;
     
     
 
@@ -21,6 +22,7 @@ public class StealthKill : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         _animator = GetComponentInParent<Animator>();
         _enemy = this.transform.parent.gameObject;
+        _enemyScript = GetComponentInParent<Enemy>();
     }
 
     private void Update()
@@ -56,6 +58,8 @@ public class StealthKill : MonoBehaviour
             _animator.SetTrigger(Strangled);
             _player.OnStranglingOut();
             _player.InitAttack = false;
+            _enemyScript.TakeDamage(100);
+            _enemyScript.Ragdoll(2f);
         }
     }
 
