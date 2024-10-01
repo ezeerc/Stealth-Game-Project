@@ -72,8 +72,6 @@ public class Player : Entity, IDamageable
     {
         MoveAim();
         Shot(_canShoot);
-        
-
     }
 
     public override void Move()

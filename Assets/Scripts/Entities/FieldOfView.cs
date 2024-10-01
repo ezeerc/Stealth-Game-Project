@@ -5,22 +5,22 @@ using System.Collections.Generic;
 
 public class FieldOfView : MonoBehaviour
 {
-	public SoldierStats stats;
+	//public SoldierStats stats;//utilización flyweight
 
 	private Enemy _enemy; 
-	//public float viewRadius; // Este
+	public float viewRadius; // Este
 	[Range(0,360)]
-	//public float viewAngle; // Este
+	public float viewAngle; // Este
 
-	//public LayerMask targetMask; // Este
-	//public LayerMask obstacleMask; // Este
+	public LayerMask targetMask; // Este
+	public LayerMask obstacleMask; // Este
 
 	[HideInInspector]
 	public List<Transform> visibleTargets = new List<Transform>();
 
-	//public float meshResolution; // Este
-	//public int edgeResolveIterations; // Este
-	//public float edgeDstThreshold; // Este
+	public float meshResolution; // Este
+	public int edgeResolveIterations; // Este
+	public float edgeDstThreshold; // Este
 
 	public MeshFilter viewMeshFilter;
 	Mesh viewMesh;
@@ -37,7 +37,7 @@ public class FieldOfView : MonoBehaviour
 	IEnumerator FindTargetsWithDelay(float delay) {
 		while (true) {
 			yield return new WaitForSeconds (delay);
-			FindVisibleTargets ();
+			FindVisibleTargets();
 		}
 	}
 
@@ -47,14 +47,14 @@ public class FieldOfView : MonoBehaviour
 
 	void FindVisibleTargets() {
 		visibleTargets.Clear ();
-		Collider[] targetsInViewRadius = Physics.OverlapSphere (transform.position, stats.viewRadius, stats.targetMask);
+		Collider[] targetsInViewRadius = Physics.OverlapSphere (transform.position, viewRadius, targetMask);
 
 		for (int i = 0; i < targetsInViewRadius.Length; i++) {
 			Transform target = targetsInViewRadius [i].transform;
 			Vector3 dirToTarget = (target.position - transform.position).normalized;
-			if (Vector3.Angle (transform.forward, dirToTarget) < stats.viewAngle / 2) {
+			if (Vector3.Angle (transform.forward, dirToTarget) < viewAngle / 2) {
 				float dstToTarget = Vector3.Distance (transform.position, target.position);
-				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, stats.obstacleMask)) {
+				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) {
 					visibleTargets.Add (target);
 					if (target.CompareTag("Player"))
 					{
@@ -68,16 +68,16 @@ public class FieldOfView : MonoBehaviour
 	}
 
 	void DrawFieldOfView() {
-		int stepCount = Mathf.RoundToInt(stats.viewAngle * stats.meshResolution);
-		float stepAngleSize = stats.viewAngle / stepCount;
+		int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
+		float stepAngleSize = viewAngle / stepCount;
 		List<Vector3> viewPoints = new List<Vector3> ();
 		ViewCastInfo oldViewCast = new ViewCastInfo ();
 		for (int i = 0; i <= stepCount; i++) {
-			float angle = transform.eulerAngles.y - stats.viewAngle / 2 + stepAngleSize * i;
+			float angle = transform.eulerAngles.y - viewAngle / 2 + stepAngleSize * i;
 			ViewCastInfo newViewCast = ViewCast (angle);
 
 			if (i > 0) {
-				bool edgeDstThresholdExceeded = Mathf.Abs (oldViewCast.dst - newViewCast.dst) > stats.edgeDstThreshold;
+				bool edgeDstThresholdExceeded = Mathf.Abs (oldViewCast.dst - newViewCast.dst) > edgeDstThreshold;
 				if (oldViewCast.hit != newViewCast.hit || (oldViewCast.hit && newViewCast.hit && edgeDstThresholdExceeded)) {
 					EdgeInfo edge = FindEdge (oldViewCast, newViewCast);
 					if (edge.pointA != Vector3.zero) {
@@ -124,11 +124,11 @@ public class FieldOfView : MonoBehaviour
 		Vector3 minPoint = Vector3.zero;
 		Vector3 maxPoint = Vector3.zero;
 
-		for (int i = 0; i < stats.edgeResolveIterations; i++) {
+		for (int i = 0; i < edgeResolveIterations; i++) {
 			float angle = (minAngle + maxAngle) / 2;
 			ViewCastInfo newViewCast = ViewCast (angle);
 
-			bool edgeDstThresholdExceeded = Mathf.Abs (minViewCast.dst - newViewCast.dst) > stats.edgeDstThreshold;
+			bool edgeDstThresholdExceeded = Mathf.Abs (minViewCast.dst - newViewCast.dst) > edgeDstThreshold;
 			if (newViewCast.hit == minViewCast.hit && !edgeDstThresholdExceeded) {
 				minAngle = angle;
 				minPoint = newViewCast.point;
@@ -146,10 +146,10 @@ public class FieldOfView : MonoBehaviour
 		Vector3 dir = DirFromAngle (globalAngle, true);
 		RaycastHit hit;
 
-		if (Physics.Raycast (transform.position, dir, out hit, stats.viewRadius, stats.obstacleMask)) {
+		if (Physics.Raycast (transform.position, dir, out hit, viewRadius, obstacleMask)) {
 			return new ViewCastInfo (true, hit.point, hit.distance, globalAngle);
 		} else {
-			return new ViewCastInfo (false, transform.position + dir * stats.viewRadius, stats.viewRadius, globalAngle);
+			return new ViewCastInfo (false, transform.position + dir * viewRadius, viewRadius, globalAngle);
 		}
 	}
 

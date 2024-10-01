@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7871269612323218824}
-  _speed: 50
+  _speed: 100
   _damage: 10
 --- !u!64 &6352896987399483530
 MeshCollider:
