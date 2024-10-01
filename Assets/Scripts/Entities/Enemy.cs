@@ -23,8 +23,13 @@ public class Enemy : Entity, IDamageable
     [SerializeField] private float timeBetweenAttacks = 3f;
     private bool _dead;
 
+    private GameManager gameManager; // Eventualmente cambiar usando singleton
+
     private void Start()
     {
+
+        gameManager = FindAnyObjectByType<GameManager>(); // Va a optimizarse cuando cambiemos el GM por singleton
+
         Health = 40;
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.speed = stats.baseSpeed;
@@ -82,6 +87,8 @@ public class Enemy : Entity, IDamageable
 
         if (Vector3.Distance(transform.position, _player.transform.position) <= 20 && !_dead)
         {
+            gameManager.ChangeDetectionState(2); // Esta entrega esta hardcodeado. Planeamos usar eventos
+
             var destination = navMeshAgent.SetDestination(_player.transform.position);
             if (Vector3.Distance(transform.position, _player.transform.position) <= 10 && !_dead)            
             {
@@ -97,6 +104,7 @@ public class Enemy : Entity, IDamageable
         else if (Vector3.Distance(transform.position, _player.transform.position) > 20)
         {
             followPlayer = false;
+            gameManager.ChangeDetectionState(0); // hardcodeado
         }
     }
 

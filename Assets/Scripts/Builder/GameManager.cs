@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int speed;
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private SneakSkill sneakSkill;
+
+    public DetectionState detectionState = DetectionState.Hidden; //////// TOMI //////////////////////////////////
+
     private void Awake()
     {
         Player player = Instantiate(playerPrefab);
@@ -27,5 +30,30 @@ public class GameManager : MonoBehaviour
 
 
         player.InitPlayer(builder);
+    }
+
+    public void ChangeDetectionState(int detecctionNumber) // hacer switch
+    {
+        if (detecctionNumber == 0)
+        {
+            detectionState = DetectionState.Hidden;
+        }
+        
+        else if (detecctionNumber == 1)
+        {
+            detectionState = DetectionState.Alerted;
+        }   
+        
+        else 
+        {
+            detectionState = DetectionState.Detected;
+        }
+    }
+
+    public enum DetectionState //////////////////////////////// TOMI //////////////////////////////////
+    {
+        Hidden,
+        Alerted,
+        Detected
     }
 }

@@ -14,6 +14,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] private int qtyBullets;
     private int currentQty;
 
+    public float shotRecharge;    /////////// TOMI //////////////////////////////////
+
     private void Awake()
     {
         _factory = new ObjectPoolFactory(_prefab);

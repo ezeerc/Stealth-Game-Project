@@ -28,7 +28,7 @@ public class Player : Entity, IDamageable
     private ICanShoot _canShoot;
 
     public LayerMask playerMask;
-    
+
     public int minHealth;
 
     public event Action OnStrangling;

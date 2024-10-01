@@ -2803,7 +2803,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   sneakSkill: {fileID: 480570246}
-  detectionState: 0
 --- !u!4 &480570245
 Transform:
   m_ObjectHideFlags: 0
@@ -4275,7 +4274,6 @@ MonoBehaviour:
   _hidden: {fileID: 1714044583}
   _alerted: {fileID: 1267722773}
   _detected: {fileID: 2114065641}
-  gameManager: {fileID: 0}
 --- !u!1 &1305741801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6430683021379737225, guid: 1396ddf825604164dbf9bf6bd0f4c417, type: 3}
@@ -4301,7 +4299,7 @@ MonoBehaviour:
   - {fileID: 884924947}
   - {fileID: 798547094}
   - {fileID: 270157925}
-  weaponActive: 5
+  weaponActive: 0
   weaponActiveScript: {fileID: 0}
 --- !u!4 &1331995682 stripped
 Transform:

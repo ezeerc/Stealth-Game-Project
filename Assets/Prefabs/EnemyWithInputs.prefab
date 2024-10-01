@@ -1053,6 +1053,7 @@ MonoBehaviour:
   _spawnPoint: {fileID: 7569070452047039902}
   timeBtwShots: 0.2
   qtyBullets: 7
+  shotRecharge: 0
 --- !u!1001 &2823771716478465472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1148,7 +1149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6595793480918048582, guid: 4e068583e4843514b8c64b30b6a7dc6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.495
+      value: 0.677
       objectReference: {fileID: 0}
     - target: {fileID: 6595793480918048582, guid: 4e068583e4843514b8c64b30b6a7dc6b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1263,6 +1264,7 @@ MonoBehaviour:
   _spawnPoint: {fileID: 8522311089878821793}
   timeBtwShots: 1
   qtyBullets: 1
+  shotRecharge: 0
 --- !u!4 &4823364006867488902 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8015751974703178849, guid: 4e068583e4843514b8c64b30b6a7dc6b, type: 3}
@@ -1369,6 +1371,7 @@ MonoBehaviour:
   _spawnPoint: {fileID: 2310972557686968743}
   timeBtwShots: 0.1
   qtyBullets: 5
+  shotRecharge: 0
 --- !u!4 &3352845238220993729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 486544, guid: c60108c8eeb1eb24fbead32586fcc558, type: 3}

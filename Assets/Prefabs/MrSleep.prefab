@@ -3054,6 +3054,8 @@ MonoBehaviour:
   weaponActive: 0
   LaserOn: 0
   weaponActiveScript: {fileID: 0}
+  shotCooldown: 1
+  isShotReady: 1
 --- !u!136 &2246689303167550677
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3104,6 +3106,10 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 0
+  _shotCooldown: 1
+  _shotRecharge: 0.05
+  _isShotReady: 1
+  detectionState: 0
   minHealth: 0
 --- !u!1 &7172856496259878907
 GameObject:
@@ -4145,6 +4151,7 @@ MonoBehaviour:
   _spawnPoint: {fileID: 87416239858745233}
   timeBtwShots: 0.1
   qtyBullets: 5
+  shotRecharge: 0.15
 --- !u!1001 &1650558521911863143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4298,6 +4305,7 @@ MonoBehaviour:
   _spawnPoint: {fileID: 5579679574028580897}
   timeBtwShots: 1
   qtyBullets: 1
+  shotRecharge: 0.05
 --- !u!4 &8780433539911729926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8015751974703178849, guid: 4e068583e4843514b8c64b30b6a7dc6b, type: 3}
@@ -4556,6 +4564,7 @@ MonoBehaviour:
   _spawnPoint: {fileID: 1174081267278875314}
   timeBtwShots: 0.2
   qtyBullets: 7
+  shotRecharge: 0
 --- !u!1001 &6229311822824148958
 PrefabInstance:
   m_ObjectHideFlags: 0

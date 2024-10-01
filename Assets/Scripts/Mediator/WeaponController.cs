@@ -14,12 +14,17 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private GameObject[] weaponPrefabs;
     [SerializeField] private int weaponActive;
     public bool LaserOn = false;
-    [SerializeField] private Weapon weaponActiveScript;
+    public Weapon weaponActiveScript; // ver si podemos dejar esto privado
+
+
+    public float shotCooldown = 1f;  //////////////// TOMI //////////////////////////////////
+    public bool isShotReady = true;    ////////////// TOMI //////////////////////////////////
+
     private void Awake()
     {
         _factory = new ObjectPoolFactory(prefab);
     }
-    
+
     private void Start()
     {
         ChangeWeapon(weaponActive);
@@ -27,12 +32,12 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
-       
+
         if (LaserOn)
         {
             laser.LaserOn();
         }
-        else if(!LaserOn)
+        else if (!LaserOn)
         {
             laser.LaserOff();
         }
@@ -41,8 +46,16 @@ public class WeaponController : MonoBehaviour
 
     public void Shot()
     {
+        if (!isShotReady) return;
+
         weaponActiveScript.Shot();
+        isShotReady = false;
+        shotCooldown = 0f;
+
+
     }
+
+
     private void ChangeWeapon(int number)
     {
         for (int i = 0; i < weaponPrefabs.Length; i++)
