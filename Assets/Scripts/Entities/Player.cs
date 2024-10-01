@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -5,22 +6,24 @@ using UnityEngine;
 
 public class Player : Entity, IDamageable
 {
+    private static readonly int Sneak = Animator.StringToHash("Sneak");
+    private static readonly int Run = Animator.StringToHash("Run");
     public MovementController movementController;
     public WeaponController weaponController;
     
     public Controller moveController;
     public Controller aimMoveController;
     public HealthController healthController;
+    public SneakSkill sneakSkill;
     public Transform Target { get; set; }
-    public bool Sneaking { get; set; }
-    public bool CanStrangling { get; set; }
-    public bool InitAttack { get; set; }
+    [field: SerializeField] public bool Sneaking { get; set; }
+    [field: SerializeField] public bool CanStrangling { get; set; }
+    [field: SerializeField] public bool InitAttack { get; set; }
 
     [field: SerializeField] public int Speed { get; set; }
 
     private Rigidbody _rb;
     private Animator _animator;
-    private SneakSkill _sneakSkill;
     private bool _frozen = false;
     private ICanShoot _canShoot;
 
@@ -28,7 +31,7 @@ public class Player : Entity, IDamageable
     
     public int minHealth;
 
-
+    public event Action OnStrangling;
     public void Configure(Controller controller, Controller aimController)
     {
         moveController = controller;
@@ -48,10 +51,9 @@ public class Player : Entity, IDamageable
         movementController.Configure(_animator, _rb, Speed);
         healthController.Configure(minHealth, Health);
         
-        _sneakSkill = new SneakSkill();
-        _sneakSkill.Configure(this, _animator);
+        sneakSkill.Configure(this, _animator);
         
-         gameObject.layer = LayerMask.NameToLayer("Player");
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
 
@@ -68,10 +70,8 @@ public class Player : Entity, IDamageable
 
     private void Update()
     {
-        _sneakSkill.GetSkill();
         MoveAim();
         Shot(_canShoot);
-
     }
 
     public override void Move()
@@ -97,6 +97,11 @@ public class Player : Entity, IDamageable
     {
         _frozen = true;
         yield return new WaitForSeconds(time);
+        _animator.SetInteger("WeaponType_int", 1);
+        Sneaking = false;
+        CanStrangling = false;
+        _animator.SetBool(Sneak, false);
+        _animator.SetBool(Run, false);
         _frozen = false;
     }
 
@@ -104,6 +109,7 @@ public class Player : Entity, IDamageable
     {
         if (shot.FireOn)
         {
+            FrozenMove(1);
             weaponController.Shot();
             shot.FireOn = false;
         }
@@ -114,6 +120,7 @@ public class Player : Entity, IDamageable
         if (controller.MovingStick)
         {
             weaponController.LaserOn = true;
+            ChangeSpeed(10);
         }
         else
         {
@@ -129,6 +136,23 @@ public class Player : Entity, IDamageable
     public void TakeDamage(int amount)
     {
         healthController.TakeDamage(amount);
+    }
+
+    public void SneakPosition()
+    {
+        sneakSkill.SneakPosition();
+    }
+
+    public void CanStranglingFunc()
+    {
+        CanStrangling = !CanStrangling;
+        OnStranglingOut();
+    }
+
+    public void OnStranglingOut()
+    {
+        if (OnStrangling != null)
+            OnStrangling();
     }
 
 }
