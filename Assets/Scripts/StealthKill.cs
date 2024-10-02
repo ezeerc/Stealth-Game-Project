@@ -60,6 +60,7 @@ public class StealthKill : MonoBehaviour
             _player.InitAttack = false;
             _enemyScript.TakeDamage(100);
             _enemyScript.Ragdoll(2f);
+            _enemyScript._dead = true;
         }
     }
 

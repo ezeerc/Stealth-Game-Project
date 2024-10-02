@@ -316,7 +316,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2935681411862825251, guid: b21be3169a812ac4d98a912512f30f95, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 455892, guid: b21be3169a812ac4d98a912512f30f95, type: 3}
       insertIndex: -1
@@ -349,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 2227629259097066149, guid: 74ad8f6a159540e4bbea6dba425371d8, type: 3}
-  spawnPoint: {fileID: 7569070452047039902}
+  spawnPoint: {fileID: 2642083832660093527}
   timeBtwShots: 0.2
   qtyBullets: 7
   shotRecharge: 0
@@ -414,7 +415,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5334787509430920884, guid: 1244328dc9d61d64cbbca3badf3c34d0, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 469056, guid: 1244328dc9d61d64cbbca3badf3c34d0, type: 3}
       insertIndex: -1
@@ -641,7 +643,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 73359254734321411, guid: c60108c8eeb1eb24fbead32586fcc558, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 486544, guid: c60108c8eeb1eb24fbead32586fcc558, type: 3}
       insertIndex: -1
@@ -739,7 +742,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8881878337842144335, guid: 9f2d2b0c577d28e42ba06ee013624466, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 499476, guid: 9f2d2b0c577d28e42ba06ee013624466, type: 3}
       insertIndex: -1
@@ -983,7 +987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da92cded3ad594c4fa3352556f625078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 2642083832660093527}
   weaponPrefabs:
   - {fileID: 3352845238220833457}
   - {fileID: 947807654522536375}
@@ -2123,7 +2127,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7583195793415078923, guid: 596b2ee3ab6b1bd459b953fa0cdfeac9, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 463648, guid: 596b2ee3ab6b1bd459b953fa0cdfeac9, type: 3}
       insertIndex: -1
@@ -2196,7 +2201,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2934050288696188901, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 427238, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
       insertIndex: -1

@@ -21,7 +21,7 @@ public class Enemy : Entity, IDamageable
     private FieldOfView _fov;
     private bool _canShot = true;
     [SerializeField] private float timeBetweenAttacks = 3f;
-    private bool _dead;
+    public bool _dead;
 
 
     private void Start()
