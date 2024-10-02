@@ -10,10 +10,9 @@ public class PickUpWeapon : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Player _player;
-            _player = other.gameObject.GetComponent<Player>();
-            _player.gameObject.GetComponent<WeaponController>().ChangeWeapon(1);
-            Destroy(this.gameObject);
+                var player = other.gameObject.GetComponent<Player>();
+                player.gameObject.GetComponent<WeaponController>().ChangeWeapon(1);
+                Destroy(this.gameObject);
         }
     }
 }

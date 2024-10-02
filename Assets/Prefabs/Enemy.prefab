@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51228e3d08408474a973d19e0077d679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isDead: 0
 --- !u!1 &8365950457351944161
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100058, guid: 14c9d8e4fc69472408c882bd7abd1bec, type: 3}
       propertyPath: m_Name
-      value: SimpleMilitary_EasternSoldier_Black Variant
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 102544, guid: 14c9d8e4fc69472408c882bd7abd1bec, type: 3}
       propertyPath: m_IsActive
@@ -300,8 +301,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f2a2d5e2d7d33428b90e2df91b532e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 618231d0c9ad2824e87d0d9062309806, type: 2}
+  viewRadius: 0
+  viewAngle: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
   visibleTargets: []
+  meshResolution: 0
+  edgeResolveIterations: 0
+  edgeDstThreshold: 0
   viewMeshFilter: {fileID: 7543553246088923508}
 --- !u!114 &3754217305283948003
 MonoBehaviour:
@@ -323,6 +334,8 @@ MonoBehaviour:
   _distanceToFollowPath: 2
   _player: {fileID: 0}
   followPlayer: 0
+  timeBetweenAttacks: 3
+  _dead: 0
 --- !u!195 &1717664100485516765
 NavMeshAgent:
   m_ObjectHideFlags: 0

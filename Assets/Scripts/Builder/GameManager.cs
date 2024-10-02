@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Player playerPrefab;
     [SerializeField] private Controller moveController;
     [SerializeField] private Controller aimMoveController;
-    [SerializeField] private Vector3 initialPosition;
-    [SerializeField] private int speed;
+    public Vector3 initialPosition;
+    public int speed;
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private SneakSkill sneakSkill;
+    [SerializeField] private GameObject[] pickUpPrefabs;
 
     public DetectionState detectionState = DetectionState.Hidden; //////// TOMI //////////////////////////////////
     public static GameManager Instance { get; private set; }
@@ -65,5 +66,10 @@ public class GameManager : MonoBehaviour
         Hidden,
         Alerted,
         Detected
+    }
+
+    public void InstantietePrefab(Vector3 position)
+    {
+        Instantiate(pickUpPrefabs[Random.Range(0, pickUpPrefabs.Length)], position, Quaternion.identity);
     }
 }

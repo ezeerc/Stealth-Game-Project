@@ -62,7 +62,7 @@ public class Player : Entity, IDamageable
         builder.Build(this);
         this.Configure(moveController, aimMoveController);
     }
-
+    
     private void FixedUpdate()
     {
         Move();

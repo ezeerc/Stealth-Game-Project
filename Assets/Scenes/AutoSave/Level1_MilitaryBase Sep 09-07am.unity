@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6559,7 +6559,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1596954144}
+  m_Mesh: {fileID: 1528744519}
 --- !u!33 &322361851
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -12445,7 +12445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0475, y: 0.9}
   m_AnchorMax: {x: 0.0475, y: 0.9}
-  m_AnchoredPosition: {x: 0.088984795, y: -0.00001822569}
+  m_AnchoredPosition: {x: 0.08898926, y: -0.000030517578}
   m_SizeDelta: {x: 99, y: 102}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &616473530
@@ -17664,7 +17664,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0475, y: 0.9}
   m_AnchorMax: {x: 0.0475, y: 0.9}
-  m_AnchoredPosition: {x: 0.088984795, y: -0.00001822569}
+  m_AnchoredPosition: {x: 0.08898926, y: -0.000030517578}
   m_SizeDelta: {x: 98, y: 102}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &887889837

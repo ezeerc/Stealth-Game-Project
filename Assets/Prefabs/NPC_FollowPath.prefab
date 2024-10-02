@@ -242,10 +242,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Health>k__BackingField: 100
-  <Speed>k__BackingField: 5
+  stats: {fileID: 0}
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
   _distanceToFollowPath: 2
   _player: {fileID: 0}
   followPlayer: 0
+  timeBetweenAttacks: 3
+  _dead: 0

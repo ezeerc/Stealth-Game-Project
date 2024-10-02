@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2803,6 +2803,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   sneakSkill: {fileID: 480570246}
+  detectionState: 0
 --- !u!4 &480570245
 Transform:
   m_ObjectHideFlags: 0
@@ -4274,6 +4275,7 @@ MonoBehaviour:
   _hidden: {fileID: 1714044583}
   _alerted: {fileID: 1267722773}
   _detected: {fileID: 2114065641}
+  gameManager: {fileID: 0}
 --- !u!1 &1305741801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6430683021379737225, guid: 1396ddf825604164dbf9bf6bd0f4c417, type: 3}

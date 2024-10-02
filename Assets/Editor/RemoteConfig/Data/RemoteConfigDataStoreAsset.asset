@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
+  m_Name: RemoteConfigDataStoreAsset
+  m_EditorClassIdentifier: 
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"3117669e-e5a8-4ca4-a851-2f80de264c07\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"welcomeText\",\r\n      \"type\": \"string\",\r\n     
+    \"value\": \"Bienvenido, Jugador! Esperemos disfrutes el videojuego\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b1bbceff-2225-4b3c-8b45-734cd290a06e\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"version\",\r\n      \"type\": \"int\",\r\n     
+    \"value\": 1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"dc3798fb-dfb1-4120-8b50-db17b235b0c6\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"initialPos.x\",\r\n      \"type\": \"float\",\r\n      \"value\":
+    0.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"68524620-8f7e-4c90-a2dc-af5decf363d9\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"initialPos.y\",\r\n      \"type\": \"float\",\r\n     
+    \"value\": 0.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"02d7cda0-f679-484e-8e6f-25c2a53fe8fe\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"initialPos.z\",\r\n      \"type\": \"float\",\r\n      \"value\":
+    100.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"6f7b3613-3c85-4b30-af03-fb1c03f0ff4d\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"speed\",\r\n      \"type\": \"int\",\r\n     
+    \"value\": 10\r\n    }\r\n  }\r\n]"
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"3117669e-e5a8-4ca4-a851-2f80de264c07\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"welcomeText\",\r\n      \"type\": \"string\",\r\n     
+    \"value\": \"Bienvenido, Jugador! Esperemos disfrutes el videojuego\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b1bbceff-2225-4b3c-8b45-734cd290a06e\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"version\",\r\n      \"type\": \"int\",\r\n     
+    \"value\": 1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"dc3798fb-dfb1-4120-8b50-db17b235b0c6\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"initialPos.x\",\r\n      \"type\": \"float\",\r\n      \"value\":
+    0.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"68524620-8f7e-4c90-a2dc-af5decf363d9\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"initialPos.y\",\r\n      \"type\": \"float\",\r\n     
+    \"value\": 0.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"02d7cda0-f679-484e-8e6f-25c2a53fe8fe\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"initialPos.z\",\r\n      \"type\": \"float\",\r\n      \"value\":
+    100.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"6f7b3613-3c85-4b30-af03-fb1c03f0ff4d\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"speed\",\r\n      \"type\": \"int\",\r\n     
+    \"value\": 10\r\n    }\r\n  }\r\n]"
+  _environments: "[\r\n  {\r\n    \"projectId\": \"75893557-a401-46a5-8de8-f20cd5687134\",\r\n   
+    \"name\": \"production\",\r\n    \"id\": \"51388881-152a-4d18-95a0-36123fc85056\",\r\n   
+    \"isDefault\": true,\r\n    \"createdAt\": \"2024-09-08T11:49:02Z\",\r\n    \"updatedAt\":
+    \"2024-09-08T11:49:02Z\"\r\n  },\r\n  {\r\n    \"projectId\": \"75893557-a401-46a5-8de8-f20cd5687134\",\r\n   
+    \"name\": \"testing\",\r\n    \"id\": \"85038c8c-5e48-4256-a767-c97bc232cf04\",\r\n   
+    \"isDefault\": false,\r\n    \"createdAt\": \"2024-10-02T13:42:30Z\",\r\n   
+    \"updatedAt\": \"2024-10-02T13:42:30Z\"\r\n  }\r\n]"
