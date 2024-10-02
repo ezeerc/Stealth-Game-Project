@@ -30,8 +30,8 @@ public class EnemyWeaponController : MonoBehaviour
             if (number == i)
             {
                 weaponPrefabs[i].SetActive(true);
-                spawnPoint = weaponPrefabs[i].GetComponentInChildren<Transform>().transform;
                 weaponActiveScript = weaponPrefabs[i].GetComponentInChildren<Weapon>();
+                spawnPoint = weaponActiveScript.spawnPoint;
             }
         }
     }

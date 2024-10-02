@@ -23,13 +23,9 @@ public class Enemy : Entity, IDamageable
     [SerializeField] private float timeBetweenAttacks = 3f;
     private bool _dead;
 
-    private GameManager gameManager; // Eventualmente cambiar usando singleton
 
     private void Start()
     {
-
-        gameManager = FindAnyObjectByType<GameManager>(); // Va a optimizarse cuando cambiemos el GM por singleton
-
         Health = 40;
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.speed = stats.baseSpeed;
@@ -51,11 +47,13 @@ public class Enemy : Entity, IDamageable
         }
 
         _animator.SetFloat("Speed_f", navMeshAgent.velocity.magnitude);
+        
+        
     }
 
     public void TakeDamage(int amount)
     {
-        if (Health >= 0)
+        if (Health > 0)
         {
             Health -= amount;
         }
@@ -87,10 +85,10 @@ public class Enemy : Entity, IDamageable
 
         if (Vector3.Distance(transform.position, _player.transform.position) <= 20 && !_dead)
         {
-            gameManager.ChangeDetectionState(2); // Esta entrega esta hardcodeado. Planeamos usar eventos
+            GameManager.Instance.ChangeDetectionState(2); // Esta entrega esta hardcodeado. Planeamos usar eventos
 
             var destination = navMeshAgent.SetDestination(_player.transform.position);
-            if (Vector3.Distance(transform.position, _player.transform.position) <= 10 && !_dead)            
+            if (Vector3.Distance(transform.position, _player.transform.position) <= 10 && !_dead)
             {
                 navMeshAgent.isStopped = true;
                 if (!_canShot) return;
@@ -104,7 +102,7 @@ public class Enemy : Entity, IDamageable
         else if (Vector3.Distance(transform.position, _player.transform.position) > 20)
         {
             followPlayer = false;
-            gameManager.ChangeDetectionState(0); // hardcodeado
+            GameManager.Instance.ChangeDetectionState(0); // hardcodeado
         }
     }
 
@@ -134,6 +132,7 @@ public class Enemy : Entity, IDamageable
     {
         if (Health >= 0)
         {
+            FaceTarget();
             _canShot = false;
             _weaponController.Shot();
             navMeshAgent.isStopped = false;
@@ -141,6 +140,13 @@ public class Enemy : Entity, IDamageable
             _canShot = true;
         }
     }
-    
+
+    void FaceTarget()
+    {
+        var turnTowardNavSteeringTarget = navMeshAgent.steeringTarget;
+        Vector3 direction = (turnTowardNavSteeringTarget - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
+    }
     
 }

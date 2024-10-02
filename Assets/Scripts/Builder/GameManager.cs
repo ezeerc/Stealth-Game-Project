@@ -13,9 +13,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SneakSkill sneakSkill;
 
     public DetectionState detectionState = DetectionState.Hidden; //////// TOMI //////////////////////////////////
+    public static GameManager Instance { get; private set; }
 
     private void Awake()
     {
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
+        
         Player player = Instantiate(playerPrefab);
 
         PlayerBuilder builder = new PlayerBuilder()
@@ -38,13 +48,13 @@ public class GameManager : MonoBehaviour
         {
             detectionState = DetectionState.Hidden;
         }
-        
+
         else if (detecctionNumber == 1)
         {
             detectionState = DetectionState.Alerted;
-        }   
-        
-        else 
+        }
+
+        else
         {
             detectionState = DetectionState.Detected;
         }

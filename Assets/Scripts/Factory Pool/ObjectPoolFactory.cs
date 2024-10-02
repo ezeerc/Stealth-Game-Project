@@ -12,7 +12,7 @@ public class ObjectPoolFactory
     {
         _prefab = prefab;
         _objectPool = new ObjectPool(_prefab);
-        _objectPool.Init(15);
+        _objectPool.Init(5);
     }
 
     public ProjectileObjectPool Create(Vector3 position, Quaternion rotation)

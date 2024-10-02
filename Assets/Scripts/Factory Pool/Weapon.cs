@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private ProjectileObjectPool _prefab;
     private ObjectPool _objectPool;
     private ObjectPoolFactory _factory;
-    [SerializeField] private Transform _spawnPoint;
+    public Transform spawnPoint;
     [SerializeField] private float timeBtwShots;
     [SerializeField] private int qtyBullets;
     private int currentQty;
@@ -21,10 +21,10 @@ public class Weapon : MonoBehaviour
         _factory = new ObjectPoolFactory(_prefab);
     }
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
         _spawnPoint = this.GetComponentInChildren<Transform>().transform;
-    }
+    }*/
 
     public void Shot()
     {
@@ -37,7 +37,7 @@ public class Weapon : MonoBehaviour
         if (currentQty < qtyBullets)
         {
             currentQty++;
-            _factory.Create(_spawnPoint.transform.position, _spawnPoint.transform.rotation);
+            _factory.Create(spawnPoint.transform.position, spawnPoint.transform.rotation);
             yield return new WaitForSeconds(timeBtwShots);
             CoroutineManager.Instance.StartCoroutine(ShotTimeCoroutine());
         }

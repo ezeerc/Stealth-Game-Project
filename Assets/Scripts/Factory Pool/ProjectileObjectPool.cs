@@ -14,6 +14,8 @@ public class ProjectileObjectPool : RecyclableObject
         rb.velocity = transform.forward * _speed;
         Invoke(nameof(Recycle), 2f);
     }
+    
+
     internal override void Release()
     {
 
@@ -24,7 +26,6 @@ public class ProjectileObjectPool : RecyclableObject
         var damageable = other.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            Debug.Log("Funca daño");
             damageable.TakeDamage(_damage);
             this.Recycle();
             this.enabled = false;

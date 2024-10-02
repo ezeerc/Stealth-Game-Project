@@ -17,8 +17,8 @@ public class WeaponController : MonoBehaviour
     public Weapon weaponActiveScript; // ver si podemos dejar esto privado
 
 
-    public float shotCooldown = 1f;  //////////////// TOMI //////////////////////////////////
-    public bool isShotReady = true;    ////////////// TOMI //////////////////////////////////
+    public float shotCooldown = 1f; //////////////// TOMI //////////////////////////////////
+    public bool isShotReady = true; ////////////// TOMI //////////////////////////////////
 
     private void Awake()
     {
@@ -32,7 +32,6 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
-
         if (LaserOn)
         {
             laser.LaserOn();
@@ -41,7 +40,6 @@ public class WeaponController : MonoBehaviour
         {
             laser.LaserOff();
         }
-
     }
 
     public void Shot()
@@ -51,17 +49,16 @@ public class WeaponController : MonoBehaviour
         weaponActiveScript.Shot();
         isShotReady = false;
         shotCooldown = 0f;
-
-
     }
 
 
-    private void ChangeWeapon(int number)
+    public void ChangeWeapon(int number)
     {
         for (int i = 0; i < weaponPrefabs.Length; i++)
         {
             weaponPrefabs[i].SetActive(false);
         }
+
         for (int i = 0; i < weaponPrefabs.Length; i++)
         {
             if (number == i)
