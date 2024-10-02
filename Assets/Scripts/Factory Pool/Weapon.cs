@@ -8,10 +8,10 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private ProjectileObjectPool _prefab;
     private ObjectPool _objectPool;
-    private ObjectPoolFactory _factory;
+    protected ObjectPoolFactory _factory;
     public Transform spawnPoint;
     [SerializeField] private float timeBtwShots;
-    [SerializeField] private int qtyBullets;
+    [SerializeField] protected int qtyBullets;
     private int currentQty;
 
     public float shotRecharge;    /////////// TOMI //////////////////////////////////

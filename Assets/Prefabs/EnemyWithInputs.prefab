@@ -786,11 +786,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5773562642801096573, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: m_Radius
-      value: 0.47086048
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 5773562642801096573, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: m_Center.x
       value: 0.027386189
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773562642801096573, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
+      propertyPath: m_Center.y
+      value: 1.87
       objectReference: {fileID: 0}
     - target: {fileID: 5773562642801096573, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: m_Center.z
@@ -850,7 +854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8710102838181882239, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: meshResolution
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8710102838181882239, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: targetMask.m_Bits

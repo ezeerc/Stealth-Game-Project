@@ -51,7 +51,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Target.OnTargetDeath += WonMenu;
+        Target.TargetWon += LoseMenu;
         Player.OnDeath += LoseMenu;
+        
     }
 
     public void ChangeDetectionState(int detecctionNumber) // hacer switch
@@ -93,6 +95,5 @@ public class GameManager : MonoBehaviour
     private void LoseMenu()
     {
         loseMenu.SetActive(true);
-
     }
 }

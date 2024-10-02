@@ -2592,7 +2592,7 @@ MonoBehaviour:
   - {fileID: 2830343096598713524}
   - {fileID: 2554143677414644792}
   - {fileID: 8780433539911484586}
-  weaponActive: 0
+  weaponActive: 2
   LaserOn: 0
   weaponActiveScript: {fileID: 0}
   shotCooldown: 1
@@ -3699,18 +3699,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 64520474340857124, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
       propertyPath: m_Convex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 183082, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7129545572138590968}
   m_SourcePrefab: {fileID: 100100000, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+--- !u!4 &5219395770825864135 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2170157596211903513, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+  m_PrefabInstance: {fileID: 6229311822824148958}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6229311822824064244 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 183082, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
   m_PrefabInstance: {fileID: 6229311822824148958}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7129545572138590968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6229311822824064244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375a09f1f6d93c540a42bc2e3b326901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 2227629259097066149, guid: 243ff27efc3d2cf42a801e921e541ad1, type: 3}
+  spawnPoint: {fileID: 5219395770825864135}
+  timeBtwShots: 0
+  qtyBullets: 6
+  shotRecharge: 0.15
 --- !u!4 &6229311822824311608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 427238, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}

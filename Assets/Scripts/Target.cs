@@ -8,13 +8,14 @@ public class Target : Enemy, IDamageable
 {
     private NavMeshAgent _agent;
     private GameObject _player;
-    public float enemyDistanceRun = 15f;
+    public float enemyDistanceRun = 8f;
     [SerializeField] private Vector3 targetEnd;
     private bool _firstLook;
     private Animator _animator;
     public bool _isDead;
     public static Action OnTargetDeath;
     private StealthKill _stealthKill;
+    public static Action TargetWon;
     private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -27,7 +28,7 @@ public class Target : Enemy, IDamageable
         _animator.SetFloat("Speed_f", _agent.velocity.magnitude);
         float distance = Vector3.Distance(transform.position, _player.transform.position);
 
-        if (distance < enemyDistanceRun && GameManager.Instance.detectionState == GameManager.DetectionState.Alerted)
+        if (distance < enemyDistanceRun && GameManager.Instance.detectionState == GameManager.DetectionState.Detected)
         {
             Vector3 dirToPlayer = transform.position - _player.transform.position;
             Vector3 newPos = transform.position + dirToPlayer;
@@ -39,6 +40,8 @@ public class Target : Enemy, IDamageable
             _agent.speed = 10;
             _agent.SetDestination(targetEnd);
         }
+
+        Evade();
     }
 
     public void TakeDamage(int amount)
@@ -65,5 +68,13 @@ public class Target : Enemy, IDamageable
     public void Ragdoll(float time)
     {
         CoroutineManager.Instance.StartCoroutine(RagdollCoroutine(time));
+    }
+
+    private void Evade()
+    {
+        if (Vector3.Distance(transform.position, targetEnd) < 1.5f)
+        {
+            TargetWon();
+        }
     }
 }
