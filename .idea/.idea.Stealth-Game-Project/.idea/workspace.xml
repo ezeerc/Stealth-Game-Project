@@ -81,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1727870199961</updated>
       <workItem from="1727870202491" duration="110000" />
-      <workItem from="1727870380033" duration="7548000" />
+      <workItem from="1727870380033" duration="11729000" />
     </task>
     <servers />
   </component>
@@ -98,5 +98,24 @@
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/CloseButton.cs</url>
+          <line>25</line>
+          <properties documentPath="C:\Users\ezequ\OneDrive\Documentos\Stealth-Game-Project\Assets\CloseButton.cs" containingFunctionPresentation="Method 'Restart'">
+            <startOffsets>
+              <option value="609" />
+            </startOffsets>
+            <endOffsets>
+              <option value="610" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

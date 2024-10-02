@@ -32,6 +32,8 @@ public class Player : Entity, IDamageable
     public int minHealth;
 
     public event Action OnStrangling;
+    
+    public static Action OnDeath;
     public void Configure(Controller controller, Controller aimController)
     {
         moveController = controller;
@@ -72,6 +74,7 @@ public class Player : Entity, IDamageable
     {
         MoveAim();
         Shot(_canShoot);
+        Death();
     }
 
     public override void Move()
@@ -153,6 +156,12 @@ public class Player : Entity, IDamageable
     {
         if (OnStrangling != null)
             OnStrangling();
+    }
+
+    private void Death()
+    {
+        Health = healthController.actualHealth;
+        if(Health <= 0) OnDeath?.Invoke();
     }
 
 }

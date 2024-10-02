@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Target : Entity, IDamageable
+public class Target : Enemy, IDamageable
 {
     private NavMeshAgent _agent;
     private GameObject _player;
@@ -12,7 +12,9 @@ public class Target : Entity, IDamageable
     [SerializeField] private Vector3 targetEnd;
     private bool _firstLook;
     private Animator _animator;
-
+    public bool _isDead;
+    public static Action OnTargetDeath;
+    private StealthKill _stealthKill;
     private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -47,7 +49,21 @@ public class Target : Entity, IDamageable
         }
         else if (Health <= 0)
         {
-            Debug.Log("Ganaste");
+            OnTargetDeath?.Invoke();
         }
+    }
+    
+    IEnumerator RagdollCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        GetComponent<CapsuleCollider>().enabled = false;
+        GetComponent<Animator>().enabled = false;
+        _agent.isStopped = true;
+        _stealthKill._isDead = true;
+    }
+
+    public void Ragdoll(float time)
+    {
+        CoroutineManager.Instance.StartCoroutine(RagdollCoroutine(time));
     }
 }

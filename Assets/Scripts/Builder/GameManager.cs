@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +17,9 @@ public class GameManager : MonoBehaviour
 
     public DetectionState detectionState = DetectionState.Hidden; //////// TOMI //////////////////////////////////
     public static GameManager Instance { get; private set; }
+
+    public GameObject winMenu;
+    public GameObject loseMenu;
 
     private void Awake()
     {
@@ -41,6 +46,12 @@ public class GameManager : MonoBehaviour
 
 
         player.InitPlayer(builder);
+    }
+
+    private void Start()
+    {
+        Target.OnTargetDeath += WonMenu;
+        Player.OnDeath += LoseMenu;
     }
 
     public void ChangeDetectionState(int detecctionNumber) // hacer switch
@@ -71,5 +82,17 @@ public class GameManager : MonoBehaviour
     public void InstantietePrefab(Vector3 position)
     {
         Instantiate(pickUpPrefabs[Random.Range(0, pickUpPrefabs.Length)], position, Quaternion.identity);
+    }
+
+    private void WonMenu()
+    {
+        winMenu.SetActive(true);
+
+    }
+
+    private void LoseMenu()
+    {
+        loseMenu.SetActive(true);
+
     }
 }
