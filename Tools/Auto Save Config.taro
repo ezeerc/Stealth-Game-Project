@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Config:
     Enabled: 1
-    Frequency: 15
+    Frequency: 30
     Logging: 0
