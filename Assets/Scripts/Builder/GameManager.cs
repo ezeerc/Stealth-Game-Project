@@ -7,13 +7,15 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Player playerPrefab;
-    [SerializeField] private Controller moveController;
-    [SerializeField] private Controller aimMoveController;
+    [SerializeField] private Joystick moveController;
+    [SerializeField] private Joystick aimMoveController;
     public Vector3 initialPosition;
     public int speed;
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private SneakSkill sneakSkill;
     [SerializeField] private GameObject[] pickUpPrefabs;
+    public int currenCameraAngle = 45;
+    [SerializeField] private CameraRotator cameraRotator;
 
     public DetectionState detectionState = DetectionState.Hidden; //////// TOMI //////////////////////////////////
     public static GameManager Instance { get; private set; }
@@ -53,7 +55,15 @@ public class GameManager : MonoBehaviour
         Target.OnTargetDeath += WonMenu;
         Target.TargetWon += LoseMenu;
         Player.OnDeath += LoseMenu;
-        
+        CameraRotator.OnRotate += RotateJoystickAngle;
+
+    }
+
+    private void RotateJoystickAngle()
+    {
+        currenCameraAngle = cameraRotator.GetAngle();
+        moveController.ChangeRotationAngle(currenCameraAngle);
+        aimMoveController.ChangeRotationAngle(currenCameraAngle);
     }
 
     public void ChangeDetectionState(int detecctionNumber) // hacer switch

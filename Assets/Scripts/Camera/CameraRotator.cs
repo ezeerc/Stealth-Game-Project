@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraRotator : MonoBehaviour
@@ -8,6 +10,8 @@ public class CameraRotator : MonoBehaviour
     private float _currentAngle = -45;
     private float _isometricAngle = 30;
     private bool _isRotating = false;
+    public static event Action OnRotate;
+    
 
     [SerializeField] float rotationSpeed = 5f;
     
@@ -17,6 +21,7 @@ public class CameraRotator : MonoBehaviour
         {
             _currentAngle -= 90f;
             StartCoroutine(SmoothRotate());
+            OnRotate?.Invoke();
         }
     }
 
@@ -26,6 +31,7 @@ public class CameraRotator : MonoBehaviour
         {
             _currentAngle += 90f;
             StartCoroutine(SmoothRotate());
+            OnRotate?.Invoke();
         }
     }
 
@@ -45,5 +51,10 @@ public class CameraRotator : MonoBehaviour
 
         transform.rotation = targetRotation;
         _isRotating = false;
+    }
+
+    public int GetAngle()
+    {
+        return (Mathf.Abs((int)_currentAngle));
     }
 }
