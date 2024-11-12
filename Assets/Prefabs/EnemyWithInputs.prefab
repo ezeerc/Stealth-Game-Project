@@ -319,6 +319,10 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 64178559425153672, guid: b21be3169a812ac4d98a912512f30f95, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2935681411862825251, guid: b21be3169a812ac4d98a912512f30f95, type: 3}
@@ -420,6 +424,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 64617168377721894, guid: 1244328dc9d61d64cbbca3badf3c34d0, type: 3}
       propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64617168377721894, guid: 1244328dc9d61d64cbbca3badf3c34d0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -763,6 +771,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 64032477570266328, guid: 9f2d2b0c577d28e42ba06ee013624466, type: 3}
       propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64032477570266328, guid: 9f2d2b0c577d28e42ba06ee013624466, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1273,8 +1285,8 @@ MonoBehaviour:
   rb: {fileID: 9136126001054004124}
   capsuleCollider: {fileID: 7160214223965767582}
   animator: {fileID: 6430683021387123075}
-  _rbs: []
-  _colliders: []
+  rbs: []
+  colliders: []
 --- !u!1 &6430683021379737249 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7673993470935803458, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
@@ -2418,6 +2430,10 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 64790453562203226, guid: 596b2ee3ab6b1bd459b953fa0cdfeac9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7583195793415078923, guid: 596b2ee3ab6b1bd459b953fa0cdfeac9, type: 3}
@@ -2494,6 +2510,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 64520474340857124, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
       propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64520474340857124, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

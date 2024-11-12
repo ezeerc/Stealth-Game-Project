@@ -10,33 +10,52 @@ public class RagdollController : MonoBehaviour
     public CapsuleCollider capsuleCollider;
     public Animator animator;
     
-    public Rigidbody[] _rbs;
-    public Collider[]  _colliders;
+    public List<Rigidbody> rbs = new List<Rigidbody>();
+    public List<Collider> colliders = new List<Collider>();
+    //public Rigidbody[] _rbs;
+    //public Collider[]  _colliders;
     private void Awake()
     {
         //capsuleCollider.isTrigger = true;
-        _rbs = GetComponentsInChildren<Rigidbody>().Skip(1).ToArray();
-        _colliders = GetComponentsInChildren<Collider>().Skip(1).ToArray();
-
+        rbs = GetComponentsInChildren<Rigidbody>().Skip(1).ToList();
+        //_rbs = GetComponentsInChildren<Rigidbody>().Skip(1).ToArray();
+        //_colliders = GetComponentsInChildren<Collider>().Skip(1).ToArray();
+        colliders = GetComponentsInChildren<Collider>().Skip(1).ToList();
+        colliders.RemoveAt(colliders.Count - 1);
         DeactivateRagdoll();
     }
 
-    private void SetCollidersEnabled(bool enabled)
+    /*private void SetCollidersEnabled(bool enabled)
     {
         foreach (Collider col in _colliders)
         {
             col.enabled = enabled;
         }
-    }
+    }*/
 
-    private void SetRigidbodyKinematic(bool kinematic)
+    /*private void SetRigidbodyKinematic(bool kinematic)
     {
         foreach (Rigidbody rigid in _rbs)
         {
             rigid.isKinematic = kinematic;
         }
-    }
+    }*/
 
+    private void SetRigidbodyKinematic(bool kinematic)
+    {
+        foreach (Rigidbody rigid in rbs)
+        {
+            rigid.isKinematic = kinematic;
+        }
+    }
+    
+    private void SetCollidersEnabled(bool enabled)
+    {
+        foreach (Collider col in colliders)
+        {
+            col.enabled = enabled;
+        }
+    }
     public void ActivateRagdoll()
     {
         capsuleCollider.enabled = false;

@@ -40,18 +40,32 @@ public class WeaponController : MonoBehaviour
         {
             laser.LaserOff();
         }
+
+        LaserColor();
     }
 
     public void Shot()
     {
         if (!isShotReady) return;
-
+        
         weaponActiveScript.Shot();
         isShotReady = false;
         shotCooldown = 0f;
+
     }
 
 
+    private void LaserColor()
+    {
+        if (isShotReady)
+        {
+            laser._lineRenderer.material.SetColor("_Color", Color.green);
+        }
+        else
+        {
+            laser._lineRenderer.material.SetColor("_Color", Color.red);
+        }
+    }
     public void ChangeWeapon(int number)
     {
         for (int i = 0; i < weaponPrefabs.Length; i++)

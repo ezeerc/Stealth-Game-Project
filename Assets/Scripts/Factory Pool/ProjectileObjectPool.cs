@@ -10,10 +10,8 @@ public class ProjectileObjectPool : RecyclableObject
     [SerializeField] protected Rigidbody rb;
     [SerializeField] private int _speed;
     [SerializeField] private int _damage;
-    [SerializeField] private LayerMask objectsMask;
-    [SerializeField] private float rayDistance = 5f;
     [SerializeField] private LayerMask bulletsMask;
-    float detectionRadius = 0.5f;
+    [SerializeField] float detectionRadius = 0.5f;
     internal override void Init()
     {
         rb.velocity = transform.forward * _speed;
@@ -28,7 +26,7 @@ public class ProjectileObjectPool : RecyclableObject
 
     }
 
-    IEnumerator FixedUpdateCoroutine()
+    IEnumerator FixedUpdateCoroutine() //implementación de un fixedupdate artificial
     {
         while (InitializeFixedUpdate)
         {
@@ -42,8 +40,6 @@ public class ProjectileObjectPool : RecyclableObject
                 {
                     if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
-                        print("El SphereCollider ha detectado un enemigo.");
-                        print("golpeé un enemigo");
                         var damageable = hit.GetComponent<IDamageable>();
                         print("Toqué un enemigo");
                         damageable.TakeDamage(_damage);
@@ -52,7 +48,7 @@ public class ProjectileObjectPool : RecyclableObject
                     }
                     else if (hit.gameObject.layer == LayerMask.NameToLayer("Buildings&Props"))
                     {
-                        Debug.Log("El SphereCollider ha detectado un edificio.");
+                        Debug.Log("Toqué un edificio");
                         this.Recycle();
                         this.enabled = false;
                     }

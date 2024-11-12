@@ -11,7 +11,7 @@ public class LaserScript : MonoBehaviour
 
     private bool _laserOn;
     
-    private LineRenderer _lineRenderer;
+    public LineRenderer _lineRenderer;
     private RaycastHit hit;
 
     void Start()
@@ -39,6 +39,7 @@ public class LaserScript : MonoBehaviour
         _lineRenderer.enabled = false;
     }
 
+    
 
 }
 
