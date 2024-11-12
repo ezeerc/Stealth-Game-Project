@@ -45,6 +45,6 @@ public class Joystick : Controller, IDragHandler, IEndDragHandler
 
     public void ChangeRotationAngle(int angle)
     {
-        rotationAngle = angle;
+        rotationAngle = (angle)*-1;
     }
 }

@@ -41,7 +41,7 @@ public class RagdollController : MonoBehaviour
         }
     }*/
 
-    private void SetRigidbodyKinematic(bool kinematic)
+    public void SetRigidbodyKinematic(bool kinematic)
     {
         foreach (Rigidbody rigid in rbs)
         {
@@ -49,7 +49,7 @@ public class RagdollController : MonoBehaviour
         }
     }
     
-    private void SetCollidersEnabled(bool enabled)
+    public void SetCollidersEnabled(bool enabled)
     {
         foreach (Collider col in colliders)
         {
@@ -74,5 +74,15 @@ public class RagdollController : MonoBehaviour
         
         SetCollidersEnabled(false);
         SetRigidbodyKinematic(true);
+    }
+    
+    public void DeactivateRagdollDead()
+    {
+        capsuleCollider.enabled = false;
+        rb.isKinematic = false;
+        animator.enabled = false;
+        
+        SetCollidersEnabled(false);
+        SetRigidbodyKinematic(false);
     }
 }

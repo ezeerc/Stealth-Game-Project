@@ -55,6 +55,6 @@ public class CameraRotator : MonoBehaviour
 
     public int GetAngle()
     {
-        return (Mathf.Abs((int)_currentAngle));
+        return ((int)_currentAngle);
     }
 }

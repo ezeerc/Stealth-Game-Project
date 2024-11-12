@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private SneakSkill sneakSkill;
     [SerializeField] private GameObject[] pickUpPrefabs;
-    public int currenCameraAngle = 45;
+    public int currenCameraAngle = -45;
     [SerializeField] private CameraRotator cameraRotator;
 
     public DetectionState detectionState = DetectionState.Hidden; //////// TOMI //////////////////////////////////
