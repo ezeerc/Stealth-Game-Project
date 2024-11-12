@@ -22,6 +22,7 @@ public class Enemy : Entity, IDamageable
     private bool _canShot = true;
     [SerializeField] private float timeBetweenAttacks = 3f;
     public bool _dead;
+    [SerializeField] private RagdollController _ragdollController;
 
 
     private void Start()
@@ -56,27 +57,20 @@ public class Enemy : Entity, IDamageable
         if (Health > 0)
         {
             Health -= amount;
-        }
-        else if (Health <= 0)
-        {
-            Ragdoll(0);
-            _dead = true;
+            if (Health <= 0)
+            {
+                RagdollActivate();
+                _dead = true;
+            }
         }
     }
-
-    IEnumerator RagdollCoroutine(float time)
+    
+    public void RagdollActivate()
     {
-        yield return new WaitForSeconds(time);
-        GetComponent<CapsuleCollider>().enabled = false;
-        GetComponent<Animator>().enabled = false;
+        _ragdollController.ActivateRagdoll();
         navMeshAgent.isStopped = true;
         _stealthKill._isDead = true;
         _fov.Destroy();
-    }
-
-    public void Ragdoll(float time)
-    {
-        CoroutineManager.Instance.StartCoroutine(RagdollCoroutine(time));
     }
 
     public void FollowPlayer(Transform target)

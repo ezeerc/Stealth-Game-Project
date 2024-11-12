@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class RecyclableObject : MonoBehaviour
 {
     private ObjectPool _objectPool;
+    protected bool InitializeFixedUpdate;
 
     internal void Configure(ObjectPool objectPool)
     {
@@ -13,6 +14,7 @@ public abstract class RecyclableObject : MonoBehaviour
 
     public void Recycle()
     {
+        InitializeFixedUpdate = false;
         _objectPool.RecycleGameObject(this);
     }
 
