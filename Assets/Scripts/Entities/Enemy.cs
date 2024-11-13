@@ -22,7 +22,7 @@ public class Enemy : Entity, IDamageable
     private bool _canShot = true;
     [SerializeField] private float timeBetweenAttacks = 3f;
     public bool _dead;
-    [SerializeField] private RagdollController _ragdollController;
+    [SerializeField] private RgdollController _ragdollController;
 
 
     private void Start()

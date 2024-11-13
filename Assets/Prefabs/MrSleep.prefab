@@ -2699,7 +2699,7 @@ MonoBehaviour:
   - {fileID: 2830343096598713524}
   - {fileID: 2554143677414644792}
   - {fileID: 8780433539911484586}
-  weaponActive: 2
+  weaponActive: 0
   LaserOn: 0
   weaponActiveScript: {fileID: 0}
   shotCooldown: 1
@@ -3318,6 +3318,30 @@ PrefabInstance:
     - target: {fileID: 307803583840456995, guid: c60108c8eeb1eb24fbead32586fcc558, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738716784147757564, guid: c60108c8eeb1eb24fbead32586fcc558, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738716784147757564, guid: c60108c8eeb1eb24fbead32586fcc558, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738716784147757564, guid: c60108c8eeb1eb24fbead32586fcc558, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0.0060728732
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738716784147757564, guid: c60108c8eeb1eb24fbead32586fcc558, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
+      value: 0.501372
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738716784147757564, guid: c60108c8eeb1eb24fbead32586fcc558, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.10572684
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738716784147757564, guid: c60108c8eeb1eb24fbead32586fcc558, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0.2995595
       objectReference: {fileID: 0}
     - target: {fileID: 6443090419423346665, guid: c60108c8eeb1eb24fbead32586fcc558, type: 3}
       propertyPath: layerMask.m_Bits

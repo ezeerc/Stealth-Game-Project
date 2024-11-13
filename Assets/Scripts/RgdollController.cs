@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class RagdollController : MonoBehaviour
+public class RgdollController : MonoBehaviour
 {
     public Rigidbody rb;
     public CapsuleCollider capsuleCollider;
@@ -12,34 +11,13 @@ public class RagdollController : MonoBehaviour
     
     public List<Rigidbody> rbs = new List<Rigidbody>();
     public List<Collider> colliders = new List<Collider>();
-    //public Rigidbody[] _rbs;
-    //public Collider[]  _colliders;
     private void Awake()
     {
-        //capsuleCollider.isTrigger = true;
         rbs = GetComponentsInChildren<Rigidbody>().Skip(1).ToList();
-        //_rbs = GetComponentsInChildren<Rigidbody>().Skip(1).ToArray();
-        //_colliders = GetComponentsInChildren<Collider>().Skip(1).ToArray();
         colliders = GetComponentsInChildren<Collider>().Skip(1).ToList();
         colliders.RemoveAt(colliders.Count - 1);
         DeactivateRagdoll();
     }
-
-    /*private void SetCollidersEnabled(bool enabled)
-    {
-        foreach (Collider col in _colliders)
-        {
-            col.enabled = enabled;
-        }
-    }*/
-
-    /*private void SetRigidbodyKinematic(bool kinematic)
-    {
-        foreach (Rigidbody rigid in _rbs)
-        {
-            rigid.isKinematic = kinematic;
-        }
-    }*/
 
     public void SetRigidbodyKinematic(bool kinematic)
     {

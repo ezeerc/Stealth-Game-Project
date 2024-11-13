@@ -260,7 +260,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100058, guid: 14c9d8e4fc69472408c882bd7abd1bec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1717664100485516765}
+    - targetCorrespondingSourceObject: {fileID: 100058, guid: 14c9d8e4fc69472408c882bd7abd1bec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6807341903872322254}
   m_SourcePrefab: {fileID: 100100000, guid: 14c9d8e4fc69472408c882bd7abd1bec, type: 3}
+--- !u!95 &7673993470928255328 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9591248, guid: 14c9d8e4fc69472408c882bd7abd1bec, type: 3}
+  m_PrefabInstance: {fileID: 7673993470935703728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7673993470935803498 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100058, guid: 14c9d8e4fc69472408c882bd7abd1bec, type: 3}
@@ -336,6 +344,7 @@ MonoBehaviour:
   followPlayer: 0
   timeBetweenAttacks: 3
   _dead: 0
+  _ragdollController: {fileID: 0}
 --- !u!195 &1717664100485516765
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -358,6 +367,23 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &6807341903872322254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673993470935803498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddb9ad49ac19c44d8dc2d1fb5782db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  capsuleCollider: {fileID: 5773562642801096573}
+  animator: {fileID: 7673993470928255328}
+  rbs: []
+  colliders: []
 --- !u!4 &7673993470935841290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400058, guid: 14c9d8e4fc69472408c882bd7abd1bec, type: 3}

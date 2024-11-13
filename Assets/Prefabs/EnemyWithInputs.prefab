@@ -819,7 +819,7 @@ PrefabInstance:
     - target: {fileID: 3754217305283948003, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: _ragdollController
       value: 
-      objectReference: {fileID: 8918437169672255684}
+      objectReference: {fileID: 7870437415188617773}
     - target: {fileID: 3754217305283948003, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: timeBetweenAttacks
       value: 1
@@ -856,6 +856,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6807341903872322254, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 9136126001054004124}
     - target: {fileID: 7673993470935565814, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1120,9 +1124,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7673993470935803498, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       insertIndex: 4
       addedObject: {fileID: 7953144025629200124}
-    - targetCorrespondingSourceObject: {fileID: 7673993470935803498, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8918437169672255684}
     - targetCorrespondingSourceObject: {fileID: 7673993470935803464, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1724148077333874337}
@@ -1274,23 +1275,6 @@ MonoBehaviour:
   - {fileID: 4823364006867179306}
   weaponActive: 5
   weaponActiveScript: {fileID: 0}
---- !u!114 &8918437169672255684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6430683021379737225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b844a4384836414f81cb96606d7b0e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 9136126001054004124}
-  capsuleCollider: {fileID: 7160214223965767582}
-  animator: {fileID: 6430683021387123075}
-  rbs: []
-  colliders: []
 --- !u!1 &6430683021379737249 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7673993470935803458, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
@@ -2360,16 +2344,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7673993470935841298, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
   m_PrefabInstance: {fileID: 3693479753084448995}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &6430683021387123075 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7673993470928255328, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
+--- !u!114 &7870437415188617773 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6807341903872322254, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
   m_PrefabInstance: {fileID: 3693479753084448995}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &7160214223965767582 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 5773562642801096573, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
-  m_PrefabInstance: {fileID: 3693479753084448995}
-  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6430683021379737225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddb9ad49ac19c44d8dc2d1fb5782db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5490314629516138594
 PrefabInstance:
   m_ObjectHideFlags: 0
