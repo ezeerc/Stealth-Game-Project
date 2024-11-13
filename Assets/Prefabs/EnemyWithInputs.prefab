@@ -819,7 +819,7 @@ PrefabInstance:
     - target: {fileID: 3754217305283948003, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: _ragdollController
       value: 
-      objectReference: {fileID: 6748344647742074932}
+      objectReference: {fileID: 8918437169672255684}
     - target: {fileID: 3754217305283948003, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: timeBetweenAttacks
       value: 1
@@ -830,11 +830,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5773562642801096573, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: m_Height
-      value: 3.895773
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5773562642801096573, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: m_Radius
-      value: 1.1
+      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: 5773562642801096573, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: m_Enabled
@@ -996,6 +996,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7673993470935803498, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7673993470935803506, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1118,7 +1122,7 @@ PrefabInstance:
       addedObject: {fileID: 7953144025629200124}
     - targetCorrespondingSourceObject: {fileID: 7673993470935803498, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6748344647742074932}
+      addedObject: {fileID: 8918437169672255684}
     - targetCorrespondingSourceObject: {fileID: 7673993470935803464, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1724148077333874337}
@@ -1270,7 +1274,7 @@ MonoBehaviour:
   - {fileID: 4823364006867179306}
   weaponActive: 5
   weaponActiveScript: {fileID: 0}
---- !u!114 &6748344647742074932
+--- !u!114 &8918437169672255684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1279,7 +1283,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6430683021379737225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91de25b59eb723543be28d3e05b66d86, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b844a4384836414f81cb96606d7b0e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 9136126001054004124}

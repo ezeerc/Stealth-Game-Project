@@ -21,11 +21,6 @@ public class Weapon : MonoBehaviour
         _factory = new ObjectPoolFactory(_prefab);
     }
 
-    /*private void OnEnable()
-    {
-        _spawnPoint = this.GetComponentInChildren<Transform>().transform;
-    }*/
-
     public void Shot()
     {
         currentQty = 0;

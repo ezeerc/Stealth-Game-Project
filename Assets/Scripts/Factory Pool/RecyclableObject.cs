@@ -6,6 +6,7 @@ public abstract class RecyclableObject : MonoBehaviour
 {
     private ObjectPool _objectPool;
     protected bool InitializeFixedUpdate;
+    //[SerializeField] private GameObject _objectPrefab;
 
     internal void Configure(ObjectPool objectPool)
     {
@@ -16,6 +17,10 @@ public abstract class RecyclableObject : MonoBehaviour
     {
         InitializeFixedUpdate = false;
         _objectPool.RecycleGameObject(this);
+        /*if (_objectPrefab != null) //sirve para chequear cuán lejos debe ir el laser
+        {
+            Instantiate(_objectPrefab, transform.position, Quaternion.identity);
+        }*/
     }
 
     internal abstract void Init();

@@ -12,12 +12,13 @@ public class ProjectileObjectPool : RecyclableObject
     [SerializeField] private int _damage;
     [SerializeField] private LayerMask bulletsMask;
     [SerializeField] float detectionRadius = 0.5f;
+    [SerializeField] float timeToRecycle = 0.5f;
     internal override void Init()
     {
         rb.velocity = transform.forward * _speed;
         InitializeFixedUpdate = true;
         StartCoroutine(FixedUpdateCoroutine());
-        Invoke(nameof(Recycle), 2f);
+        Invoke(nameof(Recycle), timeToRecycle);
     }
     
 

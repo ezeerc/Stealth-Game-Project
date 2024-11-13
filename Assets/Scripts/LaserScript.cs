@@ -13,14 +13,18 @@ public class LaserScript : MonoBehaviour
     
     public LineRenderer _lineRenderer;
     private RaycastHit hit;
+    private bool _laserCancel;
 
     void Start()
     {
         _lineRenderer = GetComponentInChildren<LineRenderer>();
+        InstantiateFire.CancelFireON += LaserCancelON; //observer de cancelación de láser
+        InstantiateFire.CancelFireOFF += LaserCancelOFF; //observer de cancelación de láser
     }
 
     public void LaserOn()
     {
+        if (_laserCancel) return;
         _lineRenderer.enabled = true;
         _lineRenderer.SetPosition(0, transform.position);
         if (Physics.Raycast(transform.position, transform.forward, out hit, defaultLength, layerMask))
@@ -37,6 +41,17 @@ public class LaserScript : MonoBehaviour
     public void LaserOff()
     {
         _lineRenderer.enabled = false;
+    }
+
+    public void LaserCancelON()
+    {
+        _laserCancel = true;
+        LaserOff();
+    }
+    
+    public void LaserCancelOFF()
+    {
+        _laserCancel = false;
     }
 
     

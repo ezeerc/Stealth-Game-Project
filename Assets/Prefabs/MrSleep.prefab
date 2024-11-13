@@ -2556,7 +2556,6 @@ GameObject:
   - component: {fileID: 6469371903435776777}
   - component: {fileID: 2246689303167550677}
   - component: {fileID: -136675396414520371}
-  - component: {fileID: 8049841054265097286}
   m_Layer: 0
   m_Name: MrSleep
   m_TagString: Player
@@ -2756,23 +2755,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   minHealth: 0
---- !u!114 &8049841054265097286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7160781051619373715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b264e4e6aa586ac469bc92e4827f26c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabRadius: 2
-  grabLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  playerHand: {fileID: 2161545726417524004}
 --- !u!1 &7172856496259878907
 GameObject:
   m_ObjectHideFlags: 0
@@ -3926,6 +3908,38 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1546517050137256251, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546517050137256251, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546517050137256251, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546517050137256251, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546517050137256251, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546517050137256251, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
+      value: 0.114866935
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546517050137256251, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.12878788
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546517050137256251, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0.81474435
+      objectReference: {fileID: 0}
     - target: {fileID: 2170157596211903513, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9990483
@@ -3945,6 +3959,10 @@ PrefabInstance:
     - target: {fileID: 2170157596211903513, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5704144688365080320, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+      propertyPath: defaultLength
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5704144688365080320, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
       propertyPath: layerMask.m_Bits
