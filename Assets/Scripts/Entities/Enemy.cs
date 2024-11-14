@@ -8,13 +8,14 @@ using UnityEngine.TestTools;
 public class Enemy : Entity, IDamageable
 {
     public Transform[] wayPoints;
-
+    public int angularSpeed = 5;
     private Animator _animator;
-    private NavMeshAgent navMeshAgent;
+    private NavMeshAgent _navMeshAgent;
     private EnemyWeaponController _weaponController;
+    private Rigidbody _rigidbody;
 
     private int currentWayPointIndex = 0;
-    [SerializeField] private int _distanceToFollowPath = 2;
+    [SerializeField] private int _distanceToFollowPath = 3;
     public Player _player;
     public bool followPlayer = false;
     private StealthKill _stealthKill;
@@ -28,12 +29,13 @@ public class Enemy : Entity, IDamageable
     private void Start()
     {
         Health = 40;
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.speed = stats.baseSpeed;
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+        _navMeshAgent.speed = stats.baseSpeed;
         _animator = GetComponent<Animator>();
         _stealthKill = GetComponentInChildren<StealthKill>();
         _fov = GetComponent<FieldOfView>();
         _weaponController = GetComponent<EnemyWeaponController>();
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -41,15 +43,12 @@ public class Enemy : Entity, IDamageable
         EnemyPath();
         if (followPlayer)
         {
-            if (_player != null)
+            if (_player)
             {
-                FollowPlayer(_player.transform);
+                FollowPlayer();
             }
         }
-
-        _animator.SetFloat("Speed_f", navMeshAgent.velocity.magnitude);
-        
-        
+        _animator.SetFloat("Speed_f", _navMeshAgent.velocity.magnitude);
     }
 
     public void TakeDamage(int amount)
@@ -64,56 +63,87 @@ public class Enemy : Entity, IDamageable
             }
         }
     }
-    
+
     public void RagdollActivate()
     {
         _ragdollController.ActivateRagdoll();
-        navMeshAgent.isStopped = true;
+        _navMeshAgent.isStopped = true;
         _stealthKill._isDead = true;
         _fov.Destroy();
     }
 
-    public void FollowPlayer(Transform target)
+    public void FollowPlayer()
     {
-        _player = target.GetComponent<Player>();
-
-        if (Vector3.Distance(transform.position, _player.transform.position) <= 20 && !_dead)
         {
-            GameManager.Instance.ChangeDetectionState(2); // Esta entrega esta hardcodeado. Planeamos usar eventos
+            if (_dead) return;
+            if (Vector3.Distance(transform.position, _player.transform.position) <= 20)
+            {
+                GameManager.Instance.ChangeDetectionState(2); // Esta entrega esta hardcodeado. Planeamos usar eventos
 
-            var destination = navMeshAgent.SetDestination(_player.transform.position);
-            if (Vector3.Distance(transform.position, _player.transform.position) <= 10 && !_dead)
-            {
-                navMeshAgent.isStopped = true;
-                if (!_canShot) return;
-                CoroutineManager.Instance.StartCoroutine(FreezeCoroutine(timeBetweenAttacks));
+                var destination = _navMeshAgent.SetDestination(_player.transform.position);
+                if (Vector3.Distance(transform.position, _player.transform.position) <= 10)
+                {
+                    //GetDistanceFromPlayer(_navMeshAgent, _player.transform);
+                    //FaceTarget(_player);
+                    //_navMeshAgent.isStopped = true;
+                    _animator.SetBool("Jump_b", true);
+                    print("pego patada");
+                    if (!_canShot) return;
+                    CoroutineManager.Instance.StartCoroutine(FreezeCoroutine(timeBetweenAttacks));
+                }
+                else if (Vector3.Distance(transform.position, _player.transform.position) <= 10)
+                {
+                    _animator.SetBool("Jump_b", true);
+                    print("pego patada");
+
+                    //_navMeshAgent.isStopped = false;
+                }
             }
-            else if (Vector3.Distance(transform.position, _player.transform.position) >= 10)
+            else if (Vector3.Distance(transform.position, _player.transform.position) > 20)
             {
-                navMeshAgent.isStopped = false;
+                followPlayer = false;
+                GameManager.Instance.ChangeDetectionState(0); // hardcodeado
             }
-        }
-        else if (Vector3.Distance(transform.position, _player.transform.position) > 20)
-        {
-            followPlayer = false;
-            GameManager.Instance.ChangeDetectionState(0); // hardcodeado
         }
     }
 
     private void EnemyPath()
     {
-        navMeshAgent.destination = wayPoints[currentWayPointIndex].position;
-
-        if (Vector3.Distance(transform.position, wayPoints[currentWayPointIndex].position) <= _distanceToFollowPath)
+        if (wayPoints.Length == 1)
         {
-            if (wayPoints[currentWayPointIndex] != wayPoints[^1])
+            if (Vector3.Distance(transform.position, wayPoints[currentWayPointIndex].position) > 2)
             {
-                currentWayPointIndex++;
+                SteeringBehaviors.Seek(_navMeshAgent, wayPoints[currentWayPointIndex].position);
             }
             else
             {
-                currentWayPointIndex = 0;
+                //_navMeshAgent.isStopped = true;
             }
+        }
+        
+        else if (wayPoints.Length > 1)
+        {
+            SteeringBehaviors.Seek(_navMeshAgent, wayPoints[currentWayPointIndex].position);
+
+            if (Vector3.Distance(transform.position, wayPoints[currentWayPointIndex].position) <= _distanceToFollowPath)
+            {
+                if (wayPoints[currentWayPointIndex] != wayPoints[^1])
+                {
+                    currentWayPointIndex++;
+                }
+                else
+                {
+                    currentWayPointIndex = 0;
+                }
+            }
+        }
+    }
+
+    private void GetDistanceFromPlayer(NavMeshAgent navMeshAgent, Transform target)
+    {
+        if (Vector3.Distance(this.transform.position, target.transform.position) <= 10)
+        {
+            SteeringBehaviors.Flee(navMeshAgent, new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z));
         }
     }
 
@@ -126,21 +156,26 @@ public class Enemy : Entity, IDamageable
     {
         if (Health >= 0)
         {
-            FaceTarget();
+            FaceTarget(_player);
             _canShot = false;
             _weaponController.Shot();
-            navMeshAgent.isStopped = false;
+            //_navMeshAgent.isStopped = false;
             yield return new WaitForSeconds(time);
             _canShot = true;
         }
     }
 
-    void FaceTarget()
+    void FaceTarget(Player player)
     {
-        var turnTowardNavSteeringTarget = navMeshAgent.steeringTarget;
-        Vector3 direction = (turnTowardNavSteeringTarget - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
+        Vector3 direction = player.transform.position - transform.position;  
+        float angle = Mathf.Atan2(direction.x, direction.z) *  Mathf.Rad2Deg;
+        _rigidbody.rotation = Quaternion.Euler(transform.rotation.eulerAngles.y, angle, angularSpeed * Time.deltaTime);
+    }
+
+    public void GetPlayer(Player player)
+    {
+        _player = player;
+        followPlayer = true;
     }
     
 }

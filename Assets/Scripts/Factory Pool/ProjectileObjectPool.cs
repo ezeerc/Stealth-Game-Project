@@ -53,6 +53,14 @@ public class ProjectileObjectPool : RecyclableObject
                         this.Recycle();
                         this.enabled = false;
                     }
+                    else if (hit.gameObject.layer == LayerMask.NameToLayer("Player"))
+                    {
+                        var damageable = hit.GetComponent<IDamageable>();
+                        print("Toqué al Player");
+                        damageable.TakeDamage(_damage);
+                        this.Recycle();
+                        this.enabled = false;
+                    }
                 }
             }
         }

@@ -24,7 +24,7 @@ public class FieldOfView : MonoBehaviour
 
 	public MeshFilter viewMeshFilter;
 	Mesh viewMesh;
-
+	
 	void Start() {
 		viewMesh = new Mesh ();
 		viewMesh.name = "View Mesh";
@@ -59,8 +59,7 @@ public class FieldOfView : MonoBehaviour
 					if (target.CompareTag("Player"))
 					{
 						Debug.Log("Player found");
-						_enemy.followPlayer = true;
-						_enemy._player = target.GetComponent<Player>();
+						_enemy.GetPlayer(target.GetComponent<Player>());
 					}
 				}
 			}

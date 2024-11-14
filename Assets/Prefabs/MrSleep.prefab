@@ -2556,7 +2556,7 @@ GameObject:
   - component: {fileID: 6469371903435776777}
   - component: {fileID: 2246689303167550677}
   - component: {fileID: -136675396414520371}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MrSleep
   m_TagString: Player
   m_Icon: {fileID: 0}

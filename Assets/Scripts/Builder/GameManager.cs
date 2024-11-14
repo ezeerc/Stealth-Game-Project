@@ -52,11 +52,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(ResetSuscriptionCoroutine(1));
+    }
+    
+    IEnumerator ResetSuscriptionCoroutine(int time)
+    {
+        yield return new WaitForSeconds(time);
+        
+        Target.OnTargetDeath -= WonMenu;
+        Target.TargetWon -= LoseMenu;
+        Player.OnDeath -= LoseMenu;
+        CameraRotator.OnRotate -= RotateJoystickAngle;
+
         Target.OnTargetDeath += WonMenu;
         Target.TargetWon += LoseMenu;
         Player.OnDeath += LoseMenu;
         CameraRotator.OnRotate += RotateJoystickAngle;
-
     }
 
     private void RotateJoystickAngle()
@@ -105,5 +116,13 @@ public class GameManager : MonoBehaviour
     private void LoseMenu()
     {
         loseMenu.SetActive(true);
+    }
+    
+    private void OnDestroy()
+    {
+        Target.OnTargetDeath -= WonMenu;
+        Target.TargetWon -= LoseMenu;
+        Player.OnDeath -= LoseMenu;
+        CameraRotator.OnRotate -= RotateJoystickAngle;
     }
 }
