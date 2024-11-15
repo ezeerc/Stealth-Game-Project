@@ -42,21 +42,18 @@ public class ProjectileObjectPool : RecyclableObject
                     if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
                         var damageable = hit.GetComponent<IDamageable>();
-                        print("Toqué un enemigo");
                         damageable.TakeDamage(_damage);
                         this.Recycle();
                         this.enabled = false;
                     }
                     else if (hit.gameObject.layer == LayerMask.NameToLayer("Buildings&Props"))
                     {
-                        Debug.Log("Toqué un edificio");
                         this.Recycle();
                         this.enabled = false;
                     }
                     else if (hit.gameObject.layer == LayerMask.NameToLayer("Player"))
                     {
                         var damageable = hit.GetComponent<IDamageable>();
-                        print("Toqué al Player");
                         damageable.TakeDamage(_damage);
                         this.Recycle();
                         this.enabled = false;
@@ -66,9 +63,9 @@ public class ProjectileObjectPool : RecyclableObject
         }
     }
     
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
-    }
+    }*/
 }

@@ -3,21 +3,17 @@ using UnityEngine.AI;
 using System;
 using System.Collections;
 
-public class Target : Enemy, IDamageable
+public class Target : Enemy
 {
-    [Header("Settings")]
-    [SerializeField] private float enemyDistanceRun = 15f;
+    [Header("Settings")] 
+    [SerializeField] private float enemyDistanceRun = 11f;
+    [SerializeField] private float fleeDistanceRun = 10f;
     [SerializeField] private Vector3 targetEnd;
 
-    [Header("Status Flags")]
+    [Header("Status")] 
     private bool _firstLook = false;
-    private bool _isDead = false;
-
-    [Header("Components")]
-    private Animator _animator;
-    private StealthKill _stealthKill;
-    private RgdollController _ragdollController;
     
+
     public static event Action OnTargetDeath;
     public static event Action TargetWon;
 
@@ -25,43 +21,70 @@ public class Target : Enemy, IDamageable
     {
         InitializeComponents();
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        SetBehavior(new IdleTargetBehavior());
     }
 
     private void InitializeComponents()
     {
         _ragdollController = GetComponent<RgdollController>();
         _animator = GetComponent<Animator>();
-        NavMeshAgent = GetComponent<NavMeshAgent>();
-        Rigidbody = GetComponent<Rigidbody>();
-        _stealthKill = GetComponentInChildren<StealthKill>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
+    private float DistanceToPlayer(Player player)
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
+        return distanceToPlayer;
     }
 
     private void Update()
     {
-        UpdateAnimatorSpeed();
-        float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
-
-        if (ShouldFleeFromPlayer(distanceToPlayer))
+        if (!Dead)
         {
-            _firstLook = true;
-            FleeFromPlayer();
+            currentBehavior?.Execute(this);
+            UpdateAnimatorSpeed();
+            ChangeBehaviorBasedOnDistance(DistanceToPlayer(_player));
+            CheckIfTargetReached();
         }
-        else if (ShouldMoveToTarget(distanceToPlayer))
-        {
-            NavMeshAgent.SetDestination(targetEnd);
-        }
+    }
 
-        CheckIfTargetReached();
+    private void LateUpdate()
+    {
+        CheckForDeath();
     }
 
     private void UpdateAnimatorSpeed()
     {
-        _animator.SetFloat("Speed_f", NavMeshAgent.velocity.magnitude);
+        _animator.SetFloat("Speed_f", navMeshAgent.velocity.magnitude);
+    }
+
+    private void ChangeBehaviorBasedOnDistance(float distanceToPlayer)
+    {
+        if (ShouldFleeFromPlayer(distanceToPlayer))
+        {
+            SetBehavior(new FleeTargetBehavior());
+            _firstLook = true;
+        }
+        else if (ShouldMoveToTarget(distanceToPlayer))
+        {
+            SetBehavior(new MoveToTargetBehavior(targetEnd));
+        }
+        else
+        {
+            if (_firstLook)
+            {
+                SetBehavior(new MoveToTargetBehavior(targetEnd));
+            }
+            else
+            {
+                SetBehavior(new IdleTargetBehavior());
+            }
+        }
     }
 
     private bool ShouldFleeFromPlayer(float distance)
     {
-        return distance < enemyDistanceRun && GameManager.Instance.detectionState == GameManager.DetectionState.Detected;
+        return distance < fleeDistanceRun;
     }
 
     private bool ShouldMoveToTarget(float distance)
@@ -69,38 +92,9 @@ public class Target : Enemy, IDamageable
         return distance > enemyDistanceRun && distance < 50 && _firstLook;
     }
 
-    public void TakeDamage(int amount)
+    private void CheckForDeath()
     {
-        if (Health <= 0) return;
-
-        Health -= amount;
-
-        if (Health <= 0)
-        {
-            _isDead = true;
-            OnTargetDeath?.Invoke();
-            Ragdoll(1f);
-        }
-    }
-
-    public void Ragdoll(float delay)
-    {
-        CoroutineManager.Instance.StartCoroutine(RagdollCoroutine(delay));
-    }
-
-    private IEnumerator RagdollCoroutine(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        _ragdollController.ActivateRagdoll();
-        NavMeshAgent.isStopped = true;
-        //_stealthKill._isDead = true;
-        DisableComponentsForRagdoll();
-    }
-
-    private void DisableComponentsForRagdoll()
-    {
-        GetComponent<CapsuleCollider>().enabled = false;
-        GetComponent<Animator>().enabled = false;
+        if (Dead) OnTargetDeath?.Invoke();
     }
 
     private void CheckIfTargetReached()

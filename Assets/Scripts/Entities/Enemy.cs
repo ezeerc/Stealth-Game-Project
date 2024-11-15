@@ -1,11 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.TestTools;
+
 
 public class Enemy : Entity, IDamageable
 {
@@ -13,54 +9,59 @@ public class Enemy : Entity, IDamageable
     public Player _player;
     public bool followPlayer = false;
     private float _distanceToPlayer;
-    private bool _canShoot = true;
+    public bool canShoot = true;
     
     [Header("Waypoint navigation")]
     public Transform[] waypoints;
-    private int _currentWaypointIndex = 0;
-    [SerializeField] private int _distanceToFollowPath = 3;
+    public int currentWaypointIndex = 0;
+    public int distanceToFollowPath = 2;
     
     [Header("Enemy components")]
-    private Animator _animator;
-    protected NavMeshAgent NavMeshAgent;
+    public Animator _animator;
+    public NavMeshAgent navMeshAgent;
     private EnemyWeaponController _weaponController;
-    private RgdollController _ragdollController;
-    protected Rigidbody Rigidbody;
-    private StealthKill _stealthKill;
+    public RgdollController _ragdollController;
+    //protected Rigidbody Rigidbody;
+    //private StealthKill _stealthKill;
     private FieldOfView _fov;
     
     [Header("Enemy Status")] 
-    [SerializeField] private float timeBetweenAttacks = 3f;
+    public float timeBetweenAttacks = 3f;
     public bool Dead { get; set; }
-    public float _initialRotation;
+    public IEnemyBehavior currentBehavior;
 
     [Header("Animations")] 
     private static readonly int Strangled = Animator.StringToHash("Strangled");
     private void Start()
     {
         InitializeComponents();
+        SetBehavior(new PatrolBehavior());
     }
 
     private void InitializeComponents()
     {
-        NavMeshAgent = GetComponent<NavMeshAgent>();
-        NavMeshAgent.speed = stats.baseSpeed;
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = stats.baseSpeed;
         _animator = GetComponent<Animator>();
-        _stealthKill = GetComponentInChildren<StealthKill>();
         _fov = GetComponent<FieldOfView>();
         _weaponController = GetComponent<EnemyWeaponController>();
-        Rigidbody = GetComponent<Rigidbody>();
         _ragdollController = GetComponent<RgdollController>();
-        _initialRotation = transform.rotation.eulerAngles.y;
     }
 
     private void Update()
     {
-        UpdateEnemyPath();
         UpdateFollowPlayer();
         UpdateAnimatorSpeed();
+        if (!Dead)
+        {
+            currentBehavior?.Execute(this);
+        }
     }
 
+    public void SetBehavior(IEnemyBehavior behavior)
+    {
+        currentBehavior = behavior;
+    }
     public void TakeDamage(int amount)
     {
         if (Health > 0)
@@ -77,14 +78,36 @@ public class Enemy : Entity, IDamageable
     public void RagdollActivate()
     {
         _ragdollController.ActivateRagdoll();
-        NavMeshAgent.isStopped = true;
+        navMeshAgent.isStopped = true;
         if(_fov) _fov.Destroy();
     }
+    
+    private void UpdateAnimatorSpeed()
+    {
+        _animator.SetFloat("Speed_f", navMeshAgent.velocity.magnitude);
+    }
+    
+    public IEnumerator ShootCoroutine(float delay)
+    {
+        if (Health >= 0)
+        {
+            canShoot = false;
+            _weaponController.Shot();
+            yield return new WaitForSeconds(delay);
+            canShoot = true;
+        }
+    }
+    
+    public void GetPlayer(Player player)
+    {
+        _player = player;
+        followPlayer = true;
+    }
 
-    private void UpdateFollowPlayer()
+    public void UpdateFollowPlayer()
     {
         if (!followPlayer || _player == null || Dead) return;
-        
+
         _distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
 
         if (_distanceToPlayer <= 25)
@@ -93,89 +116,36 @@ public class Enemy : Entity, IDamageable
 
             if (_distanceToPlayer <= 20 && _distanceToPlayer >= 6)
             {
-                EngagePlayer();
+                SetBehavior(new EngageBehavior());
             }
             else if (_distanceToPlayer <= 5)
             {
-                FleeFromPlayer();
+                SetBehavior(new FleeBehavior());
             }
         }
         else if (_distanceToPlayer > 24)
         {
+            SetBehavior(new PatrolBehavior());
             ResetDetectionState();
         }
     }
     
-    private void EngagePlayer()
-    {
-        SetRageMode(6f, 6f, 360, 15, false);
-        SteeringBehaviors.Seek(NavMeshAgent, _player.transform.position);
-        transform.LookAt(_player.transform.position);
-
-        if (_canShoot)
-        {
-            CoroutineManager.Instance.StartCoroutine(ShootCoroutine(timeBetweenAttacks));
-        }
-    }
-    
-    protected void FleeFromPlayer()
-    {
-        SetRageMode(10f, 10f, 480, 0, true);
-        SteeringBehaviors.Flee(NavMeshAgent, _player.transform.position);
-    }
-    
     private void ResetDetectionState()
     {
-        SetRageMode(2f, 5f, 120, 0, true);
         followPlayer = false;
         GameManager.Instance.ChangeDetectionState(0);
     }
 
-    private void SetRageMode(float speed, float acceleration, int angularSpeed, int stoppingDistance,
+    public void SetRageMode(float speed, float acceleration, int angularSpeed, int stoppingDistance,
         bool updateRotation)
     {
-        NavMeshAgent.speed = speed;
-        NavMeshAgent.acceleration = acceleration;
-        NavMeshAgent.angularSpeed = angularSpeed;
-        NavMeshAgent.stoppingDistance = stoppingDistance;
-        NavMeshAgent.updateRotation = updateRotation;
+        navMeshAgent.speed = speed;
+        navMeshAgent.acceleration = acceleration;
+        navMeshAgent.angularSpeed = angularSpeed;
+        navMeshAgent.stoppingDistance = stoppingDistance;
+        navMeshAgent.updateRotation = updateRotation;
     }
    
-    private void UpdateEnemyPath()
-    {
-        if (waypoints.Length == 0) return;
-
-        Transform targetWaypoint = waypoints[_currentWaypointIndex];
-        SteeringBehaviors.Seek(NavMeshAgent, targetWaypoint.position);
-
-        if (Vector3.Distance(transform.position, targetWaypoint.position) <= _distanceToFollowPath)
-        {
-            _currentWaypointIndex = (_currentWaypointIndex + 1) % waypoints.Length;
-        }
-    }
-
-    private IEnumerator ShootCoroutine(float delay)
-    {
-        if (Health >= 0)
-        {
-            _canShoot = false;
-            _weaponController.Shot();
-            yield return new WaitForSeconds(delay);
-            _canShoot = true;
-        }
-    }
-    
-    private void UpdateAnimatorSpeed()
-    {
-        _animator.SetFloat("Speed_f", NavMeshAgent.velocity.magnitude);
-    }
-
-    public void GetPlayer(Player player)
-    {
-        _player = player;
-        followPlayer = true;
-    }
-    
     public void StealthDeath(Player player)
     {
         if (!Dead)
