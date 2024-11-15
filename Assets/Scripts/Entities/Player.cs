@@ -28,6 +28,7 @@ public class Player : Entity, IDamageable
     private Animator _animator;
     private bool _frozen = false;
     private ICanShoot _canShoot;
+    public bool Dead { get; set; }
 
     public LayerMask playerMask;
 
@@ -174,5 +175,16 @@ public class Player : Entity, IDamageable
             _animator.SetBool(Run, false);
             OnStealthAttack();
         }
+    }
+    
+    public GameMemento SaveState(List<EnemyState> enemiesState)
+    {
+        return new GameMemento(transform.position, Health, enemiesState);
+    }
+
+    public void RestoreState(GameMemento memento)
+    {
+        transform.position = memento.PlayerPosition;
+        healthController.SetHealth(memento.PlayerHealth);
     }
 }

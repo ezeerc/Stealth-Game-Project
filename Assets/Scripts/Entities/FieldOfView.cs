@@ -209,4 +209,14 @@ public class FieldOfView : MonoBehaviour
 	{
 		viewAngle = currentAngle;
 	}
+
+	private void OnDisable()
+	{
+		viewMeshFilter.gameObject.SetActive(false);
+	}
+
+	private void OnEnable()
+	{
+		viewMeshFilter.gameObject.SetActive(true);
+	}
 }

@@ -23,6 +23,13 @@ public class HealthController : MonoBehaviour
         actualHealth = Mathf.Clamp(actualHealth, _minHealth, maxHealth);
         UpdateHealthUI();
     }
+    
+    public void SetHealth(int amount)
+    {
+        actualHealth = amount;
+        actualHealth = Mathf.Clamp(actualHealth, _minHealth, maxHealth);
+        UpdateHealthUI();
+    }
 
     public void TakeDamage(int amount)
     {

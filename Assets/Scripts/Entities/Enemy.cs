@@ -79,7 +79,7 @@ public class Enemy : Entity, IDamageable
     {
         _ragdollController.ActivateRagdoll();
         navMeshAgent.isStopped = true;
-        if(_fov) _fov.Destroy();
+        if(_fov) _fov.enabled = false;
     }
     
     private void UpdateAnimatorSpeed()
@@ -152,6 +152,31 @@ public class Enemy : Entity, IDamageable
         {
             TakeDamage(100);
             player.OnStranglingOut();
+        }
+    }
+
+    public void ResetEnemyCheckpoint()
+    {
+        _player = null;
+        _ragdollController.DeactivateRagdoll();
+        navMeshAgent.isStopped = false;
+        if(_fov) _fov.enabled = true;
+        ResetDetectionState();
+        SetBehavior(new PatrolBehavior());
+    }
+    public EnemyState SaveState()
+    {
+        return new EnemyState(transform.position, Health, Dead);
+    }
+
+    public void RestoreState(EnemyState state)
+    {
+        transform.position = state.Position;
+        Health = state.Health;
+        Dead = state.IsDead;
+        if (!Dead)
+        {
+            ResetEnemyCheckpoint();
         }
     }
 
