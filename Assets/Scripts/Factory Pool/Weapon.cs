@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         _factory = new ObjectPoolFactory(_prefab);
+        spawnPoint = GetComponent<Transform>();
     }
 
     public void Shot()
