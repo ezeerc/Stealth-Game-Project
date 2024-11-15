@@ -2646,7 +2646,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &6900380526044364901
 MonoBehaviour:
@@ -2723,7 +2723,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Height: 3.17
   m_Direction: 1
   m_Center: {x: 0, y: 1.62, z: -0.05}
@@ -2746,7 +2746,6 @@ MonoBehaviour:
   moveController: {fileID: 0}
   aimMoveController: {fileID: 0}
   healthController: {fileID: 0}
-  sneakSkill: {fileID: 0}
   <Sneaking>k__BackingField: 0
   <CanStrangling>k__BackingField: 0
   <InitAttack>k__BackingField: 0

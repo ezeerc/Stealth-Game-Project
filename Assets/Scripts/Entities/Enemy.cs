@@ -1,54 +1,64 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.TestTools;
 
 public class Enemy : Entity, IDamageable
 {
-    public Transform[] wayPoints;
-    public int angularSpeed = 5;
-    private Animator _animator;
-    private NavMeshAgent _navMeshAgent;
-    private EnemyWeaponController _weaponController;
-    private Rigidbody _rigidbody;
-
-    private int currentWayPointIndex = 0;
-    [SerializeField] private int _distanceToFollowPath = 3;
+    [Header("Player Interaction")]
     public Player _player;
     public bool followPlayer = false;
+    private float _distanceToPlayer;
+    private bool _canShoot = true;
+    
+    [Header("Waypoint navigation")]
+    public Transform[] waypoints;
+    private int _currentWaypointIndex = 0;
+    [SerializeField] private int _distanceToFollowPath = 3;
+    
+    [Header("Enemy components")]
+    private Animator _animator;
+    protected NavMeshAgent NavMeshAgent;
+    private EnemyWeaponController _weaponController;
+    private RgdollController _ragdollController;
+    protected Rigidbody Rigidbody;
     private StealthKill _stealthKill;
     private FieldOfView _fov;
-    private bool _canShot = true;
+    
+    [Header("Enemy Status")] 
     [SerializeField] private float timeBetweenAttacks = 3f;
-    public bool _dead;
-    [SerializeField] private RgdollController _ragdollController;
+    public bool Dead { get; set; }
+    public float _initialRotation;
 
-
+    [Header("Animations")] 
+    private static readonly int Strangled = Animator.StringToHash("Strangled");
     private void Start()
     {
-        Health = 40;
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-        _navMeshAgent.speed = stats.baseSpeed;
+        InitializeComponents();
+    }
+
+    private void InitializeComponents()
+    {
+        NavMeshAgent = GetComponent<NavMeshAgent>();
+        NavMeshAgent.speed = stats.baseSpeed;
         _animator = GetComponent<Animator>();
         _stealthKill = GetComponentInChildren<StealthKill>();
         _fov = GetComponent<FieldOfView>();
         _weaponController = GetComponent<EnemyWeaponController>();
-        _rigidbody = GetComponent<Rigidbody>();
+        Rigidbody = GetComponent<Rigidbody>();
+        _ragdollController = GetComponent<RgdollController>();
+        _initialRotation = transform.rotation.eulerAngles.y;
     }
 
     private void Update()
     {
-        EnemyPath();
-        if (followPlayer)
-        {
-            if (_player)
-            {
-                FollowPlayer();
-            }
-        }
-        _animator.SetFloat("Speed_f", _navMeshAgent.velocity.magnitude);
+        UpdateEnemyPath();
+        UpdateFollowPlayer();
+        UpdateAnimatorSpeed();
     }
 
     public void TakeDamage(int amount)
@@ -59,117 +69,105 @@ public class Enemy : Entity, IDamageable
             if (Health <= 0)
             {
                 RagdollActivate();
-                _dead = true;
+                ResetDetectionState();
+                Dead = true;
             }
         }
     }
-
     public void RagdollActivate()
     {
         _ragdollController.ActivateRagdoll();
-        _navMeshAgent.isStopped = true;
-        _stealthKill._isDead = true;
-        _fov.Destroy();
+        NavMeshAgent.isStopped = true;
+        if(_fov) _fov.Destroy();
     }
 
-    public void FollowPlayer()
+    private void UpdateFollowPlayer()
     {
-        {
-            if (_dead) return;
-            if (Vector3.Distance(transform.position, _player.transform.position) <= 20)
-            {
-                GameManager.Instance.ChangeDetectionState(2); // Esta entrega esta hardcodeado. Planeamos usar eventos
-
-                var destination = _navMeshAgent.SetDestination(_player.transform.position);
-                if (Vector3.Distance(transform.position, _player.transform.position) <= 10)
-                {
-                    //GetDistanceFromPlayer(_navMeshAgent, _player.transform);
-                    //FaceTarget(_player);
-                    //_navMeshAgent.isStopped = true;
-                    _animator.SetBool("Jump_b", true);
-                    print("pego patada");
-                    if (!_canShot) return;
-                    CoroutineManager.Instance.StartCoroutine(FreezeCoroutine(timeBetweenAttacks));
-                }
-                else if (Vector3.Distance(transform.position, _player.transform.position) <= 10)
-                {
-                    _animator.SetBool("Jump_b", true);
-                    print("pego patada");
-
-                    //_navMeshAgent.isStopped = false;
-                }
-            }
-            else if (Vector3.Distance(transform.position, _player.transform.position) > 20)
-            {
-                followPlayer = false;
-                GameManager.Instance.ChangeDetectionState(0); // hardcodeado
-            }
-        }
-    }
-
-    private void EnemyPath()
-    {
-        if (wayPoints.Length == 1)
-        {
-            if (Vector3.Distance(transform.position, wayPoints[currentWayPointIndex].position) > 2)
-            {
-                SteeringBehaviors.Seek(_navMeshAgent, wayPoints[currentWayPointIndex].position);
-            }
-            else
-            {
-                //_navMeshAgent.isStopped = true;
-            }
-        }
+        if (!followPlayer || _player == null || Dead) return;
         
-        else if (wayPoints.Length > 1)
-        {
-            SteeringBehaviors.Seek(_navMeshAgent, wayPoints[currentWayPointIndex].position);
+        _distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
 
-            if (Vector3.Distance(transform.position, wayPoints[currentWayPointIndex].position) <= _distanceToFollowPath)
+        if (_distanceToPlayer <= 25)
+        {
+            GameManager.Instance.ChangeDetectionState(2);
+
+            if (_distanceToPlayer <= 20 && _distanceToPlayer >= 6)
             {
-                if (wayPoints[currentWayPointIndex] != wayPoints[^1])
-                {
-                    currentWayPointIndex++;
-                }
-                else
-                {
-                    currentWayPointIndex = 0;
-                }
+                EngagePlayer();
+            }
+            else if (_distanceToPlayer <= 5)
+            {
+                FleeFromPlayer();
             }
         }
+        else if (_distanceToPlayer > 24)
+        {
+            ResetDetectionState();
+        }
+    }
+    
+    private void EngagePlayer()
+    {
+        SetRageMode(6f, 6f, 360, 15, false);
+        SteeringBehaviors.Seek(NavMeshAgent, _player.transform.position);
+        transform.LookAt(_player.transform.position);
+
+        if (_canShoot)
+        {
+            CoroutineManager.Instance.StartCoroutine(ShootCoroutine(timeBetweenAttacks));
+        }
+    }
+    
+    protected void FleeFromPlayer()
+    {
+        SetRageMode(10f, 10f, 480, 0, true);
+        SteeringBehaviors.Flee(NavMeshAgent, _player.transform.position);
+    }
+    
+    private void ResetDetectionState()
+    {
+        SetRageMode(2f, 5f, 120, 0, true);
+        followPlayer = false;
+        GameManager.Instance.ChangeDetectionState(0);
     }
 
-    private void GetDistanceFromPlayer(NavMeshAgent navMeshAgent, Transform target)
+    private void SetRageMode(float speed, float acceleration, int angularSpeed, int stoppingDistance,
+        bool updateRotation)
     {
-        if (Vector3.Distance(this.transform.position, target.transform.position) <= 10)
+        NavMeshAgent.speed = speed;
+        NavMeshAgent.acceleration = acceleration;
+        NavMeshAgent.angularSpeed = angularSpeed;
+        NavMeshAgent.stoppingDistance = stoppingDistance;
+        NavMeshAgent.updateRotation = updateRotation;
+    }
+   
+    private void UpdateEnemyPath()
+    {
+        if (waypoints.Length == 0) return;
+
+        Transform targetWaypoint = waypoints[_currentWaypointIndex];
+        SteeringBehaviors.Seek(NavMeshAgent, targetWaypoint.position);
+
+        if (Vector3.Distance(transform.position, targetWaypoint.position) <= _distanceToFollowPath)
         {
-            SteeringBehaviors.Flee(navMeshAgent, new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z));
+            _currentWaypointIndex = (_currentWaypointIndex + 1) % waypoints.Length;
         }
     }
 
-    private void Dead()
-    {
-        Destroy(gameObject);
-    }
-
-    IEnumerator FreezeCoroutine(float time)
+    private IEnumerator ShootCoroutine(float delay)
     {
         if (Health >= 0)
         {
-            FaceTarget(_player);
-            _canShot = false;
+            _canShoot = false;
             _weaponController.Shot();
-            //_navMeshAgent.isStopped = false;
-            yield return new WaitForSeconds(time);
-            _canShot = true;
+            yield return new WaitForSeconds(delay);
+            _canShoot = true;
         }
     }
-
-    void FaceTarget(Player player)
+    
+    private void UpdateAnimatorSpeed()
     {
-        Vector3 direction = player.transform.position - transform.position;  
-        float angle = Mathf.Atan2(direction.x, direction.z) *  Mathf.Rad2Deg;
-        _rigidbody.rotation = Quaternion.Euler(transform.rotation.eulerAngles.y, angle, angularSpeed * Time.deltaTime);
+        _animator.SetFloat("Speed_f", NavMeshAgent.velocity.magnitude);
     }
 
     public void GetPlayer(Player player)
@@ -178,4 +176,13 @@ public class Enemy : Entity, IDamageable
         followPlayer = true;
     }
     
+    public void StealthDeath(Player player)
+    {
+        if (!Dead)
+        {
+            TakeDamage(100);
+            player.OnStranglingOut();
+        }
+    }
+
 }

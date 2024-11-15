@@ -6,20 +6,27 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Player settings")]
     [SerializeField] private Player playerPrefab;
     [SerializeField] private Joystick moveController;
     [SerializeField] private Joystick aimMoveController;
+    [SerializeField] private LayerMask playerMask;
+    //[SerializeField] private SneakSkill sneakSkill;
+    [SerializeField] private GameObject[] pickUpPrefabs;
     public Vector3 initialPosition;
     public int speed;
-    [SerializeField] private LayerMask playerMask;
-    [SerializeField] private SneakSkill sneakSkill;
-    [SerializeField] private GameObject[] pickUpPrefabs;
-    public int currenCameraAngle = -45;
+    
+    [Header("Camera rotation settings")]
     [SerializeField] private CameraRotator cameraRotator;
-
+    public int currenCameraAngle = -45;
+    
+    [Header("Detection state")]
     public DetectionState detectionState = DetectionState.Hidden; //////// TOMI //////////////////////////////////
     public static GameManager Instance { get; private set; }
+    public static Action FullActivity;
+    public static Action NormalActivity;
 
+    [Header("Menus settings")]
     public GameObject winMenu;
     public GameObject loseMenu;
 
@@ -43,8 +50,8 @@ public class GameManager : MonoBehaviour
             .SetMaxHealth(100)
             .SetPosition(initialPosition)
             .SetSpeed(speed)
-            .SetLayerMask(playerMask)
-            .SetSneakSkill(sneakSkill);
+            .SetLayerMask(playerMask);
+            //.SetSneakSkill(sneakSkill);
 
 
         player.InitPlayer(builder);
@@ -82,16 +89,19 @@ public class GameManager : MonoBehaviour
         if (detecctionNumber == 0)
         {
             detectionState = DetectionState.Hidden;
+            NormalActivity();
         }
 
         else if (detecctionNumber == 1)
         {
             detectionState = DetectionState.Alerted;
+            FullActivity();
         }
 
         else
         {
             detectionState = DetectionState.Detected;
+            FullActivity();
         }
     }
 

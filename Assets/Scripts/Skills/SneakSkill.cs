@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class SneakSkill : Skill
+/*public class SneakSkill : Skill
 {
-    private static readonly int Sneak = Animator.StringToHash("Sneak");
+    /*private static readonly int Sneak = Animator.StringToHash("Sneak");
     private static readonly int Strangling = Animator.StringToHash("Strangling");
     private static readonly int Run = Animator.StringToHash("Run");
     private Animator _animator;
@@ -14,7 +14,7 @@ public class SneakSkill : Skill
         _player = player;
         _animator = animator;
     }
-    public override void GetSkill()
+    /*public override void GetSkill()
     {
         /*if ((Input.touchCount > 1) && (Input.GetTouch(1).phase == TouchPhase.Began))
         {
@@ -33,7 +33,7 @@ public class SneakSkill : Skill
         }
 
         if ((Input.touchCount <= 1) || (Input.GetTouch(1).phase != TouchPhase.Began)) return;*/
-        if (!_player.Sneaking || !_player.CanStrangling) return;
+       /* if (!_player.Sneaking || !_player.CanStrangling) return;
         _player.InitAttack = true;
         StealthAttack();
     }
@@ -70,5 +70,5 @@ public class SneakSkill : Skill
             _animator.SetBool(Run, false);
             _animator.SetTrigger(Strangling);
         }
-    }
-}
+    }*/
+//}

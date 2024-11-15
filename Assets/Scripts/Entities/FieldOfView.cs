@@ -8,6 +8,7 @@ public class FieldOfView : MonoBehaviour
 	//public SoldierStats stats;//utilización flyweight
 
 	private Enemy _enemy; 
+	private float currentAngle;
 	public float viewRadius; // Este
 	[Range(0,360)]
 	public float viewAngle; // Este
@@ -25,7 +26,11 @@ public class FieldOfView : MonoBehaviour
 	public MeshFilter viewMeshFilter;
 	Mesh viewMesh;
 	
-	void Start() {
+	void Start()
+	{
+		GameManager.FullActivity += FullRadio;
+		GameManager.NormalActivity += NormalRadio;
+		currentAngle = viewAngle;
 		viewMesh = new Mesh ();
 		viewMesh.name = "View Mesh";
 		viewMeshFilter.mesh = viewMesh;
@@ -187,5 +192,21 @@ public class FieldOfView : MonoBehaviour
 	{
 		viewMeshFilter.mesh = null;
 		Destroy(this);
+	}
+
+	private void OnDestroy()
+	{
+		GameManager.FullActivity -= FullRadio;
+		GameManager.NormalActivity -= NormalRadio;
+	}
+
+	private void FullRadio()
+	{
+		viewAngle = 360;
+	}
+
+	private void NormalRadio()
+	{
+		viewAngle = currentAngle;
 	}
 }

@@ -19,7 +19,7 @@ public class ScriptSneakButton : Button
 
     public override void OnClick()
     {
-        _player.SneakPosition();
+        _player.StealthAttack();
     }
 
     public void CanSneak()

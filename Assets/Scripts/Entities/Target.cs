@@ -1,80 +1,113 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
+using System.Collections;
 
 public class Target : Enemy, IDamageable
 {
-    private NavMeshAgent _agent;
-    private GameObject _player;
-    public float enemyDistanceRun = 8f;
+    [Header("Settings")]
+    [SerializeField] private float enemyDistanceRun = 15f;
     [SerializeField] private Vector3 targetEnd;
-    private bool _firstLook;
+
+    [Header("Status Flags")]
+    private bool _firstLook = false;
+    private bool _isDead = false;
+
+    [Header("Components")]
     private Animator _animator;
-    public bool _isDead;
-    public static Action OnTargetDeath;
     private StealthKill _stealthKill;
-    public static Action TargetWon;
+    private RgdollController _ragdollController;
+    
+    public static event Action OnTargetDeath;
+    public static event Action TargetWon;
+
     private void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();
-        _player = GameObject.FindWithTag("Player");
+        InitializeComponents();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    }
+
+    private void InitializeComponents()
+    {
+        _ragdollController = GetComponent<RgdollController>();
         _animator = GetComponent<Animator>();
+        NavMeshAgent = GetComponent<NavMeshAgent>();
+        Rigidbody = GetComponent<Rigidbody>();
+        _stealthKill = GetComponentInChildren<StealthKill>();
     }
 
     private void Update()
     {
-        _animator.SetFloat("Speed_f", _agent.velocity.magnitude);
-        float distance = Vector3.Distance(transform.position, _player.transform.position);
+        UpdateAnimatorSpeed();
+        float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
 
-        if (distance < enemyDistanceRun && GameManager.Instance.detectionState == GameManager.DetectionState.Detected)
+        if (ShouldFleeFromPlayer(distanceToPlayer))
         {
-            Vector3 dirToPlayer = transform.position - _player.transform.position;
-            Vector3 newPos = transform.position + dirToPlayer;
-            _agent.SetDestination(newPos);
             _firstLook = true;
+            FleeFromPlayer();
         }
-        else if (distance > enemyDistanceRun && distance < 50 && _firstLook)
+        else if (ShouldMoveToTarget(distanceToPlayer))
         {
-            _agent.speed = 10;
-            _agent.SetDestination(targetEnd);
+            NavMeshAgent.SetDestination(targetEnd);
         }
 
-        Evade();
+        CheckIfTargetReached();
+    }
+
+    private void UpdateAnimatorSpeed()
+    {
+        _animator.SetFloat("Speed_f", NavMeshAgent.velocity.magnitude);
+    }
+
+    private bool ShouldFleeFromPlayer(float distance)
+    {
+        return distance < enemyDistanceRun && GameManager.Instance.detectionState == GameManager.DetectionState.Detected;
+    }
+
+    private bool ShouldMoveToTarget(float distance)
+    {
+        return distance > enemyDistanceRun && distance < 50 && _firstLook;
     }
 
     public void TakeDamage(int amount)
     {
-        if (Health > 0)
+        if (Health <= 0) return;
+
+        Health -= amount;
+
+        if (Health <= 0)
         {
-            Health -= amount;
-        }
-        else if (Health <= 0)
-        {
+            _isDead = true;
             OnTargetDeath?.Invoke();
+            Ragdoll(1f);
         }
     }
-    
-    IEnumerator RagdollCoroutine(float time)
+
+    public void Ragdoll(float delay)
     {
-        yield return new WaitForSeconds(time);
+        CoroutineManager.Instance.StartCoroutine(RagdollCoroutine(delay));
+    }
+
+    private IEnumerator RagdollCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        _ragdollController.ActivateRagdoll();
+        NavMeshAgent.isStopped = true;
+        //_stealthKill._isDead = true;
+        DisableComponentsForRagdoll();
+    }
+
+    private void DisableComponentsForRagdoll()
+    {
         GetComponent<CapsuleCollider>().enabled = false;
         GetComponent<Animator>().enabled = false;
-        _agent.isStopped = true;
-        _stealthKill._isDead = true;
     }
 
-    public void Ragdoll(float time)
-    {
-        CoroutineManager.Instance.StartCoroutine(RagdollCoroutine(time));
-    }
-
-    private void Evade()
+    private void CheckIfTargetReached()
     {
         if (Vector3.Distance(transform.position, targetEnd) < 1.5f)
         {
-            TargetWon();
+            TargetWon?.Invoke();
         }
     }
 }

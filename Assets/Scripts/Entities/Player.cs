@@ -8,13 +8,15 @@ public class Player : Entity, IDamageable
 {
     private static readonly int Sneak = Animator.StringToHash("Sneak");
     private static readonly int Run = Animator.StringToHash("Run");
+    private static readonly int Strangling = Animator.StringToHash("Strangling");
+
     public MovementController movementController;
     public WeaponController weaponController;
-    
+
     public Controller moveController;
     public Controller aimMoveController;
     public HealthController healthController;
-    public SneakSkill sneakSkill;
+
     public Transform Target { get; set; }
     [field: SerializeField] public bool Sneaking { get; set; }
     [field: SerializeField] public bool CanStrangling { get; set; }
@@ -32,29 +34,30 @@ public class Player : Entity, IDamageable
     public int minHealth;
 
     public event Action OnStrangling;
-    
+
+    public static Action OnStealthAttack;
+
     public static Action OnDeath;
+
     public void Configure(Controller controller, Controller aimController)
     {
         moveController = controller;
         aimMoveController = aimController;
-        
+
         movementController = GetComponent<MovementController>();
         weaponController = GetComponent<WeaponController>();
         healthController = GetComponent<HealthController>();
-        
+
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
-        
+
         _canShoot = aimController.GetComponent<ICanShoot>();
-        
+
         Target = this.transform.GetChild(0);
-        
+
         movementController.Configure(_animator, _rb, Speed);
         healthController.Configure(minHealth, Health);
-        
-        sneakSkill.Configure(this, _animator);
-        
+
         gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
@@ -64,7 +67,7 @@ public class Player : Entity, IDamageable
         builder.Build(this);
         this.Configure(moveController, aimMoveController);
     }
-    
+
     private void FixedUpdate()
     {
         Move();
@@ -79,11 +82,11 @@ public class Player : Entity, IDamageable
 
     public override void Move()
     {
-        if(_frozen) return;
+        if (_frozen) return;
         var direction = moveController.GetMovementInput();
         movementController.Move(direction);
     }
-    
+
     private void MoveAim()
     {
         var direction = aimMoveController.GetMovementInput();
@@ -95,7 +98,7 @@ public class Player : Entity, IDamageable
     {
         StartCoroutine(FrozenCoroutine(time));
     }
-    
+
     private IEnumerator FrozenCoroutine(int time)
     {
         _frozen = true;
@@ -141,11 +144,6 @@ public class Player : Entity, IDamageable
         healthController.TakeDamage(amount);
     }
 
-    public void SneakPosition()
-    {
-        sneakSkill.SneakPosition();
-    }
-
     public void CanStranglingFunc()
     {
         CanStrangling = !CanStrangling;
@@ -161,7 +159,20 @@ public class Player : Entity, IDamageable
     private void Death()
     {
         Health = healthController.actualHealth;
-        if(Health <= 0) OnDeath?.Invoke();
+        if (Health <= 0) OnDeath?.Invoke();
     }
 
+    public void StealthAttack()
+    {
+        if (CanStrangling)
+        {
+            _animator.SetTrigger(Strangling);
+            Sneaking = false;
+            CanStrangling = false;
+            _animator.SetInteger("WeaponType_int", 0);
+            FrozenMove(2);
+            _animator.SetBool(Run, false);
+            OnStealthAttack();
+        }
+    }
 }

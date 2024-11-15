@@ -15,7 +15,7 @@ public class PlayerBuilder
     private Vector3 _instantiationPoint = new Vector3(0.35f, 0.04f, -4.35f);
     private int _speed;
     private LayerMask _playerMask;
-    private SneakSkill _sneakSkill;
+    //private SneakSkill _sneakSkill;
 
     public PlayerBuilder SetMoveController(Controller moveController)
     {
@@ -59,11 +59,11 @@ public class PlayerBuilder
         return this;
     }
     
-    public PlayerBuilder SetSneakSkill(SneakSkill sneakSkill)
+    /*public PlayerBuilder SetSneakSkill(SneakSkill sneakSkill)
     {
         _sneakSkill = sneakSkill;
         return this;
-    }
+    }*/
     public Player Build(Player player)
     {
         player.moveController = _moveController;
@@ -73,7 +73,7 @@ public class PlayerBuilder
         player.transform.position = _instantiationPoint;
         player.Speed = _speed;
         player.playerMask = _playerMask;
-        player.sneakSkill = _sneakSkill;
+        //player.sneakSkill = _sneakSkill;
         return player;
     }
 }
