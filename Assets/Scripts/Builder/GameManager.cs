@@ -6,8 +6,8 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Player settings")] [SerializeField]
-    private Player playerPrefab;
+    [Header("Player settings")] 
+    [SerializeField] private Player playerPrefab;
 
     [SerializeField] private Joystick moveController;
     [SerializeField] private Joystick aimMoveController;
@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     public Vector3 initialPosition;
     public int speed;
 
-    [Header("Camera rotation settings")] [SerializeField]
-    private CameraRotator cameraRotator;
+    [Header("Camera rotation settings")] 
+    [SerializeField] private CameraRotator cameraRotator;
 
     public int currenCameraAngle = -45;
 
@@ -28,14 +28,17 @@ public class GameManager : MonoBehaviour
     public static Action FullActivity;
     public static Action NormalActivity;
 
-    [Header("Menus settings")] public GameObject winMenu;
+    [Header("Menus settings")] 
+    public GameObject winMenu;
     public GameObject loseMenu;
 
-    [Header("Checkpoint settings")] private Player playerCheckpoint;
+    [Header("Checkpoint settings")] 
+    private Player playerCheckpoint;
     [SerializeField] private List<Enemy> enemiesCheckpoint;
     private CheckpointManager _checkpointManager;
     private bool _loseMenu = false;
 
+    private DetectionStateLUT _detectionStateLut;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -57,7 +60,6 @@ public class GameManager : MonoBehaviour
             .SetPosition(initialPosition)
             .SetSpeed(speed)
             .SetLayerMask(playerMask);
-        //.SetSneakSkill(sneakSkill);
 
 
         player.InitPlayer(builder);
@@ -68,6 +70,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(ResetSuscriptionCoroutine(1));
         _checkpointManager = new CheckpointManager();
         playerCheckpoint = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        _detectionStateLut = new DetectionStateLUT(NormalActivity, FullActivity);
     }
 
     private void Update()
@@ -108,22 +111,14 @@ public class GameManager : MonoBehaviour
 
     public void ChangeDetectionState(int detecctionNumber) // hacer switch
     {
-        if (detecctionNumber == 0)
+        if (Enum.IsDefined(typeof(DetectionState), detecctionNumber))
         {
-            detectionState = DetectionState.Hidden;
-            NormalActivity();
+            detectionState = (DetectionState)detecctionNumber;
+            _detectionStateLut.ExecuteAction(detectionState);
         }
-
-        else if (detecctionNumber == 1)
-        {
-            detectionState = DetectionState.Alerted;
-            FullActivity();
-        }
-
         else
         {
-            detectionState = DetectionState.Detected;
-            FullActivity();
+            print("Invalid detection state number");
         }
     }
 
