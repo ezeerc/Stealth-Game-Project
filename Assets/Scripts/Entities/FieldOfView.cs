@@ -64,7 +64,7 @@ public class FieldOfView : MonoBehaviour
 					if (target.CompareTag("Player"))
 					{
 						Debug.Log("Player found");
-						_enemy.GetPlayer(target.GetComponent<Player>());
+						_enemy.GetPlayer(target);
 					}
 				}
 			}

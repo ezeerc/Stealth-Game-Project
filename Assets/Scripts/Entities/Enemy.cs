@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Enemy : Entity, IDamageable
 {
     [Header("Player Interaction")]
-    public Player _player;
+    public Transform _player;
     public bool followPlayer = false;
     private float _distanceToPlayer;
     public bool canShoot = true;
@@ -98,7 +98,7 @@ public class Enemy : Entity, IDamageable
         }
     }
     
-    public void GetPlayer(Player player)
+    public void GetPlayer(Transform player)
     {
         _player = player;
         followPlayer = true;
@@ -108,7 +108,7 @@ public class Enemy : Entity, IDamageable
     {
         if (!followPlayer || _player == null || Dead) return;
 
-        _distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
+        _distanceToPlayer = Vector3.Distance(transform.position, _player.position);
 
         if (_distanceToPlayer <= 25)
         {

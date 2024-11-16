@@ -9,6 +9,7 @@ public class HealthView : MonoBehaviour
 {
     [SerializeField] private HealthController healthModel;
     [SerializeField] private Image healthSlider;
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
@@ -36,6 +37,18 @@ public class HealthView : MonoBehaviour
         if (healthSlider !=null && healthModel.maxHealth != 0)
         {
             healthSlider.fillAmount = (float) healthModel.actualHealth / (float)healthModel.maxHealth;
+            if (healthSlider.fillAmount <= 0.4f)
+            {
+                animator.SetFloat("velocity", 2);
+            }
+            else if (healthSlider.fillAmount >= 0.41f && healthSlider.fillAmount <= 0.7f)
+            {
+                animator.SetFloat("velocity", 1.5f);
+            }
+            else if (healthSlider.fillAmount >= 0.71f)
+            {
+                animator.SetFloat("velocity", 1f);
+            }
         }
     }
     

@@ -20,7 +20,7 @@ public class Target : Enemy
     private void Start()
     {
         InitializeComponents();
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         SetBehavior(new IdleTargetBehavior());
     }
 
@@ -31,9 +31,9 @@ public class Target : Enemy
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
-    private float DistanceToPlayer(Player player)
+    private float DistanceToPlayer(Transform player)
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
         return distanceToPlayer;
     }
 

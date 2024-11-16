@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public int currenCameraAngle = -45;
 
     [Header("Detection state")]
-    public DetectionState detectionState = DetectionState.Hidden; //////// TOMI //////////////////////////////////
+    public DetectionState detectionState = DetectionState.Hidden;
 
     public static GameManager Instance { get; private set; }
     public static Action FullActivity;
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         aimMoveController.ChangeRotationAngle(currenCameraAngle);
     }
 
-    public void ChangeDetectionState(int detecctionNumber) // hacer switch
+    public void ChangeDetectionState(int detecctionNumber) //LUT
     {
         if (Enum.IsDefined(typeof(DetectionState), detecctionNumber))
         {
@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public enum DetectionState //////////////////////////////// TOMI //////////////////////////////////
+    public enum DetectionState
     {
         Hidden,
         Alerted,
