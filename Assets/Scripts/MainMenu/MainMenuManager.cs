@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public LocalizationLanguage language;
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Level1_MilitaryBase");
@@ -12,5 +14,10 @@ public class MainMenuManager : MonoBehaviour
     public void Prototype()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void BTN_Language()
+    {
+        LocalizationManager.Instance.ChangeLanguage(language);
     }
 }

@@ -20,6 +20,16 @@ public class LocalizationManager : MonoBehaviour
         _translate = LanguageU.LoadTranslation(data);
     }
 
+    
+    
+    public void ChangeLanguage(LocalizationLanguage newLang)
+    {
+        if (language == newLang)
+            return;
+
+        language = newLang;
+    }
+    
     public string GetTranslation(string ID)
     {
         if (!_translate.ContainsKey(language))
