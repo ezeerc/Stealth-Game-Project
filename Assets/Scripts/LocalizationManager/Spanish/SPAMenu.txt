@@ -1,0 +1,13 @@
+{
+"BTNPlay" : "Jugar";
+"BTNCredits" : "Creditos";
+"BTNAudioSet" : "Ajustes de Audio";
+"BTNBack" : "Volver";
+"TXTSFX" : "Effectos de sonido";
+"TXTMusic" : "Musica";
+"BTNLang" : "Idioma";
+"TXTLvlTut" : "Tutorial";
+"TXTLvl1" : "Operación Barón Rojo";
+"BTNRetry" : "Reintentar";
+"BTNExit" : "Salir";
+}
