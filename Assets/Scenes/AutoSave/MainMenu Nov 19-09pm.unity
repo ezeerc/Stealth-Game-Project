@@ -22597,7 +22597,7 @@ MonoBehaviour:
     - {fileID: 4900000, guid: d0c8afe885c27bd449220841c111588a, type: 3}
     - {fileID: 4900000, guid: 9fb42ec43faf665448a01c102f81f275, type: 3}
     - {fileID: 4900000, guid: 5ec505abe1fdd25438182a0842185767, type: 3}
-  language: 0
+  language: 1
 --- !u!4 &1638516445
 Transform:
   m_ObjectHideFlags: 0
