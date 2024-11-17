@@ -2321,7 +2321,6 @@ GameObject:
   - component: {fileID: 145301557}
   - component: {fileID: 145301556}
   - component: {fileID: 145301555}
-  - component: {fileID: 145301558}
   m_Layer: 5
   m_Name: SpanishBTN
   m_TagString: Untagged
@@ -2392,19 +2391,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 145301556}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 145301558}
-        m_TargetAssemblyTypeName: BTNLanguage, Assembly-CSharp
-        m_MethodName: BTN_Language
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &145301556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2443,19 +2430,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145301553}
   m_CullTransparentMesh: 1
---- !u!114 &145301558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 145301553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c15b9571717a80a41b454f4a3e0745a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  language: 1
 --- !u!4 &149394131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 486100, guid: d664b4c0e01629547b130c85c234208b, type: 3}
@@ -9402,6 +9376,7 @@ GameObject:
   - component: {fileID: 679762065}
   - component: {fileID: 679762068}
   - component: {fileID: 679762067}
+  - component: {fileID: 679762066}
   m_Layer: 0
   m_Name: General
   m_TagString: Untagged
@@ -9428,6 +9403,19 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: 108}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &679762066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679762064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab06eac82a754145bcd352eebd0ef00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ID: TXTSFX
 --- !u!114 &679762067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9448,7 +9436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: General
+  m_text: Efectos de sonido
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa972d8980e039544ae0650886a30c99, type: 2}
   m_sharedMaterial: {fileID: 1230560605038162033, guid: fa972d8980e039544ae0650886a30c99, type: 2}
@@ -10127,6 +10115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254e0ddf424722e42b41e3c1b4041e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  language: 0
 --- !u!4 &724433519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 498392, guid: c26e74b74637dac46a9fce6e87280d61, type: 3}
@@ -23377,7 +23366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1672548163
 Transform:
   m_ObjectHideFlags: 0
@@ -28172,7 +28161,6 @@ GameObject:
   - component: {fileID: 2016257326}
   - component: {fileID: 2016257325}
   - component: {fileID: 2016257324}
-  - component: {fileID: 2016257327}
   m_Layer: 5
   m_Name: EnglishBTN
   m_TagString: Untagged
@@ -28243,19 +28231,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2016257325}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2016257327}
-        m_TargetAssemblyTypeName: BTNLanguage, Assembly-CSharp
-        m_MethodName: BTN_Language
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2016257325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28294,19 +28270,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016257322}
   m_CullTransparentMesh: 1
---- !u!114 &2016257327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016257322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c15b9571717a80a41b454f4a3e0745a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  language: 0
 --- !u!4 &2017890475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 498392, guid: c26e74b74637dac46a9fce6e87280d61, type: 3}
@@ -29400,7 +29363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2107733306
 Transform:
   m_ObjectHideFlags: 0

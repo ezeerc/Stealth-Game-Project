@@ -3,6 +3,7 @@
 "BTNCredits" : "Creditos";
 "BTNAudioSet" : "Ajustes de Audio";
 "BTNBack" : "Volver";
+"TXTSettings" : "Ajustes";
 "TXTSFX" : "Effectos de sonido";
 "TXTMusic" : "Musica";
 "BTNLang" : "Idioma";

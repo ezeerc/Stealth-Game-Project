@@ -9402,6 +9402,7 @@ GameObject:
   - component: {fileID: 679762065}
   - component: {fileID: 679762068}
   - component: {fileID: 679762067}
+  - component: {fileID: 679762066}
   m_Layer: 0
   m_Name: General
   m_TagString: Untagged
@@ -9428,6 +9429,19 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: 108}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &679762066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679762064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab06eac82a754145bcd352eebd0ef00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ID: TXTSFX
 --- !u!114 &679762067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9448,7 +9462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: General
+  m_text: Efectos de sonido
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa972d8980e039544ae0650886a30c99, type: 2}
   m_sharedMaterial: {fileID: 1230560605038162033, guid: fa972d8980e039544ae0650886a30c99, type: 2}
@@ -29400,7 +29414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2107733306
 Transform:
   m_ObjectHideFlags: 0
