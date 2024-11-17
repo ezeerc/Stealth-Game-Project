@@ -12,6 +12,8 @@ public class TextTranslation : MonoBehaviour
     private void Start()
     {
         _text = GetComponent<TextMeshProUGUI>();
+        LocalizationManager.Instance.EventChangeLanguage += Translate;
+
         Translate();
     }
 
