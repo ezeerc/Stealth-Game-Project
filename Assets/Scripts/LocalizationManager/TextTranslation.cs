@@ -22,4 +22,8 @@ public class TextTranslation : MonoBehaviour
         _text.text = LocalizationManager.Instance.GetTranslation(_ID);
     }
 
+    private void OnDestroy()
+    {
+        LocalizationManager.Instance.EventChangeLanguage -= Translate;
+    }
 }
