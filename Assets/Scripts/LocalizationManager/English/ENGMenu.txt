@@ -1,0 +1,14 @@
+{
+"BTNPlay" : "Play";
+"BTNCredits" : "Credits";
+"BTNAudioSet" : "Audio Settings";
+"BTNBack" : "Back";
+"TXTSettings" : "Settings";
+"TXTSFX" : "Sound Effects";
+"TXTMusic" : "Music";
+"BTNLang" : "Language Selection";
+"TXTLvlTut" : "Tutorial";
+"TXTLvl1" : "Operation Red Baron";
+"BTNRetry" : "Retry";
+"BTNExit" : "Exit";
+}
