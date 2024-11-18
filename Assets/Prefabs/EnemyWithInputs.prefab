@@ -1,5 +1,77 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8310589532835391645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5925029774126113200}
+  - component: {fileID: 4191983258106496837}
+  - component: {fileID: 5305856285785962099}
+  m_Layer: 0
+  m_Name: HideDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5925029774126113200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8310589532835391645}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000000010644502, y: 0.0000000010548703, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.3659638, y: 0.049999624, z: 0}
+  m_LocalScale: {x: 3.0417998, y: 3.0417993, z: 3.0418003}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6430683021380029139}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4191983258106496837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8310589532835391645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5938aeab0907a3240b20ebe23e73f804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  detectionRadius: 1.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  _enemyScript: {fileID: 529253201784921344}
+--- !u!135 &5305856285785962099
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8310589532835391645}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3693479753084448995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36,6 +108,10 @@ PrefabInstance:
       propertyPath: m_StoppingDistance
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3754217305283948003, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 6430683021379737225}
     - target: {fileID: 3754217305283948003, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: _ragdollController
       value: 
@@ -334,7 +410,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7673993470935841328, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5925029774126113200}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7673993470935803498, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       insertIndex: 3
@@ -1593,6 +1672,11 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!4 &6430683021380029139 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7673993470935841328, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
+  m_PrefabInstance: {fileID: 3693479753084448995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7870437415188617773 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6807341903872322254, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}

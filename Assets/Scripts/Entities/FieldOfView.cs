@@ -7,7 +7,8 @@ public class FieldOfView : MonoBehaviour
 {
 	//public SoldierStats stats;//utilización flyweight
 
-	private Enemy _enemy; 
+	private Enemy _enemy;
+	private HideBody _enemyDead;
 	private float currentAngle;
 	public float viewRadius; // Este
 	[Range(0,360)]
@@ -28,14 +29,23 @@ public class FieldOfView : MonoBehaviour
 	
 	void Start()
 	{
-		GameManager.FullActivity += FullRadio;
-		GameManager.NormalActivity += NormalRadio;
+		//GameManager.FullActivity += FullRadio;
+		//GameManager.NormalActivity += NormalRadio;
+		StartCoroutine(SuscribeCoroutine(1f));
 		currentAngle = viewAngle;
 		viewMesh = new Mesh ();
 		viewMesh.name = "View Mesh";
 		viewMeshFilter.mesh = viewMesh;
 		_enemy = GetComponent<Enemy>();
 		StartCoroutine ("FindTargetsWithDelay", .2f);
+	}
+
+	IEnumerator SuscribeCoroutine(float time)
+	{
+		yield return new WaitForSeconds(time);
+		GameManager.FullActivity += FullRadio;
+		GameManager.NormalActivity += NormalRadio;
+		print("me suscribí bien");
 	}
 
 
@@ -63,7 +73,6 @@ public class FieldOfView : MonoBehaviour
 					visibleTargets.Add (target);
 					if (target.CompareTag("Player"))
 					{
-						Debug.Log("Player found");
 						_enemy.GetPlayer(target);
 					}
 				}
@@ -203,11 +212,13 @@ public class FieldOfView : MonoBehaviour
 	private void FullRadio()
 	{
 		viewAngle = 360;
+		print("full radio");
 	}
 
 	private void NormalRadio()
 	{
 		viewAngle = currentAngle;
+		print("no full radio");
 	}
 
 	private void OnDisable()

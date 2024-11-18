@@ -67,11 +67,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(ResetSuscriptionCoroutine(1));
+        StartCoroutine(ResetSuscriptionCoroutine(2));
         _checkpointManager = new CheckpointManager();
         playerCheckpoint = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        _detectionStateLut = new DetectionStateLUT(NormalActivity, FullActivity);
     }
+    
 
     private void Update()
     {
@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ResetSuscriptionCoroutine(int time)
     {
+        _detectionStateLut = null;
         yield return new WaitForSeconds(time);
         _loseMenu = false;
 
@@ -100,6 +101,7 @@ public class GameManager : MonoBehaviour
         Target.TargetWon += LoseMenu;
         Player.OnDeath += LoseMenu;
         CameraRotator.OnRotate += RotateJoystickAngle;
+        _detectionStateLut = new DetectionStateLUT(NormalActivity, FullActivity);
     }
 
     private void RotateJoystickAngle()

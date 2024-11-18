@@ -15,6 +15,7 @@ public class RgdollController : MonoBehaviour
     {
         rbs = GetComponentsInChildren<Rigidbody>().Skip(1).ToList();
         colliders = GetComponentsInChildren<Collider>().Skip(1).ToList();
+        colliders.RemoveAt(7);
         colliders.RemoveAt(colliders.Count - 1);
         DeactivateRagdoll();
     }

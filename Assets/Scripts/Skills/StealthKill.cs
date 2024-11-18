@@ -17,7 +17,6 @@ public class StealthKill : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         if (_enemyScript.Dead) return;
-        _player = other.GetComponent<Player>();
         _player.CanStranglingFunc();
     }
 

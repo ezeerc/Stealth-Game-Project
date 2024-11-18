@@ -8,6 +8,11 @@ public class DetectionStateLUT
 
     public DetectionStateLUT(Action normalActivity, Action fullActivity)
     {
+        if (normalActivity == null)
+            normalActivity = () => Debug.LogWarning("NormalActivity no está asignada");
+        if (fullActivity == null)
+            fullActivity = () => Debug.LogWarning("FullActivity no está asignada");
+        
         _stateActions = new Dictionary<GameManager.DetectionState, Action>
         {
             { GameManager.DetectionState.Hidden, normalActivity },
@@ -20,7 +25,7 @@ public class DetectionStateLUT
     {
         if (_stateActions.TryGetValue(state, out var action))
         {
-            action?.Invoke();
+            action.Invoke();
         }
         else
         {

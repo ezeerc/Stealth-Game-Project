@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +22,7 @@ public class Enemy : Entity, IDamageable
     public NavMeshAgent navMeshAgent;
     private EnemyWeaponController _weaponController;
     public RgdollController _ragdollController;
+    [SerializeField] private GameObject enemy;
     //protected Rigidbody Rigidbody;
     //private StealthKill _stealthKill;
     private FieldOfView _fov;
@@ -29,6 +31,7 @@ public class Enemy : Entity, IDamageable
     public float timeBetweenAttacks = 3f;
     public bool Dead { get; set; }
     public IEnemyBehavior currentBehavior;
+    private bool _enableBody;
 
     [Header("Animations")] 
     private static readonly int Strangled = Animator.StringToHash("Strangled");
@@ -152,6 +155,21 @@ public class Enemy : Entity, IDamageable
         {
             TakeDamage(100);
             player.OnStranglingOut();
+        }
+    }
+    
+    public void HideBody(Player player)
+    {
+        print("funca ocultar");
+        if (Dead)
+        {
+            if(!_enableBody)
+            {
+                _enableBody = true;
+                player.OnHide();
+                print("funca ocultar");
+                enemy.SetActive(false);
+            }
         }
     }
 

@@ -20,6 +20,7 @@ public class Player : Entity, IDamageable
     public Transform Target { get; set; }
     [field: SerializeField] public bool Sneaking { get; set; }
     [field: SerializeField] public bool CanStrangling { get; set; }
+    [field: SerializeField] public bool CanHide { get; set; }
     [field: SerializeField] public bool InitAttack { get; set; }
 
     [field: SerializeField] public int Speed { get; set; }
@@ -35,8 +36,10 @@ public class Player : Entity, IDamageable
     public int minHealth;
 
     public event Action OnStrangling;
+    public event Action OnHiding;
 
     public static Action OnStealthAttack;
+    public static Action OnHideMovement;
 
     public static Action OnDeath;
 
@@ -95,12 +98,12 @@ public class Player : Entity, IDamageable
         CheckAimMovement(aimMoveController);
     }
 
-    public void FrozenMove(int time)
+    public void FrozenMove(float time)
     {
         StartCoroutine(FrozenCoroutine(time));
     }
 
-    private IEnumerator FrozenCoroutine(int time)
+    private IEnumerator FrozenCoroutine(float time)
     {
         _frozen = true;
         yield return new WaitForSeconds(time);
@@ -116,7 +119,7 @@ public class Player : Entity, IDamageable
     {
         if (shot.FireOn)
         {
-            FrozenMove(1);
+            FrozenMove(0.5f);
             weaponController.Shot();
             shot.FireOn = false;
         }
@@ -127,11 +130,12 @@ public class Player : Entity, IDamageable
         if (controller.MovingStick)
         {
             weaponController.LaserOn = true;
-            ChangeSpeed(10);
+            ChangeSpeed(5);
         }
         else
         {
             weaponController.LaserOn = false;
+            ChangeSpeed(10);
         }
     }
 
@@ -150,7 +154,18 @@ public class Player : Entity, IDamageable
         CanStrangling = !CanStrangling;
         OnStranglingOut();
     }
+    
+    public void CanHideFunc()
+    {
+        CanHide = !CanHide;
+        OnHide();
+    }
 
+    public void OnHide()
+    {
+        if (OnHiding != null)
+            OnHiding();
+    }
     public void OnStranglingOut()
     {
         if (OnStrangling != null)
@@ -177,6 +192,22 @@ public class Player : Entity, IDamageable
         }
     }
     
+    public void HideMovement()
+    {
+        if (CanHide)
+        {
+            _animator.SetBool("Crouch_b", true);
+            StartCoroutine(HideCoroutine(1.5f));
+        }
+    }
+    IEnumerator HideCoroutine(float time)
+    {
+        FrozenMove(time);
+        yield return new WaitForSeconds(time);
+        _animator.SetBool("Crouch_b", false);
+        CanHide = false;
+        OnHideMovement();
+    }
     public GameMemento SaveState(List<EnemyState> enemiesState)
     {
         return new GameMemento(transform.position, Health, enemiesState);
