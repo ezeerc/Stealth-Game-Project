@@ -8,7 +8,10 @@
 "TXTMusic" : "Musica";
 "BTNLang" : "Idioma";
 "TXTLvlTut" : "Tutorial";
-"TXTLvl1" : "Operación Barón Rojo";
+"TXTLvl1" : "Operaciï¿½n Barï¿½n Rojo";
 "BTNRetry" : "Reintentar";
 "BTNExit" : "Salir";
+"BTNMusic" : "Audio";
+"BTNBackMusic" : "Volver";
+"BTNMainMenu" : "MenÃº principal"
 }

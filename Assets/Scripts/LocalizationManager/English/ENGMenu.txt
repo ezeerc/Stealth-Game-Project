@@ -11,4 +11,7 @@
 "TXTLvl1" : "Operation Red Baron";
 "BTNRetry" : "Retry";
 "BTNExit" : "Exit";
+"BTNMusic" : "Audio Settings";
+"BTNBackMusic" : "Back";
+"BTNMainMenu" : "Main menu"
 }
