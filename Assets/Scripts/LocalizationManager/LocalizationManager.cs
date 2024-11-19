@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LocalizationManager : MonoBehaviour
 {
-    public static LocalizationManager Instance;
-    
+    public static LocalizationManager Instance { get; private set; }
+
     public DataLocalization[] data;
 
     Dictionary<LocalizationLanguage, Dictionary<string, string>> _translate = new Dictionary<LocalizationLanguage, Dictionary<string, string>>();
@@ -17,7 +17,14 @@ public class LocalizationManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
         _translate = LanguageU.LoadTranslation(data);
     }
 

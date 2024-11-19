@@ -1,7 +1,7 @@
 {
 
-"LVL1MissionWelcome" : "The commander should be at the far end of the base here. Good Luck, Agent.";
-"LVL1Defeat" : "Agent has been KIA, cease all operations immediately.";
-"LVL1Victory" : "You have eliminated the commander. Extract team arriving 5 clicks north of your position, ETA 10 minutes. Good job agent.";
+"LVL1MissionWelcome" : "El comandante esta atrincherado en el extremo norte de la base. Buena suerte, agente.";
+"LVL1Defeat" : "El agente murio en combate. Cesen todas las operaciones y retirense de la zona.";
+"LVL1Victory" : "Ha eliminado al comandante. El equipo de extraccion se encuentra 5 kilometros al norte de su posicion, arrivo estimado en 10 minutos. Buen trabajo, agente.";
 
 }
