@@ -13,6 +13,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScreenManager/WelcomeMessage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScreenManager/WinMenu.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 3
@@ -82,7 +86,7 @@
       <updated>1727870199961</updated>
       <workItem from="1727870202491" duration="110000" />
       <workItem from="1727870380033" duration="11729000" />
-      <workItem from="1732276495694" duration="4908000" />
+      <workItem from="1732276495694" duration="13350000" />
     </task>
     <servers />
   </component>

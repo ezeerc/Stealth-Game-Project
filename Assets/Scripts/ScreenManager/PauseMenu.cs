@@ -19,6 +19,8 @@ public class PauseMenu : MonoBehaviour, IScreen
     private void Start()
     {
         ScreenManager.instance.RegisterScreen("PauseMenu", this);
+        ScreenManager.instance.HideScreen("PauseMenu");
     }
+    
 }
 

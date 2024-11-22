@@ -22,6 +22,7 @@ public class Player : Entity, IDamageable
     [field: SerializeField] public bool CanStrangling { get; set; }
     [field: SerializeField] public bool CanHide { get; set; }
     [field: SerializeField] public bool InitAttack { get; set; }
+    private bool _oneTimeAnimDead;
 
     [field: SerializeField] public int Speed { get; set; }
 
@@ -186,7 +187,19 @@ public class Player : Entity, IDamageable
     private void Death()
     {
         Health = healthController.actualHealth;
-        if (Health <= 0) OnDeath?.Invoke();
+        if (Health <= 0)
+        {
+            OnDeath?.Invoke();
+
+            if (!_oneTimeAnimDead)
+            {
+                _oneTimeAnimDead = true;
+                FrozenMove(2);
+                _animator.SetBool(Run, false);
+                _animator.SetInteger("WeaponType_int", 0);
+                _animator.SetTrigger("Death");
+            }
+        }
     }
 
     public void StealthAttack()

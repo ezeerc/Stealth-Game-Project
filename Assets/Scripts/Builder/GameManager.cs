@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour
         Player.OnDeath += LoseMenu;
         CameraRotator.OnRotate += RotateJoystickAngle;
         _detectionStateLut = new DetectionStateLUT(NormalActivity, FullActivity);
+        ScreenManager.instance.ShowScreen("WelcomeMessage");
     }
 
     private void RotateJoystickAngle()
@@ -138,12 +139,13 @@ public class GameManager : MonoBehaviour
 
     private void WonMenu()
     {
-        winMenu.SetActive(true);
+        ScreenManager.instance.ShowScreen("WinScreen");
     }
 
     private void LoseMenu()
     {
-        loseMenu.SetActive(true);
+        //loseMenu.SetActive(true);
+        ScreenManager.instance.ShowScreen("GameOverScreen");
         _loseMenu = true;
     }
 
@@ -151,7 +153,7 @@ public class GameManager : MonoBehaviour
     {
         if (_loseMenu)
         {
-            loseMenu.SetActive(false);
+            ScreenManager.instance.HideScreen("GameOverScreen");
         }
     }
 
