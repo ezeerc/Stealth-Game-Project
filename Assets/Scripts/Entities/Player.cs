@@ -36,8 +36,9 @@ public class Player : Entity, IDamageable
     public int minHealth;
 
     public event Action OnStrangling;
-    public event Action OnHiding;
-
+    public event Action OnHidingOn;
+    public event Action OnHidingOff;
+    
     public static Action OnStealthAttack;
     public static Action OnHideMovement;
 
@@ -155,16 +156,26 @@ public class Player : Entity, IDamageable
         OnStranglingOut();
     }
     
-    public void CanHideFunc()
+    /*public void CanHideFunc()
     {
         CanHide = !CanHide;
         OnHide();
-    }
+    }*/
 
-    public void OnHide()
+    public void OnHide(bool value)
     {
-        if (OnHiding != null)
-            OnHiding();
+        if (value)
+        {
+            if (OnHidingOn != null)
+                OnHidingOn();
+        }
+        else
+        {
+            if (OnHidingOff != null)
+                OnHidingOff();
+        }
+
+        CanHide = value;
     }
     public void OnStranglingOut()
     {

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5925029774126113200}
   - component: {fileID: 4191983258106496837}
-  - component: {fileID: 5305856285785962099}
+  - component: {fileID: 6711847147430087604}
   m_Layer: 0
   m_Name: HideDetector
   m_TagString: Untagged
@@ -51,8 +51,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _enemyScript: {fileID: 529253201784921344}
---- !u!135 &5305856285785962099
-SphereCollider:
+--- !u!136 &6711847147430087604
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -69,9 +69,11 @@ SphereCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.20391618
+  m_Height: 0.9808249
+  m_Direction: 1
+  m_Center: {x: -0.01720904, y: -0.009587925, z: -2.0583178e-18}
 --- !u!1001 &3693479753084448995
 PrefabInstance:
   m_ObjectHideFlags: 0

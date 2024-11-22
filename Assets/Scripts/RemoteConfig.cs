@@ -45,10 +45,10 @@ public class RemoteConfig : MonoBehaviour
         textWelcome.text = RemoteConfigService.Instance.appConfig.config.Value<String>("welcomeText");
         version.text = RemoteConfigService.Instance.appConfig.config.Value<int>("version").ToString();
         gameManager.speed = RemoteConfigService.Instance.appConfig.config.Value<int>("speed");
-        gameManager.InstantietePrefab(new Vector3(
+        /*gameManager.InstantietePrefab(new Vector3(
             RemoteConfigService.Instance.appConfig.config.Value<float>("initialPos.x"),
             RemoteConfigService.Instance.appConfig.config.Value<float>("initialPos.y"),
-            RemoteConfigService.Instance.appConfig.config.Value<float>("initialPos.z")));
+            RemoteConfigService.Instance.appConfig.config.Value<float>("initialPos.z")));*/
     }
 
 }

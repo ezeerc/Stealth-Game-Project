@@ -32,6 +32,7 @@ public class Enemy : Entity, IDamageable
     public bool Dead { get; set; }
     public IEnemyBehavior currentBehavior;
     private bool _enableBody;
+    private bool _canBeHide;
 
     [Header("Animations")] 
     private static readonly int Strangled = Animator.StringToHash("Strangled");
@@ -75,8 +76,16 @@ public class Enemy : Entity, IDamageable
                 RagdollActivate();
                 ResetDetectionState();
                 Dead = true;
+                StartCoroutine(ActiveCanBeHide(1f));
             }
         }
+    }
+
+
+    IEnumerator ActiveCanBeHide(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _canBeHide = true;
     }
     public void RagdollActivate()
     {
@@ -160,13 +169,13 @@ public class Enemy : Entity, IDamageable
     
     public void HideBody(Player player)
     {
-        print("funca ocultar");
-        if (Dead)
+        if (Dead && _canBeHide)
         {
             if(!_enableBody)
             {
                 _enableBody = true;
-                player.OnHide();
+                //player.OnHide();
+                //player.CanHideFunc();
                 print("funca ocultar");
                 enemy.SetActive(false);
             }

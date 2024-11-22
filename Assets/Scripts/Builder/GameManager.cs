@@ -131,10 +131,10 @@ public class GameManager : MonoBehaviour
         Detected
     }
 
-    public void InstantietePrefab(Vector3 position)
+    /*public void InstantietePrefab(Vector3 position)
     {
         Instantiate(pickUpPrefabs[Random.Range(0, pickUpPrefabs.Length)], position, Quaternion.identity);
-    }
+    }*/
 
     private void WonMenu()
     {

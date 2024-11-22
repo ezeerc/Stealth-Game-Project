@@ -15,7 +15,8 @@ public class ScriptSneakButton : Button
         _sneakButton = gameObject.GetComponent<Button>();
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         _player.OnStrangling += CanSneak;
-        _player.OnHiding += CanHide;
+        _player.OnHidingOn += CanHide;
+        _player.OnHidingOff += CantHide;
         _animator = gameObject.GetComponent<Animator>();
     }
 
@@ -39,23 +40,20 @@ public class ScriptSneakButton : Button
         
     }
     
+    
     public void CanHide()
     {
-        _canHide = !_canHide;
-        if (_canHide)
-        {
             _animator.SetBool("Hiding", true);
-        }
-        else
-        {
+    }
+    
+    public void CantHide()
+    {
             _animator.SetBool("Hiding", false);
-        }
-        
     }
 
     private void OnDestroy()
     {
         _player.OnStrangling -= CanSneak;
-        _player.OnHiding -= CanHide;
+        _player.OnHidingOn -= CanHide;
     }
 }
