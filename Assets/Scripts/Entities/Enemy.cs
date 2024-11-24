@@ -7,36 +7,34 @@ using UnityEngine.AI;
 
 public class Enemy : Entity, IDamageable
 {
-    [Header("Player Interaction")]
-    public Transform _player;
+    [Header("Player Interaction")] public Transform _player;
     public bool followPlayer = false;
     private float _distanceToPlayer;
     public bool canShoot = true;
-    
-    [Header("Waypoint navigation")]
-    public Transform[] waypoints;
+
+    [Header("Waypoint navigation")] public Transform[] waypoints;
     public int currentWaypointIndex = 0;
     public int distanceToFollowPath = 2;
-    
-    [Header("Enemy components")]
-    public Animator _animator;
+
+    [Header("Enemy components")] public Animator _animator;
     public NavMeshAgent navMeshAgent;
     private EnemyWeaponController _weaponController;
     public RgdollController _ragdollController;
+
     [SerializeField] private GameObject enemy;
+
     //protected Rigidbody Rigidbody;
     //private StealthKill _stealthKill;
     private FieldOfView _fov;
-    
-    [Header("Enemy Status")] 
-    public float timeBetweenAttacks = 3f;
+
+    [Header("Enemy Status")] public float timeBetweenAttacks = 3f;
     public bool Dead { get; set; }
     public IEnemyBehavior currentBehavior;
     private bool _enableBody;
     private bool _canBeHide;
 
-    [Header("Animations")] 
-    private static readonly int Strangled = Animator.StringToHash("Strangled");
+    [Header("Animations")] private static readonly int Strangled = Animator.StringToHash("Strangled");
+
     private void Start()
     {
         InitializeComponents();
@@ -67,6 +65,7 @@ public class Enemy : Entity, IDamageable
     {
         currentBehavior = behavior;
     }
+
     public void TakeDamage(int amount)
     {
         if (Health > 0)
@@ -88,18 +87,19 @@ public class Enemy : Entity, IDamageable
         yield return new WaitForSeconds(time);
         _canBeHide = true;
     }
+
     public void RagdollActivate()
     {
         _ragdollController.ActivateRagdoll();
         navMeshAgent.isStopped = true;
-        if(_fov) _fov.enabled = false;
+        if (_fov) _fov.enabled = false;
     }
-    
+
     private void UpdateAnimatorSpeed()
     {
         _animator.SetFloat("Speed_f", navMeshAgent.velocity.magnitude);
     }
-    
+
     public IEnumerator ShootCoroutine(float delay)
     {
         if (Health >= 0)
@@ -110,7 +110,7 @@ public class Enemy : Entity, IDamageable
             canShoot = true;
         }
     }
-    
+
     public void GetPlayer(Transform player)
     {
         _player = player;
@@ -121,7 +121,6 @@ public class Enemy : Entity, IDamageable
     {
         if (!followPlayer || _player == null || Dead) return;
         DetectFriends();
-
         _distanceToPlayer = Vector3.Distance(transform.position, _player.position);
 
         if (_distanceToPlayer <= 25)
@@ -143,22 +142,25 @@ public class Enemy : Entity, IDamageable
             ResetDetectionState();
         }
     }
-    
-    public float detectionRadius = 1f;
+
+    public float detectionRadius = 20f;
     public LayerMask detectionLayerFriendEnemies;
 
-    public void DetectFriends()
+    private void DetectFriends()
     {
-        // Checkea si hay objetos en el radio de detección
-        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius, detectionLayerFriendEnemies);
-        
-        foreach (Collider collider in colliders)
+        if (!Dead)
         {
-            if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            Collider[] colliders =
+                Physics.OverlapSphere(transform.position, detectionRadius, detectionLayerFriendEnemies);
+
+            foreach (Collider collider in colliders)
             {
-                Enemy enemy = collider.GetComponent<Enemy>();
-                enemy.GetPlayer(_player);
-                break;
+                if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                {
+                    var enemy = collider.GetComponent<Enemy>(); 
+                    if(enemy) enemy.GetPlayer(_player);
+                    break;
+                }
             }
         }
     }
@@ -184,7 +186,7 @@ public class Enemy : Entity, IDamageable
         navMeshAgent.stoppingDistance = stoppingDistance;
         navMeshAgent.updateRotation = updateRotation;
     }
-   
+
     public void StealthDeath(Player player)
     {
         if (!Dead)
@@ -193,12 +195,12 @@ public class Enemy : Entity, IDamageable
             player.OnStranglingOut();
         }
     }
-    
+
     public void HideBody(Player player)
     {
         if (Dead && _canBeHide)
         {
-            if(!_enableBody)
+            if (!_enableBody)
             {
                 _enableBody = true;
                 //player.OnHide();
@@ -214,10 +216,11 @@ public class Enemy : Entity, IDamageable
         _player = null;
         _ragdollController.DeactivateRagdoll();
         navMeshAgent.isStopped = false;
-        if(_fov) _fov.enabled = true;
+        if (_fov) _fov.enabled = true;
         ResetDetectionState();
         SetBehavior(new PatrolBehavior());
     }
+
     public EnemyState SaveState()
     {
         return new EnemyState(transform.position, Health, Dead);
@@ -233,5 +236,4 @@ public class Enemy : Entity, IDamageable
             ResetEnemyCheckpoint();
         }
     }
-
 }

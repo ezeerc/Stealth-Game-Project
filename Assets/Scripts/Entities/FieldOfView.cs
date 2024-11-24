@@ -30,8 +30,6 @@ public class FieldOfView : MonoBehaviour
 	
 	void Start()
 	{
-		//GameManager.FullActivity += FullRadio;
-		//GameManager.NormalActivity += NormalRadio;
 		StartCoroutine(SuscribeCoroutine(1f));
 		currentAngle = viewAngle;
 		currentViewRadius = viewRadius;
@@ -70,13 +68,13 @@ public class FieldOfView : MonoBehaviour
 			Vector3 dirToTarget = (target.position - transform.position).normalized;
 			if (Vector3.Angle (transform.forward, dirToTarget) < viewAngle / 2) {
 				float dstToTarget = Vector3.Distance (transform.position, target.position);
-				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) {
+				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) 
+				{
 					visibleTargets.Add (target);
-					if (target.CompareTag("Player"))
+					if (target.gameObject.layer == 6)
 					{
 						_enemy.GetPlayer(target);
 					}
-					
 				}
 			}
 		}
@@ -213,16 +211,12 @@ public class FieldOfView : MonoBehaviour
 
 	private void FullRadio()
 	{
-		//viewAngle = 360;
 		viewRadius = currentViewRadius * 1.5f;
-		//print("full radio");
 	}
 
 	private void NormalRadio()
 	{
-		//viewAngle = currentAngle;
 		viewRadius = currentViewRadius;
-		//print("no full radio");
 	}
 
 	private void OnDisable()

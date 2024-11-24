@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5925029774126113200}
   - component: {fileID: 4191983258106496837}
   - component: {fileID: 6711847147430087604}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HideDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ PrefabInstance:
       objectReference: {fileID: 6430683021379737225}
     - target: {fileID: 3754217305283948003, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: detectionRadius
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3754217305283948003, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: _ragdollController
@@ -408,11 +408,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8710102838181882239, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: targetMask.m_Bits
-      value: 64
+      value: 3136
       objectReference: {fileID: 0}
     - target: {fileID: 8710102838181882239, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: obstacleMask.m_Bits
-      value: 438
+      value: 3510
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

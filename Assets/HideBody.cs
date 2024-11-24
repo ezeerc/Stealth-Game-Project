@@ -8,7 +8,6 @@ public class HideBody : MonoBehaviour
     private GameObject _enemy;
     public float detectionRadius = 1.5f;
     public LayerMask playerLayer;
-
     [SerializeField] private Enemy _enemyScript;
 
     private void Start()
@@ -20,14 +19,10 @@ public class HideBody : MonoBehaviour
     {
         if (!_enemyScript.Dead) return;
 
-        if (other.CompareTag("Player"))
+        if (other.gameObject.layer == 6)
         {
             _player = other.GetComponent<Player>();
             _player.OnHide(true);
-        }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            print("enemigo encontrado");
         }
     }
 
@@ -40,13 +35,13 @@ public class HideBody : MonoBehaviour
 
     private void HideBodyMovement()
     {
-        if (_player != null && Vector3.Distance(this.transform.position, _player.transform.position) < 2)
+        if (_player && Vector3.Distance(this.transform.position, _player.transform.position) < 2)
         {
             _enemyScript.HideBody(_player);
             _player.OnHide(false);
         }
     }
-
+    
     private void OnDestroy()
     {
         Player.OnHideMovement -= HideBodyMovement;
