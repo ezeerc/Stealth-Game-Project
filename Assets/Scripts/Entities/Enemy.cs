@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -119,6 +120,7 @@ public class Enemy : Entity, IDamageable
     public void UpdateFollowPlayer()
     {
         if (!followPlayer || _player == null || Dead) return;
+        DetectFriends();
 
         _distanceToPlayer = Vector3.Distance(transform.position, _player.position);
 
@@ -142,6 +144,31 @@ public class Enemy : Entity, IDamageable
         }
     }
     
+    public float detectionRadius = 1f;
+    public LayerMask detectionLayerFriendEnemies;
+
+    public void DetectFriends()
+    {
+        // Checkea si hay objetos en el radio de detección
+        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius, detectionLayerFriendEnemies);
+        
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                Enemy enemy = collider.GetComponent<Enemy>();
+                enemy.GetPlayer(_player);
+                break;
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1, 0, 0, 1F);
+        Gizmos.DrawSphere(transform.position, detectionRadius);
+    }
+
     private void ResetDetectionState()
     {
         followPlayer = false;

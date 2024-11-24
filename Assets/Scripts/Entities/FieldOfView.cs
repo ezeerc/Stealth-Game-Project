@@ -10,6 +10,7 @@ public class FieldOfView : MonoBehaviour
 	private Enemy _enemy;
 	private HideBody _enemyDead;
 	private float currentAngle;
+	private float currentViewRadius;
 	public float viewRadius; // Este
 	[Range(0,360)]
 	public float viewAngle; // Este
@@ -33,6 +34,7 @@ public class FieldOfView : MonoBehaviour
 		//GameManager.NormalActivity += NormalRadio;
 		StartCoroutine(SuscribeCoroutine(1f));
 		currentAngle = viewAngle;
+		currentViewRadius = viewRadius;
 		viewMesh = new Mesh ();
 		viewMesh.name = "View Mesh";
 		viewMeshFilter.mesh = viewMesh;
@@ -45,7 +47,6 @@ public class FieldOfView : MonoBehaviour
 		yield return new WaitForSeconds(time);
 		GameManager.FullActivity += FullRadio;
 		GameManager.NormalActivity += NormalRadio;
-		print("me suscribí bien");
 	}
 
 
@@ -75,6 +76,7 @@ public class FieldOfView : MonoBehaviour
 					{
 						_enemy.GetPlayer(target);
 					}
+					
 				}
 			}
 		}
@@ -211,14 +213,16 @@ public class FieldOfView : MonoBehaviour
 
 	private void FullRadio()
 	{
-		viewAngle = 360;
-		print("full radio");
+		//viewAngle = 360;
+		viewRadius = currentViewRadius * 1.5f;
+		//print("full radio");
 	}
 
 	private void NormalRadio()
 	{
-		viewAngle = currentAngle;
-		print("no full radio");
+		//viewAngle = currentAngle;
+		viewRadius = currentViewRadius;
+		//print("no full radio");
 	}
 
 	private void OnDisable()

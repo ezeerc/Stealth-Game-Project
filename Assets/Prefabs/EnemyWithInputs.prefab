@@ -70,10 +70,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.20391618
+  m_Radius: 0.23012467
   m_Height: 0.9808249
   m_Direction: 1
-  m_Center: {x: -0.01720904, y: -0.009587925, z: -2.0583178e-18}
+  m_Center: {x: -0.013458051, y: -0.009587925, z: -2.1517966e-18}
 --- !u!1001 &3693479753084448995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114,6 +114,10 @@ PrefabInstance:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 6430683021379737225}
+    - target: {fileID: 3754217305283948003, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
+      propertyPath: detectionRadius
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3754217305283948003, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: _ragdollController
       value: 
