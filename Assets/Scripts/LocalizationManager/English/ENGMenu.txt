@@ -9,6 +9,7 @@
 "BTNLang" : "Language Selection";
 "TXTLvlTut" : "Tutorial";
 "TXTLvl1" : "Operation Red Baron";
+"TXTLvl2" : "Operation Stolen Badge";
 "BTNRetry" : "Retry";
 "BTNExit" : "Exit";
 "BTNMusic" : "Audio Settings";
