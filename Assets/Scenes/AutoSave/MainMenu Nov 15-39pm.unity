@@ -15728,7 +15728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currencyTxt: {fileID: 1813081962}
-  currency: 50
+  currency: 20
 --- !u!4 &1132400474
 Transform:
   m_ObjectHideFlags: 0

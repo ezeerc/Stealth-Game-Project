@@ -12,8 +12,12 @@ public class ItemUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI _costTxt;
     [SerializeField] Image _itemImage;
     public UnityEngine.UI.Button buyButton;
+    public UnityEngine.UI.Button equipButton;
+    public UnityEngine.UI.Button unequipButton;
 
-    public event Action<ItemDTO> onItemClicked;
+    public event Action<ItemDTO, ItemUI> onItemClickedBuy;
+    public event Action<ItemDTO, ItemUI> onItemClickedEquip;
+    public event Action<ItemDTO, ItemUI> onItemClickedUnequip;
     ItemDTO _itemToRepresent;
 
     public void BuildButton(ItemDTO item)
@@ -24,8 +28,24 @@ public class ItemUI : MonoBehaviour
         _itemToRepresent = item;
     }
 
-    public void OnClickItem()
+    public ItemDTO GetItemDTO()
     {
-        onItemClicked?.Invoke(_itemToRepresent);
-    }    
+        return _itemToRepresent;
+    }
+
+    public void OnClickBuy()
+    {
+        onItemClickedBuy?.Invoke(_itemToRepresent, this);
+    }
+
+
+    public void OnClickEquip()
+    {
+        onItemClickedEquip?.Invoke(_itemToRepresent, this);
+    }
+
+    public void OnClickUnequip()
+    {
+        onItemClickedUnequip?.Invoke(_itemToRepresent, this);
+    }
 }

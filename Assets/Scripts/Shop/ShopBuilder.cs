@@ -8,6 +8,8 @@ public class ShopBuilder : MonoBehaviour
     [SerializeField] Transform shopParent;
 
     [SerializeField] ItemDTO[] _items = new ItemDTO[0];
+
+    private ItemUI _currentlyEquippedItem;
     
     
     void Start()
@@ -16,7 +18,10 @@ public class ShopBuilder : MonoBehaviour
         {
             var newItem = Instantiate(_itemPrefab, shopParent);
             newItem.BuildButton(_items[i]);
-            newItem.onItemClicked += (item) => OnItemBought(item, newItem);
+
+            newItem.onItemClickedBuy += OnItemBought;
+            newItem.onItemClickedEquip += OnItemEquipped;
+            newItem.onItemClickedUnequip += OnItemUnequipped;
         }
     }
 
@@ -33,7 +38,24 @@ public class ShopBuilder : MonoBehaviour
     }
 
     void OnItemEquipped(ItemDTO itemToEquip, ItemUI itemUIInstance)
-    { 
+    {
+        if (_currentlyEquippedItem != null && _currentlyEquippedItem != itemUIInstance)
+        {
+            _currentlyEquippedItem.unequipButton.gameObject.SetActive(false);
+        }
 
+        _currentlyEquippedItem = itemUIInstance;
+
+        itemUIInstance.unequipButton.gameObject.SetActive(true);
+    }
+
+    void OnItemUnequipped(ItemDTO itemToEquip, ItemUI itemUIInstance)
+    {
+        if (_currentlyEquippedItem == itemUIInstance)
+        {
+            _currentlyEquippedItem = null;
+        }
+
+        itemUIInstance.unequipButton.gameObject.SetActive(false);
     }
 }
