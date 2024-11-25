@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.UI;
 
 public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsShowListener
 {
     [SerializeField] private string _androidID = "5736769";
     [SerializeField] private bool _testingMode;
-    [SerializeField] string _adUnitId = "Rewarded_Android";
+    [SerializeField] string _adUnitId = "Interstitial_Android";
+    [SerializeField] Image _button;
 
     /*private void Awake()
     {
