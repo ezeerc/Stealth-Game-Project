@@ -8,7 +8,8 @@
 "TXTMusic" : "Musica";
 "BTNLang" : "Idioma";
 "TXTLvlTut" : "Tutorial";
-"TXTLvl1" : "Operaci�n Bar�n Rojo";
+"TXTLvl1" : "Operacion Baron Rojo";
+"TXTLvl2" : "Operacion Escudo Robado";
 "BTNRetry" : "Reintentar";
 "BTNExit" : "Salir";
 "BTNMusic" : "Audio";
