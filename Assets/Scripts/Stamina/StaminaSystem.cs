@@ -13,7 +13,7 @@ public class StaminaSystem : MonoBehaviour
     [SerializeField] private  int _currentStamina = 10;
 
     [SerializeField] private float _timeToRecharge = 10;
-    [SerializeField] private TextMeshProUGUI _staminaText, _timerText;
+    [SerializeField] private TextMeshProUGUI _staminaText;
     
     bool _recharging;
 
@@ -23,9 +23,6 @@ public class StaminaSystem : MonoBehaviour
     {
         LoadGame();
         StartCoroutine(ChargingStamina());
-        
-        
-
     }
 
     IEnumerator ChargingStamina()
@@ -100,13 +97,10 @@ public class StaminaSystem : MonoBehaviour
     {
         if (_currentStamina >= _maxStamina)
         {
-            _timerText.text = "Full stamina";
             return;
         }
         
         notifTimer= _nextStaminaTime - DateTime.Now;
-        
-        _timerText.text = $"{notifTimer.Minutes.ToString("00")}:{notifTimer.Seconds.ToString("00")}";
         
     }
 

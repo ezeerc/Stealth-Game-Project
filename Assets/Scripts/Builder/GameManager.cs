@@ -151,12 +151,11 @@ public class GameManager : MonoBehaviour
     private void WonMenu()
     {
         ScreenManager.instance.ShowScreen("WinScreen");
-        //CurrencyManager.Instance.AddMoney(10);
+        CurrencyManager.Instance.AddMoney(10);
     }
 
     private void LoseMenu()
     {
-        //loseMenu.SetActive(true);
         ScreenManager.instance.ShowScreen("GameOverScreen");
         _loseMenu = true;
     }
