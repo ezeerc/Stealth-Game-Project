@@ -11694,7 +11694,7 @@ GameObject:
   - component: {fileID: 842499478}
   - component: {fileID: 842499477}
   m_Layer: 5
-  m_Name: Stamina Image
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15727,8 +15727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ae23c3066feea4cabe39f7a258a200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currencyTxt: {fileID: 1813081962}
-  currency: 20
+  _currencyTxt: {fileID: 0}
+  currency: 0
 --- !u!4 &1132400474
 Transform:
   m_ObjectHideFlags: 0
@@ -19376,7 +19376,7 @@ GameObject:
   - component: {fileID: 1438308966}
   - component: {fileID: 1438308965}
   m_Layer: 5
-  m_Name: Stamina Text
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20078,7 +20078,7 @@ GameObject:
   - component: {fileID: 1459617941}
   - component: {fileID: 1459617940}
   m_Layer: 5
-  m_Name: Currency Image
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26114,7 +26114,7 @@ GameObject:
   - component: {fileID: 1813081963}
   - component: {fileID: 1813081962}
   m_Layer: 5
-  m_Name: Currency Text
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

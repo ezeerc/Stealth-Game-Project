@@ -26,8 +26,6 @@ public class ItemUI : MonoBehaviour
 
     public void OnClickItem()
     {
-        // Esto tiene que estar encapsulado por un if que chequee si tiene la plata?
         onItemClicked?.Invoke(_itemToRepresent);
-        buyButton.gameObject.SetActive(false);
     }    
 }
