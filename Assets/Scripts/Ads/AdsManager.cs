@@ -8,9 +8,9 @@ public class AdsManager : MonoBehaviour
     public static AdsManager instance;
     
     [SerializeField] InitializeAds _InitializeAds;
-    /*[SerializeField] RewardedAds _rewardedAds;
-    [SerializeField] BannerAds _bannerAds;
-    [SerializeField] InterstitialAds _interstitialAds;
+    [SerializeField] RewardedAds _rewardedAds;
+    //[SerializeField] BannerAds _bannerAds;
+    //[SerializeField] InterstitialAds _interstitialAds;
 
     private void Awake()
     {
@@ -22,15 +22,15 @@ public class AdsManager : MonoBehaviour
         else Destroy(gameObject);
         
         _rewardedAds.LoadRewardedAd();
-        StartCoroutine(BannerAd());
+        //StartCoroutine(BannerAd());
         
-        _interstitialAds.LoadInterstitialAd();
-        StartCoroutine(InterstitialAd());
+        //_interstitialAds.LoadInterstitialAd();
+        //StartCoroutine(InterstitialAd());
     }
     
     public void ShowRewardedAd() => _rewardedAds.ShowRewardedAd();
 
-    IEnumerator BannerAd()
+    /*IEnumerator BannerAd()
     {
         while (true)
         {
