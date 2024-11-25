@@ -31,4 +31,9 @@ public class ShopBuilder : MonoBehaviour
         else
             Debug.Log("Not enough money.");
     }
+
+    void OnItemEquipped(ItemDTO itemToEquip, ItemUI itemUIInstance)
+    { 
+
+    }
 }
