@@ -120,11 +120,11 @@ public class Enemy : Entity, IDamageable
     public void UpdateFollowPlayer()
     {
         if (!followPlayer || _player == null || Dead) return;
-        DetectFriends();
         _distanceToPlayer = Vector3.Distance(transform.position, _player.position);
 
         if (_distanceToPlayer <= 25)
         {
+            DetectFriends();
             GameManager.Instance.ChangeDetectionState(2);
 
             if (_distanceToPlayer <= 20 && _distanceToPlayer >= 6)
@@ -174,6 +174,13 @@ public class Enemy : Entity, IDamageable
     private void ResetDetectionState()
     {
         followPlayer = false;
+        //GameManager.Instance.ChangeDetectionState(0);
+        StartCoroutine(WaitFoResetDetectionState(10));
+    }
+
+    IEnumerator WaitFoResetDetectionState(int time)
+    {
+        yield return new WaitForSeconds(time);
         GameManager.Instance.ChangeDetectionState(0);
     }
 

@@ -10,7 +10,6 @@ public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener, IUn
     [SerializeField] private string _androidID = "5736769";
     [SerializeField] private bool _testingMode;
     [SerializeField] string _adUnitId = "Interstitial_Android";
-    [SerializeField] Image _button;
 
     /*private void Awake()
     {
@@ -48,6 +47,7 @@ public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener, IUn
 
     public void OnUnityAdsShowStart(string placementId)
     {
+        GameManager.Instance.SaveGame();
         Debug.Log("comenzó publicidad");
     }
 
@@ -61,6 +61,7 @@ public class InitializeAds : MonoBehaviour, IUnityAdsInitializationListener, IUn
         if (showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
             Debug.Log("Show complete");
+            GameManager.Instance.LoadGame();
         }
         else
         {
