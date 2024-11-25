@@ -16,8 +16,19 @@ public class ShopBuilder : MonoBehaviour
         {
             var newItem = Instantiate(_itemPrefab, shopParent);
             newItem.BuildButton(_items[i]);
+            newItem.onItemClicked += OnItemBought;
         }
     }
 
-    
+    void OnItemBought(ItemDTO itemToBuy)
+    {
+        /*
+        if (CurrencyManager.Instance.Currency >= itemToBuy.itemCost)
+        {
+            CurrencyManager.Instance.Currency -= itemToBuy.itemCost;
+        }
+        else
+            Debug.Log("Not enough money.");
+        */
+    }
 }
