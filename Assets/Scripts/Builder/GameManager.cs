@@ -86,6 +86,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SaveGame()
+    {
+        _checkpointManager.SaveCheckpoint(playerCheckpoint, enemiesCheckpoint);
+    }
+
+    public void LoadGame()
+    {
+        playerCheckpoint.GetFullHealth();
+        ResetLoseMenu();
+        _checkpointManager.LoadCheckpoint(playerCheckpoint, enemiesCheckpoint);
+    }
     IEnumerator ResetSuscriptionCoroutine(int time)
     {
         _detectionStateLut = null;
@@ -140,6 +151,7 @@ public class GameManager : MonoBehaviour
     private void WonMenu()
     {
         ScreenManager.instance.ShowScreen("WinScreen");
+        //CurrencyManager.Instance.AddMoney(10);
     }
 
     private void LoseMenu()

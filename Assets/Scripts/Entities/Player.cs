@@ -127,6 +127,12 @@ public class Player : Entity, IDamageable
         }
     }
 
+    public void GetFullHealth()
+    {
+        healthController.RestoreHealth();
+        Health = healthController.maxHealth;
+    }
+
     private void CheckAimMovement(Controller controller)
     {
         if (controller.MovingStick)
@@ -189,6 +195,7 @@ public class Player : Entity, IDamageable
         Health = healthController.actualHealth;
         if (Health <= 0)
         {
+            
             OnDeath?.Invoke();
 
             if (!_oneTimeAnimDead)
