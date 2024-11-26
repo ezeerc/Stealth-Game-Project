@@ -6,13 +6,14 @@ public class WinMenu : MonoBehaviour, IScreen
 {
     [SerializeField] private GameObject WinPanel;
     [SerializeField] private GameObject doublePrizePanel;
+    private bool _oneTime = false;
 
     public void Show()
     {
         //WinPanel.SetActive(true);
         //Time.timeScale = 0f; // Pausar el juego
         GameManager.Instance.StartCoroutine(WaitTimeForGameOver(1.5f));
-        GameManager.Instance.StartCoroutine(DoublePrize(10f));
+        GameManager.Instance.StartCoroutine(DoublePrize(5f));
     }
 
     IEnumerator WaitTimeForGameOver(float time)
@@ -24,8 +25,12 @@ public class WinMenu : MonoBehaviour, IScreen
 
     IEnumerator DoublePrize(float time)
     {
-        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(time));
-        doublePrizePanel.SetActive(true);
+        if (!_oneTime)
+        {
+            _oneTime = true;
+            yield return CoroutineUtil.WaitForRealSeconds(time);
+            doublePrizePanel.SetActive(true);
+        }
     }
 
     public void Hide()
@@ -39,5 +44,4 @@ public class WinMenu : MonoBehaviour, IScreen
         ScreenManager.instance.RegisterScreen("WinScreen", this);
         ScreenManager.instance.HideScreen("WinScreen");
     }
-
 }
