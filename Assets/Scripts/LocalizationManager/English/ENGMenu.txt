@@ -10,10 +10,10 @@
 "TXTLvlTut" : "Tutorial";
 "TXTLvl1" : "Operation Red Baron";
 "TXTLvl2" : "Operation Stolen Badge";
+"BTNContinue" : "Continue";
 "BTNRetry" : "Retry";
-"BTNExit" : "Exit";
+"BTNExit" : "Home";
+"TXTads" : "Watch an ad to save stamina";
 "BTNMusic" : "Audio Settings";
-"BTNBackMusic" : "Back";
-"BTNMainMenu" : "Main menu";
-"TextGOMenu" : "Menu";
+"BTNAudio" : "Audio";
 }
