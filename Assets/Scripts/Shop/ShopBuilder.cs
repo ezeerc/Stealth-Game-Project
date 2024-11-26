@@ -14,6 +14,8 @@ public class ShopBuilder : MonoBehaviour
     private const string BoughtKey = "Bought_";
     private const string EquippedKey = "Equipped";
 
+    public bool _oneTime = false;
+
     void Start()
     {
         for (int i = 0; i < _items.Length; i++)
@@ -23,7 +25,7 @@ public class ShopBuilder : MonoBehaviour
                 _items[i].itemID = $"Item_{i}"; //genera el ID de cada arma de la tienda - EZE
             }
         }
-        
+
         for (int i = 0; i < _items.Length; i++)
         {
             var newItem = Instantiate(_itemPrefab, shopParent);
@@ -94,26 +96,18 @@ public class ShopBuilder : MonoBehaviour
         PlayerPrefs.DeleteKey(EquippedKey);
         PlayerPrefs.Save();
     }
-    
+
     public void ResetShop()
     {
-        // Elimina todos los ítems comprados
-        /*for (int i = 0; i < _items.Length; i++)
-        {
-            PlayerPrefs.DeleteKey(BoughtKey + _items[i].itemID);
-        }*/
-
-        /*// Elimina el ítem actualmente equipado
-        PlayerPrefs.DeleteKey(EquippedKey);
-
-        // Asegúrate de guardar los cambios
-        PlayerPrefs.Save();*/
-        
         foreach (Transform child in shopParent)
         {
             Destroy(child.gameObject);
         }
-        Start();
+
+        if (!_oneTime)
+        {
+            Start();
+            _oneTime = true;
+        }
     }
 }
-

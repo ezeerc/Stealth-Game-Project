@@ -8,6 +8,7 @@ public class DeleteData : MonoBehaviour
     public void Delete()
     {
         PlayerPrefs.DeleteAll();
+        _shopBuilder._oneTime = false;
         _shopBuilder.ResetShop();
         CurrencyManager.Instance.Reset();
         StaminaSystem.Instance.ResetStamina();
