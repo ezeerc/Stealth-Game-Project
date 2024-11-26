@@ -130,7 +130,7 @@ public class Player : Entity, IDamageable
     public void GetFullHealth()
     {
         healthController.RestoreHealth();
-        Health = healthController.maxHealth;
+        //Health = healthController.maxHealth;
     }
 
     private void CheckAimMovement(Controller controller)

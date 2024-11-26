@@ -15,4 +15,5 @@
 "BTNMusic" : "Audio Settings";
 "BTNBackMusic" : "Back";
 "BTNMainMenu" : "Main menu"
+"TextGOMenu" : "Menu"
 }

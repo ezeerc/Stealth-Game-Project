@@ -7,6 +7,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     [SerializeField] UnityEngine.UI.Button _showAdButton;
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
+    [SerializeField] CloseButton _closeButton;
     string _adUnitId = null; // This will remain null for unsupported platforms
  
     void Awake()
@@ -57,14 +58,13 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         // Then show the ad:
         Advertisement.Show(_adUnitId, this);
     }
- 
+    
     // Implement the Show Listener's OnUnityAdsShowComplete callback method to determine if the user gets a reward:
     public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
     {
         if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
-            Debug.Log("Unity Ads Rewarded Ad Completed");
-            // Grant a reward.
+            _closeButton.Restart();
         }
     }
  
@@ -80,8 +80,12 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
         // Use the error details to determine whether to try to load another ad.
     }
- 
-    public void OnUnityAdsShowStart(string adUnitId) { }
+
+    public void OnUnityAdsShowStart(string adUnitId)
+    {
+        GameManager.Instance.SaveGame();
+        Debug.Log("comenzó publicidad");
+    }
     public void OnUnityAdsShowClick(string adUnitId) { }
  
     void OnDestroy()

@@ -93,10 +93,11 @@ public class GameManager : MonoBehaviour
 
     public void LoadGame()
     {
-        playerCheckpoint.GetFullHealth();
-        ResetLoseMenu();
         _checkpointManager.LoadCheckpoint(playerCheckpoint, enemiesCheckpoint);
+        ResetLoseMenu();
+        StartCoroutine(ResetSuscriptionCoroutine(2));
     }
+    
     IEnumerator ResetSuscriptionCoroutine(int time)
     {
         _detectionStateLut = null;
