@@ -10080,6 +10080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254e0ddf424722e42b41e3c1b4041e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stamineperLevel1: 30
 --- !u!4 &724433519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 498392, guid: c26e74b74637dac46a9fce6e87280d61, type: 3}
@@ -19423,6 +19424,7 @@ GameObject:
   - component: {fileID: 1438308964}
   - component: {fileID: 1438308966}
   - component: {fileID: 1438308965}
+  - component: {fileID: 1438308967}
   m_Layer: 5
   m_Name: Stamina Text
   m_TagString: Untagged
@@ -19446,8 +19448,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 0}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchoredPosition: {x: -159.515, y: 0.000068665}
+  m_SizeDelta: {x: 219.03, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1438308965
 MonoBehaviour:
@@ -19532,7 +19534,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -243.619, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -19546,6 +19548,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438308963}
   m_CullTransparentMesh: 1
+--- !u!114 &1438308967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438308963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07eaa26125b9c8946b6ed8d567980135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _staminaText: {fileID: 1438308965}
 --- !u!1001 &1439440973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20830,6 +20845,7 @@ GameObject:
   - component: {fileID: 1521168314}
   - component: {fileID: 1521168313}
   - component: {fileID: 1521168312}
+  - component: {fileID: 1521168315}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -20912,6 +20928,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1521168315}
+        m_TargetAssemblyTypeName: StaminaDecrease, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 30
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1521168313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20950,6 +20978,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521168310}
   m_CullTransparentMesh: 1
+--- !u!114 &1521168315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521168310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7552f801eac0e0b4baa96f569cac0577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaDecrease: 30
 --- !u!1001 &1525354403
 PrefabInstance:
   m_ObjectHideFlags: 0
