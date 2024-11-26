@@ -158,5 +158,10 @@ public class StaminaSystem : MonoBehaviour
         SaveGame();
         UpdateStamina();
     }
+
+    public void AddStamina(int amount)
+    {
+        _currentStamina += amount;
+    }
 }
 

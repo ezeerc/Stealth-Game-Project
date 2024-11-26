@@ -10265,7 +10265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254e0ddf424722e42b41e3c1b4041e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stamineperLevel1: 30
+  _staminePerLevel1: 0
 --- !u!4 &724433519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 498392, guid: c26e74b74637dac46a9fce6e87280d61, type: 3}
@@ -21362,7 +21362,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1521168315}
         m_TargetAssemblyTypeName: StaminaDecrease, Assembly-CSharp
-        m_MethodName: OnButtonClick
+        m_MethodName: DecreaseStamina
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21423,6 +21423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staminaDecrease: 30
+  _closeButton: {fileID: 0}
 --- !u!1001 &1525354403
 PrefabInstance:
   m_ObjectHideFlags: 0

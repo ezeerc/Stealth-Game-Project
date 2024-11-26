@@ -37,4 +37,6 @@ public class CloseButton : MonoBehaviour
     {
         Application.Quit();
     }
+    
+    
 }

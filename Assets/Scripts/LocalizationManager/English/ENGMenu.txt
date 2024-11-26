@@ -13,9 +13,10 @@
 "BTNContinue" : "Continue";
 "BTNRetry" : "Retry";
 "BTNExit" : "Home";
-"TXTAdsLoss" : "Watch an ad to save stamina";
+"TXTAdsStamina" : "Out of Stamina, watch an ad to get more";
 "TXTAdsWin" : "Watch an ad to double your prize";
 "BTNMusic" : "Audio Settings";
 "BTNAudio" : "Audio";
 "BTNDelete" : "Delete data";
+
 }

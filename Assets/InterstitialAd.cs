@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.Advertisements;
  
-public class InterstitialAdExample : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
+public class InterstitialAd: MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] string _androidAdUnitId = "Interstitial_Android";
     [SerializeField] string _iOsAdUnitId = "Interstitial_iOS";
@@ -14,7 +15,12 @@ public class InterstitialAdExample : MonoBehaviour, IUnityAdsLoadListener, IUnit
             ? _iOsAdUnitId
             : _androidAdUnitId;
     }
- 
+
+    private void Start()
+    {
+        LoadAd();
+    }
+
     // Load content to the Ad Unit:
     public void LoadAd()
     {
@@ -51,5 +57,9 @@ public class InterstitialAdExample : MonoBehaviour, IUnityAdsLoadListener, IUnit
  
     public void OnUnityAdsShowStart(string _adUnitId) { }
     public void OnUnityAdsShowClick(string _adUnitId) { }
-    public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState) { }
+
+    public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState)
+    {
+        CurrencyManager.Instance.AddMoney(10);
+    }
 }

@@ -5,12 +5,14 @@ using UnityEngine;
 public class WinMenu : MonoBehaviour, IScreen
 {
     [SerializeField] private GameObject WinPanel;
+    [SerializeField] private GameObject doublePrizePanel;
 
     public void Show()
     {
         //WinPanel.SetActive(true);
         //Time.timeScale = 0f; // Pausar el juego
         GameManager.Instance.StartCoroutine(WaitTimeForGameOver(1.5f));
+        GameManager.Instance.StartCoroutine(DoublePrize(10f));
     }
 
     IEnumerator WaitTimeForGameOver(float time)
@@ -18,6 +20,12 @@ public class WinMenu : MonoBehaviour, IScreen
         yield return new WaitForSeconds(time);
         WinPanel.SetActive(true);
         Time.timeScale = 0f; // Pausar el juego
+    }
+
+    IEnumerator DoublePrize(float time)
+    {
+        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(time));
+        doublePrizePanel.SetActive(true);
     }
 
     public void Hide()

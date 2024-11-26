@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [SerializeField] private int _stamineperLevel1;
+    [SerializeField] private int _staminePerLevel1;
 
     public void PlayTutorial()
     {
@@ -12,7 +12,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayLvl_1()
     {
-        if (StaminaSystem.Instance._currentStamina >= _stamineperLevel1)
+        if (StaminaSystem.Instance._currentStamina >= _staminePerLevel1)
         {
             SceneManager.LoadScene("Level1_MilitaryBase");
         }
