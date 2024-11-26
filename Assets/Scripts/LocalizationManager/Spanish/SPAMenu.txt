@@ -10,10 +10,10 @@
 "TXTLvlTut" : "Tutorial";
 "TXTLvl1" : "Operacion Baron Rojo";
 "TXTLvl2" : "Operacion Escudo Robado";
+"BTNContinue" : "Continuar";
 "BTNRetry" : "Reintentar";
-"BTNExit" : "Salir";
-"BTNMusic" : "Audio";
-"BTNBackMusic" : "Volver";
-"BTNMainMenu" : "Menú principal";
-"TextGOMenu" : "Menú";
+"BTNExit" : "Inicio";
+"TXTAdsLoss" : "Puede mirar una publicidad para ahorrar stamina";
+"TXTAdsWin" : "Puede mirar una publicidad para duplicar sus ganancias";
+"BTNAudio" : "Audio";
 }
