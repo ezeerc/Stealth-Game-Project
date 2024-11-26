@@ -3703,6 +3703,10 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 64617168377721894, guid: 1244328dc9d61d64cbbca3badf3c34d0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1586224868979161435, guid: 1244328dc9d61d64cbbca3badf3c34d0, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9990483
@@ -3852,6 +3856,10 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 64178559425153672, guid: b21be3169a812ac4d98a912512f30f95, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3318403049855800217, guid: b21be3169a812ac4d98a912512f30f95, type: 3}
       propertyPath: layerMask.m_Bits
       value: 384
@@ -3975,6 +3983,10 @@ PrefabInstance:
     - target: {fileID: 64520474340857124, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64520474340857124, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1546517050137256251, guid: 179f98de9f307824aaabfb066e9c69a5, type: 3}
       propertyPath: m_Positions.Array.size
@@ -4134,6 +4146,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 64032477570266328, guid: 9f2d2b0c577d28e42ba06ee013624466, type: 3}
       propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64032477570266328, guid: 9f2d2b0c577d28e42ba06ee013624466, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1361785168037733483, guid: 9f2d2b0c577d28e42ba06ee013624466, type: 3}
