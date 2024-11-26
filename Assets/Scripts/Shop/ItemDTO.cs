@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class ItemDTO : ScriptableObject
 {
+    public string itemID; //agregado para trabajar con playerprefs - EZE
     public string itemName;
     public Sprite itemIcon;
     public int itemCost;
-
+    
     // Aca tiene que ir la logica que cambia el arma en el juego
 }
