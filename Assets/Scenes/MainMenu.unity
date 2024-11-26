@@ -12496,6 +12496,74 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 498392, guid: c26e74b74637dac46a9fce6e87280d61, type: 3}
   m_PrefabInstance: {fileID: 835778234}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &902902902
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1294830006222806872, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294830006222806872, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: _testingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431297394372553639, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: m_Name
+      value: AdsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627356494312054983, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -39.85396
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627356494312054983, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0068831
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627356494312054983, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.980274
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627356494312054983, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627356494312054983, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627356494312054983, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627356494312054983, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627356494312054983, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627356494312054983, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627356494312054983, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4431297394372553639, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1391971566}
+  m_SourcePrefab: {fileID: 100100000, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
 --- !u!1001 &908665096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18811,6 +18879,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 498392, guid: c26e74b74637dac46a9fce6e87280d61, type: 3}
   m_PrefabInstance: {fileID: 1990851035}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1391971563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4431297394372553639, guid: 681538f66ca2e38479e2895f659ab311, type: 3}
+  m_PrefabInstance: {fileID: 902902902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1391971566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391971563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65992f4ac9edf004d863b86bb6be4e47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _androidGameId: 5736769
+  _iOSGameId: 5736768
+  _testMode: 1
 --- !u!4 &1393436887 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 478180, guid: 58cd2ae7b50b9db4ab571e82df4cba68, type: 3}
@@ -30877,3 +30965,4 @@ SceneRoots:
   - {fileID: 7119569163138851556}
   - {fileID: 1132400474}
   - {fileID: 965793487}
+  - {fileID: 902902902}
