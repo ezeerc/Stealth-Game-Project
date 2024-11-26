@@ -53,6 +53,7 @@ public class ShopBuilder : MonoBehaviour
 
     void OnItemBought(ItemDTO itemToBuy, ItemUI itemUIInstance)
     {
+        _oneTime = false;
         if (CurrencyManager.Instance.currency >= itemToBuy.itemCost)
         {
             CurrencyManager.Instance.SubtractMoney(itemToBuy.itemCost);
@@ -99,13 +100,12 @@ public class ShopBuilder : MonoBehaviour
 
     public void ResetShop()
     {
-        foreach (Transform child in shopParent)
-        {
-            Destroy(child.gameObject);
-        }
-
         if (!_oneTime)
         {
+            foreach (Transform child in shopParent)
+            {
+                Destroy(child.gameObject);
+            }
             Start();
             _oneTime = true;
         }
