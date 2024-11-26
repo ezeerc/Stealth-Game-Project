@@ -14,6 +14,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Factory Pool/Uzi.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScreenManager/WelcomeMessage.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScreenManager/WinMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stamina/StaminaSystem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -90,7 +91,7 @@
       <workItem from="1727870380033" duration="11729000" />
       <workItem from="1732276495694" duration="13350000" />
       <workItem from="1732622769054" duration="133000" />
-      <workItem from="1732622921018" duration="3412000" />
+      <workItem from="1732622921018" duration="5972000" />
     </task>
     <servers />
   </component>

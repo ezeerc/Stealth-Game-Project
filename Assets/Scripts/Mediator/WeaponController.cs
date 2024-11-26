@@ -60,7 +60,6 @@ public class WeaponController : MonoBehaviour
     {
         string equippedWeaponID = PlayerPrefs.GetString(EquippedKey, string.Empty);
 
-
         switch (equippedWeaponID)
         {
             case "Item_0":
@@ -82,15 +81,6 @@ public class WeaponController : MonoBehaviour
                 weaponActive = 5;
                 break;
         }
-        
-        /*if (string.IsNullOrEmpty(equippedWeaponID))
-        {
-            Debug.Log("No weapon is equipped.");
-            return;
-        }*/
-
-        // Instanciar el arma en el personaje
-        print(equippedWeaponID);
     }
 
     private void LaserColor()
