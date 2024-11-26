@@ -2692,14 +2692,13 @@ MonoBehaviour:
   spawnPoint: {fileID: 5579679574028580897}
   laser: {fileID: 4756369493624312028}
   weaponPrefabs:
+  - {fileID: 6229311822824064244}
+  - {fileID: 2830343096598713524}
   - {fileID: 392685226046256210}
   - {fileID: 6019163251464801113}
-  - {fileID: 6229311822824064244}
   - {fileID: 7871155334329534157}
-  - {fileID: 2830343096598713524}
-  - {fileID: 2554143677414644792}
   - {fileID: 8780433539911484586}
-  weaponActive: 0
+  weaponActive: 5
   LaserOn: 0
   weaponActiveScript: {fileID: 0}
   shotCooldown: 1
@@ -3644,11 +3643,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 463648, guid: 596b2ee3ab6b1bd459b953fa0cdfeac9, type: 3}
   m_PrefabInstance: {fileID: 2554143677414783286}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2554143677414644792 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 140558, guid: 596b2ee3ab6b1bd459b953fa0cdfeac9, type: 3}
-  m_PrefabInstance: {fileID: 2554143677414783286}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2830343096598574536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3870,8 +3864,8 @@ MonoBehaviour:
   _prefab: {fileID: 2227629259097066149, guid: 74ad8f6a159540e4bbea6dba425371d8, type: 3}
   spawnPoint: {fileID: 1174081267278875314}
   timeBtwShots: 0.2
-  qtyBullets: 7
-  shotRecharge: 0
+  qtyBullets: 4
+  shotRecharge: 0.1
 --- !u!1001 &6229311822824148958
 PrefabInstance:
   m_ObjectHideFlags: 0

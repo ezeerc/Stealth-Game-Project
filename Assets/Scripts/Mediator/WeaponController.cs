@@ -15,6 +15,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private int weaponActive;
     public bool LaserOn = false;
     public Weapon weaponActiveScript; // ver si podemos dejar esto privado
+    private const string EquippedKey = "Equipped";
 
 
     public float shotCooldown = 1f; //////////////// TOMI //////////////////////////////////
@@ -27,6 +28,7 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
+        LoadEquippedWeapon();
         ChangeWeapon(weaponActive);
     }
 
@@ -54,6 +56,42 @@ public class WeaponController : MonoBehaviour
 
     }
 
+    private void LoadEquippedWeapon()
+    {
+        string equippedWeaponID = PlayerPrefs.GetString(EquippedKey, string.Empty);
+
+
+        switch (equippedWeaponID)
+        {
+            case "Item_0":
+                weaponActive = 0;
+                break;
+            case "Item_1": 
+                weaponActive = 1;
+                break;
+            case "Item_2": 
+                weaponActive = 2;
+                break;
+            case "Item_3": 
+                weaponActive = 3;
+                break;
+            case "Item_4": 
+                weaponActive = 4;
+                break;
+            default:
+                weaponActive = 5;
+                break;
+        }
+        
+        /*if (string.IsNullOrEmpty(equippedWeaponID))
+        {
+            Debug.Log("No weapon is equipped.");
+            return;
+        }*/
+
+        // Instanciar el arma en el personaje
+        print(equippedWeaponID);
+    }
 
     private void LaserColor()
     {
