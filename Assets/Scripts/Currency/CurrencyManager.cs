@@ -45,4 +45,10 @@ public class CurrencyManager : MonoBehaviour
             _currencyTxt.text = currency.ToString();
         }
     }
+    
+    public void SetCurrencyText(TextMeshProUGUI currencyTxt)
+    {
+        _currencyTxt = currencyTxt;
+        UpdateCanvasCurrency();
+    }
 }
