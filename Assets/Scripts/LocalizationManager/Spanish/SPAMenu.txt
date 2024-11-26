@@ -13,6 +13,7 @@
 "BTNContinue" : "Continuar";
 "BTNRetry" : "Reintentar";
 "BTNExit" : "Inicio";
-"TXTads" : "Puede mirar una publicidad para ahorrar stamina";
+"TXTAdsLoss" : "Puede mirar una publicidad para ahorrar stamina";
+"TXTAdsWin" : "Puede mirar una publicidad para duplicar sus ganancias";
 "BTNAudio" : "Audio";
 }
