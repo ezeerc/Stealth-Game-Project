@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     private bool _loseMenu = false;
 
     private DetectionStateLUT _detectionStateLut;
+    private bool hasAddedMoney = false;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -103,6 +104,7 @@ public class GameManager : MonoBehaviour
         _detectionStateLut = null;
         yield return new WaitForSeconds(time);
         _loseMenu = false;
+        hasAddedMoney = false;
 
         Target.OnTargetDeath -= WonMenu;
         Target.TargetWon -= LoseMenu;
@@ -152,7 +154,11 @@ public class GameManager : MonoBehaviour
     private void WonMenu()
     {
         ScreenManager.instance.ShowScreen("WinScreen");
-        CurrencyManager.Instance.AddMoney(10);
+        if (!hasAddedMoney)
+        {
+            CurrencyManager.Instance.AddMoney(10);
+            hasAddedMoney = true;
+        }
     }
 
     private void LoseMenu()

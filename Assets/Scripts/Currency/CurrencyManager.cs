@@ -10,6 +10,8 @@ public class CurrencyManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _currencyTxt;
     public int currency;
 
+    private const string CurrencyKey = "Currency";
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -21,12 +23,14 @@ public class CurrencyManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        currency = PlayerPrefs.GetInt(CurrencyKey, 50);
         UpdateCanvasCurrency();
     }
 
     public int AddMoney(int amount)
     {
         currency += amount;
+        SaveCurrency();
         UpdateCanvasCurrency();
         return currency;
     }
@@ -34,6 +38,7 @@ public class CurrencyManager : MonoBehaviour
     public int SubtractMoney(int amount)
     {
         currency -= amount;
+        SaveCurrency();
         UpdateCanvasCurrency();
         return currency;
     }
@@ -45,10 +50,16 @@ public class CurrencyManager : MonoBehaviour
             _currencyTxt.text = currency.ToString();
         }
     }
-    
+
     public void SetCurrencyText(TextMeshProUGUI currencyTxt)
     {
         _currencyTxt = currencyTxt;
         UpdateCanvasCurrency();
+    }
+
+    private void SaveCurrency()
+    {
+        PlayerPrefs.SetInt(CurrencyKey, currency);
+        PlayerPrefs.Save();
     }
 }
