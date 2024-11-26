@@ -17,4 +17,5 @@
 "TXTAdsWin" : "Watch an ad to double your prize";
 "BTNMusic" : "Audio Settings";
 "BTNAudio" : "Audio";
+"BTNDelete" : "Delete data";
 }

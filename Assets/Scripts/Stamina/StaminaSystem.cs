@@ -104,13 +104,13 @@ public class StaminaSystem : MonoBehaviour
         notifTimer = _nextStaminaTime - DateTime.Now;
     }
 
-    void UpdateStamina()
+    public void UpdateStamina()
     {
         if (_staminaText)
             _staminaText.text = $"{_currentStamina} / {_maxStamina}";
     }
 
-    void SaveGame()
+    public void SaveGame()
     {
         PlayerPrefs.SetInt("_currentStamina", _currentStamina);
         PlayerPrefs.SetString("_nextStaminaTime", _nextStaminaTime.ToString());
@@ -149,6 +149,13 @@ public class StaminaSystem : MonoBehaviour
     public void SetStaminaText(TextMeshProUGUI staminaText)
     {
         _staminaText = staminaText;
+        UpdateStamina();
+    }
+
+    public void ResetStamina()
+    {
+        _currentStamina = 100;
+        SaveGame();
         UpdateStamina();
     }
 }

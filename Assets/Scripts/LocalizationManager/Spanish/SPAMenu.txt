@@ -16,4 +16,5 @@
 "TXTAdsLoss" : "Puede mirar una publicidad para ahorrar stamina";
 "TXTAdsWin" : "Puede mirar una publicidad para duplicar sus ganancias";
 "BTNAudio" : "Audio";
+"BTNDelete" : "Borrar datos";
 }

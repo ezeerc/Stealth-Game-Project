@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,13 @@ public class CurrencyManager : MonoBehaviour
         return currency;
     }
 
+    public void Reset()
+    {
+        currency = 50;
+        SaveCurrency();
+        UpdateCanvasCurrency();
+    }
+
     public int SubtractMoney(int amount)
     {
         currency -= amount;
@@ -43,7 +51,7 @@ public class CurrencyManager : MonoBehaviour
         return currency;
     }
 
-    private void UpdateCanvasCurrency()
+    public void UpdateCanvasCurrency()
     {
         if (_currencyTxt != null)
         {
