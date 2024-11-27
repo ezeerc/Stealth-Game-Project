@@ -3647,7 +3647,7 @@ MonoBehaviour:
   timeBtwShots: 1
   qtyBullets: 1
   shotRecharge: 0.05
-  _getClip: {fileID: 8300000, guid: b00e4a67930f5c64594d096c0b399f22, type: 3}
+  _getClip: {fileID: 8300000, guid: b736d175614cd9e46bbd967481f98e13, type: 3}
 --- !u!82 &5013951904019599747
 AudioSource:
   m_ObjectHideFlags: 0

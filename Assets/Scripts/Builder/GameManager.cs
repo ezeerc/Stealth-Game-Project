@@ -163,7 +163,9 @@ public class GameManager : MonoBehaviour
         ScreenManager.instance.ShowScreen("WinScreen");
         if (!hasAddedMoney)
         {
-            GetSfx(_getClipWin);
+            GameManager.Instance.StartCoroutine(WinLoseMusic(_getClipWin));
+            //MusicManager.Instance.StopAudio();
+            //GetSfx(_getClipWin);
             CurrencyManager.Instance.AddMoney(10);
             hasAddedMoney = true;
             
@@ -172,8 +174,9 @@ public class GameManager : MonoBehaviour
 
     private void LoseMenu()
     {
+        GameManager.Instance.StartCoroutine(WinLoseMusic(_getClipLose));
         ScreenManager.instance.ShowScreen("GameOverScreen");
-        GetSfx(_getClipLose);
+        //GetSfx(_getClipLose);
         _loseMenu = true;
     }
 
@@ -209,5 +212,18 @@ public class GameManager : MonoBehaviour
             _source.clip = clipToPlay;
             _source.Play();
         }
+    }
+
+    IEnumerator WinLoseMusic(AudioClip clipToPlay)
+    {
+        MusicManager.Instance.StopAudio();
+        GetSfx(clipToPlay);
+        float startTime = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup - startTime < clipToPlay.length)
+        {
+            yield return null;
+        }
+        _source.Stop();
+        MusicManager.Instance.PlaySameAudio();
     }
 }

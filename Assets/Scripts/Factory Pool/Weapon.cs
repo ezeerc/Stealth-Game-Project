@@ -55,6 +55,10 @@ public class Weapon : MonoBehaviour
         
         if (_source.clip != clipToPlay || !_source.isPlaying)
         {
+            if (_source.clip != null)
+            {
+                _source.Stop();
+            }
             _source.clip = clipToPlay;
             _source.Play();
         }

@@ -9,9 +9,6 @@ public class MusicManager : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private float initialMasterVolume = 0.5f;
-    [SerializeField] private float initialMusicVolume = 0.5f;
-    [SerializeField] private float initialSFXVolume = 1f;
 
     private MusicOption musicOptions;
 
@@ -82,6 +79,16 @@ public class MusicManager : MonoBehaviour
 
         audioSource.Stop();
         audioSource.clip = clip;
+        audioSource.Play();
+    }
+
+    public void StopAudio()
+    {
+        audioSource.Stop();
+    }
+
+    public void PlaySameAudio()
+    {
         audioSource.Play();
     }
 }
