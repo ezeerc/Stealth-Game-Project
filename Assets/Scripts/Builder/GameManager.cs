@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        MusicManager.Instance.StopAudio();
         StartCoroutine(ResetSuscriptionCoroutine(2));
         _checkpointManager = new CheckpointManager();
         playerCheckpoint = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -112,6 +113,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(time);
         _loseMenu = false;
         hasAddedMoney = false;
+        MusicManager.Instance.PlaySameAudio();
 
         Target.OnTargetDeath -= WonMenu;
         Target.TargetWon -= LoseMenu;
@@ -224,6 +226,6 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         _source.Stop();
-        MusicManager.Instance.PlaySameAudio();
+        //MusicManager.Instance.PlaySameAudio();
     }
 }

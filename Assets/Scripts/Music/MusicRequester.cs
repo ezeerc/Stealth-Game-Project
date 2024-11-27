@@ -18,7 +18,6 @@ public class MusicRequester : MonoBehaviour
             print("el clip de música no está asignado");
             return;
         }
-
         MusicManager.Instance.PlayAudio(clipToPlay);
     }
 }

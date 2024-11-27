@@ -109,6 +109,7 @@ public class Player : Entity, IDamageable
     {
         _frozen = true;
         yield return new WaitForSeconds(time);
+        _animator.SetBool("Strangling2", false);
         _animator.SetInteger("WeaponType_int", 1);
         Sneaking = false;
         CanStrangling = false;
@@ -213,11 +214,12 @@ public class Player : Entity, IDamageable
     {
         if (CanStrangling)
         {
-            _animator.SetTrigger(Strangling);
+            //_animator.SetTrigger(Strangling);
+            _animator.SetBool("Strangling2", true);
             Sneaking = false;
             CanStrangling = false;
             _animator.SetInteger("WeaponType_int", 0);
-            FrozenMove(2);
+            FrozenMove(1f);
             _animator.SetBool(Run, false);
             OnStealthAttack();
         }
