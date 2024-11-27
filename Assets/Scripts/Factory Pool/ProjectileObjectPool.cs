@@ -13,6 +13,7 @@ public class ProjectileObjectPool : RecyclableObject
     [SerializeField] private LayerMask bulletsMask;
     [SerializeField] float detectionRadius = 0.5f;
     [SerializeField] float timeToRecycle = 0.5f;
+
     internal override void Init()
     {
         rb.velocity = transform.forward * _speed;
@@ -20,11 +21,10 @@ public class ProjectileObjectPool : RecyclableObject
         StartCoroutine(FixedUpdateCoroutine());
         Invoke(nameof(Recycle), timeToRecycle);
     }
-    
+
 
     internal override void Release()
     {
-
     }
 
     IEnumerator FixedUpdateCoroutine() //implementación de un fixedupdate artificial
@@ -32,7 +32,7 @@ public class ProjectileObjectPool : RecyclableObject
         while (InitializeFixedUpdate)
         {
             yield return new WaitForFixedUpdate();
-            
+
             Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius, bulletsMask);
 
             foreach (Collider hit in hits)
@@ -42,7 +42,11 @@ public class ProjectileObjectPool : RecyclableObject
                     if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
                         var damageable = hit.GetComponent<IDamageable>();
-                        damageable.TakeDamage(_damage);
+                        if (damageable != null)
+                        {
+                            damageable.TakeDamage(_damage);
+                        }
+
                         this.Recycle();
                         this.enabled = false;
                     }
@@ -62,7 +66,7 @@ public class ProjectileObjectPool : RecyclableObject
             }
         }
     }
-    
+
     /*private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
