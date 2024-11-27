@@ -87,10 +87,12 @@ public class WeaponController : MonoBehaviour
     {
         if (isShotReady)
         {
+            if (!laser._lineRenderer) return;
             laser._lineRenderer.material.SetColor("_Color", Color.green);
         }
         else
         {
+            if (!laser._lineRenderer) return;
             laser._lineRenderer.material.SetColor("_Color", Color.red);
         }
     }

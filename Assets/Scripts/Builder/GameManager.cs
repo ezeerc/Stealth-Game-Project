@@ -37,7 +37,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Enemy> enemiesCheckpoint;
     private CheckpointManager _checkpointManager;
     private bool _loseMenu = false;
-
+    
+    [Header("Audio settings")] 
+    private AudioSource _source;
+    [SerializeField] private AudioClip _getClipWin;
+    [SerializeField] private AudioClip _getClipLose;
+    
+    
     private DetectionStateLUT _detectionStateLut;
     private bool hasAddedMoney = false;
     private void Awake()
@@ -71,6 +77,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(ResetSuscriptionCoroutine(2));
         _checkpointManager = new CheckpointManager();
         playerCheckpoint = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        _source = GetComponent<AudioSource>();
     }
     
 
@@ -156,14 +163,17 @@ public class GameManager : MonoBehaviour
         ScreenManager.instance.ShowScreen("WinScreen");
         if (!hasAddedMoney)
         {
+            GetSfx(_getClipWin);
             CurrencyManager.Instance.AddMoney(10);
             hasAddedMoney = true;
+            
         }
     }
 
     private void LoseMenu()
     {
         ScreenManager.instance.ShowScreen("GameOverScreen");
+        GetSfx(_getClipLose);
         _loseMenu = true;
     }
 
@@ -182,5 +192,22 @@ public class GameManager : MonoBehaviour
         Target.TargetWon -= LoseMenu;
         Player.OnDeath -= LoseMenu;
         CameraRotator.OnRotate -= RotateJoystickAngle;
+    }
+    
+    public void GetSfx(AudioClip customClip = null)
+    {
+        AudioClip clipToPlay = customClip;
+
+        if (clipToPlay == null)
+        {
+            Debug.LogWarning("No se asignó audio para reproducir");
+            return;
+        }
+        
+        if (_source.clip != clipToPlay || !_source.isPlaying)
+        {
+            _source.clip = clipToPlay;
+            _source.Play();
+        }
     }
 }

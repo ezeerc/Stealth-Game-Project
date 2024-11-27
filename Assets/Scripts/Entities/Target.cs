@@ -22,6 +22,7 @@ public class Target : Enemy
         InitializeComponents();
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         SetBehavior(new IdleTargetBehavior());
+        _source = GetComponent<AudioSource>();
     }
 
     private void InitializeComponents()

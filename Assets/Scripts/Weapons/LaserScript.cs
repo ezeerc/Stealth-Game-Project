@@ -41,6 +41,7 @@ public class LaserScript : MonoBehaviour
 
     public void LaserOff()
     {
+        if(!_lineRenderer) return;
         _lineRenderer.enabled = false;
     }
 

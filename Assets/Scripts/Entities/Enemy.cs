@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 
 public class Enemy : Entity, IDamageable
@@ -32,9 +33,14 @@ public class Enemy : Entity, IDamageable
     public IEnemyBehavior currentBehavior;
     private bool _enableBody;
     private bool _canBeHide;
+    private bool _stealthDeathOn = false;
 
     [Header("Animations")] private static readonly int Strangled = Animator.StringToHash("Strangled");
-
+    
+    [Header("Audio")]
+    protected AudioSource _source;
+    [SerializeField] private AudioClip _getClipStealthDeath;
+    [SerializeField] private AudioClip[] _getClipDeath;
     private void Start()
     {
         InitializeComponents();
@@ -49,6 +55,7 @@ public class Enemy : Entity, IDamageable
         _fov = GetComponent<FieldOfView>();
         _weaponController = GetComponent<EnemyWeaponController>();
         _ragdollController = GetComponent<RgdollController>();
+        _source = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -73,6 +80,12 @@ public class Enemy : Entity, IDamageable
             Health -= amount;
             if (Health <= 0)
             {
+                if (!_stealthDeathOn)
+                {
+                    var audio = _getClipDeath[Random.Range(0, _getClipDeath.Length)];
+                    GetSfx(audio);
+                }
+                
                 RagdollActivate();
                 ResetDetectionState();
                 Dead = true;
@@ -164,13 +177,7 @@ public class Enemy : Entity, IDamageable
             }
         }
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = new Color(1, 0, 0, 1F);
-        Gizmos.DrawSphere(transform.position, detectionRadius);
-    }
-
+    
     private void ResetDetectionState()
     {
         followPlayer = false;
@@ -198,8 +205,10 @@ public class Enemy : Entity, IDamageable
     {
         if (!Dead)
         {
+            _stealthDeathOn = true;
             TakeDamage(100);
             player.OnStranglingOut();
+            GetSfx(_getClipStealthDeath);
         }
     }
 
@@ -241,6 +250,23 @@ public class Enemy : Entity, IDamageable
         if (!Dead)
         {
             ResetEnemyCheckpoint();
+        }
+    }
+    
+    public void GetSfx(AudioClip customClip = null)
+    {
+        AudioClip clipToPlay = customClip;
+
+        if (clipToPlay == null)
+        {
+            Debug.LogWarning("No se asignó audio para reproducir");
+            return;
+        }
+        
+        if (_source.clip != clipToPlay || !_source.isPlaying)
+        {
+            _source.clip = clipToPlay;
+            _source.Play();
         }
     }
 }
