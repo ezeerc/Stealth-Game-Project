@@ -8,7 +8,7 @@ public class CameraRotator : MonoBehaviour
 {
 
     private float _currentAngle = -45;
-    private float _isometricAngle = 30;
+    private float _isometricAngle = 60;
     private bool _isRotating = false;
     public static event Action OnRotate;
     
@@ -19,7 +19,7 @@ public class CameraRotator : MonoBehaviour
     {
         if (!_isRotating)
         {
-            _currentAngle -= 45f;
+            _currentAngle -= 90f;
             StartCoroutine(SmoothRotate());
             OnRotate?.Invoke();
         }
@@ -29,7 +29,7 @@ public class CameraRotator : MonoBehaviour
     {
         if (!_isRotating)
         {
-            _currentAngle += 45f;
+            _currentAngle += 90f;
             StartCoroutine(SmoothRotate());
             OnRotate?.Invoke();
         }
