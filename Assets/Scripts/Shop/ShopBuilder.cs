@@ -106,8 +106,8 @@ public class ShopBuilder : MonoBehaviour
             {
                 Destroy(child.gameObject);
             }
-            Start();
             _oneTime = true;
+            Start();
         }
     }
 }
