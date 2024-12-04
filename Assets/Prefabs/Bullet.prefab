@@ -108,6 +108,10 @@ MonoBehaviour:
     m_Bits: 384
   detectionRadius: 0.5
   timeToRecycle: 0.5
+  soundRadius: 10
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!64 &6352896987399483530
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -13,11 +13,14 @@ public class ProjectileObjectPool : RecyclableObject
     [SerializeField] private LayerMask bulletsMask;
     [SerializeField] float detectionRadius = 0.5f;
     [SerializeField] float timeToRecycle = 0.5f;
+    [SerializeField] private float soundRadius = 10f;
+    [SerializeField] private LayerMask enemyLayer;
 
     internal override void Init()
     {
         rb.velocity = transform.forward * _speed;
         InitializeFixedUpdate = true;
+        NotifyNearbyEnemies();
         StartCoroutine(FixedUpdateCoroutine());
         Invoke(nameof(Recycle), timeToRecycle);
     }
@@ -67,6 +70,19 @@ public class ProjectileObjectPool : RecyclableObject
         }
     }
 
+    private void NotifyNearbyEnemies()
+    {
+        Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, soundRadius, enemyLayer);
+        foreach (var collider in enemiesInRange)
+        {
+            var soundObserver = collider.GetComponent<ISoundObserver>();
+            if (soundObserver != null)
+            {
+                soundObserver.OnSoundDetected(transform.position);
+            }
+        }
+    }
+    
     /*private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

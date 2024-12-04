@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 
-public class Enemy : Entity, IDamageable
+public class Enemy : Entity, IDamageable, ISoundObserver
 {
     [Header("Player Interaction")] public Transform _player;
     public bool followPlayer = false;
@@ -268,5 +268,20 @@ public class Enemy : Entity, IDamageable
             _source.clip = clipToPlay;
             _source.Play();
         }
+    }
+    
+    public void OnSoundDetected(Vector3 position)
+    {
+        if (!Dead)
+        {
+            Debug.Log($"{name} escuchó un disparo en {position}");
+            MoveToSound(position);
+        }
+    }
+    
+    private void MoveToSound(Vector3 position)
+    {
+        navMeshAgent.SetDestination(position);
+        SetBehavior(new InvestigateBehavior()); // Cambia el comportamiento al investigar
     }
 }
