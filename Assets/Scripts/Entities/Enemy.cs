@@ -281,7 +281,15 @@ public class Enemy : Entity, IDamageable, ISoundObserver
     
     private void MoveToSound(Vector3 position)
     {
+        RotateTowards(position);
         navMeshAgent.SetDestination(position);
-        SetBehavior(new InvestigateBehavior()); // Cambia el comportamiento al investigar
+        SetBehavior(new InvestigateBehavior());
+    }
+    
+    private void RotateTowards(Vector3 targetPosition)
+    {
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * navMeshAgent.angularSpeed / 2);
     }
 }
