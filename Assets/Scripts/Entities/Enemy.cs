@@ -274,7 +274,7 @@ public class Enemy : Entity, IDamageable, ISoundObserver
     {
         if (!Dead)
         {
-            Debug.Log($"{name} escuchó un disparo en {position}");
+            Debug.Log("escuché un disparo");
             MoveToSound(position);
         }
     }
