@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1_MilitaryBase.unity
     guid: ce1bbc1dffd3a544ab295057f0b6ecac
+  - enabled: 1
+    path: Assets/Scenes/Level_Tutorial.unity
+    guid: 767eec79ffec5364ab0f6e0e1dec0974
   m_configObjects: {}
