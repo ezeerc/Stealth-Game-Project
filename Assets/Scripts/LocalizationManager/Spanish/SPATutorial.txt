@@ -1,14 +1,14 @@
 {
 
-"TUTDialogue01" : "Bienvenido agente. Es hora de su entrenamiento básico";
-"TUTDialogue02" : "Use la palanca de mando a su izquierda para moverse. Intente avanzar evitando los siguientes obstaculos";
-"TUTDialogue03" : "A veces puede encontrar su visión obstruida. Utilize los botones a la izquiera para mover la cámara.";
-"TUTDialogue04" : "Bien hecho. Ahora ponga a prueba sus habilidades de movimiento con enemigos que lo estan buscando. Evite sus lineas de visión para no ser detectado.";
-"TUTDialogue05" : "Si se acerca a enemigos desde atras, puede neutralizarlos de forma silenciosa utilizando el boton x a su derecha. Intentelo para seguir avanzando.";
-"TUTDialogue06" : "Los enemigos van a detectar cadaveres en su rango de visión. Utilice el mismo boton x cuando encima de un cadaver para ocultarlo.";
-"TUTDialogue07" : "Veamos que tal anda su punteria. Esta es un arma de juguete asi que no se preocupe por lastimar a sus compañeros. Utilice la palanca de mando derecha para apuntar el arma y sueltela para disparar.";
-"TUTDialogue08" : "Aguarde, este enemigo es un aliado. Puede cancelar el disparo arrastrando la palanca de vuelta hacia el centro.";
-"TUTDialogue09" : "Es hora de poner a prueba lo aprendido. Avance a lo largo de la base y elimine al comandante al final.";
-"TUTDialogue10" : "Si el comandante lo ve, eliminelo rapido o este huira a su helicóptero.";
+"TUTDialogue01" : "Bienvenido agente. Es hora del entrenamiento basico.";
+"TUTDialogue02" : "Use la palanca de mando izquierda para moverse. Intente avanzar a través de estos obstáculos.";
+"TUTDialogue03" : "A veces puede encontrar su visión obstruida. Utilice los botones a la izquierda para mover la camara.";
+"TUTDialogue04" : "Buen trabajo. Ahora ponga a prueba sus habilidades de navegación con enemigos que lo estan buscando. Esté atento a los conos de visión y evite ser detectado.";
+"TUTDialogue05" : "Si se acerca a enemigos desde atras puede neutralizarlos silenciosamente utilizando el boton x a su derecha. Intentelo para avanzar.";
+"TUTDialogue06" : "Los enemigos van a detectar cadaveres. Utilice el boton x cuando directamente arriba de un cadaver para ocultarlo.";
+"TUTDialogue07" : "Veamos su puntería. Esta es un arma de juguete, no se preocupe por lastimar a sus camaradas. Utilice la palanca de mando derecha para apuntar y sueltela para disparar.";
+"TUTDialogue08" : "Aguarde, este sujeto es un aliado. Puede cancelar el disparo arrastrando la palanca nuevamente hacia el centro.";
+"TUTDialogue09" : "Es hora de poner a prueba lo aprendido. Avance por la base sin ser detectado y neutralice al comandante.";
+"TUTDialogue10" : "Si el comandante lo vé, neutralicelo rapidamente o huirá a su helicoptero.";
 
 }
