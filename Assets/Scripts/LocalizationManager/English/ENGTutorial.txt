@@ -1,7 +1,14 @@
 {
 
-"TUTDialog01" : " ";
-"TUTDialog02" : " ";
-"TUTDialog03" : " ";
+"TUTDialogue01" : "Welcome agent. It is time for basic training";
+"TUTDialogue02" : "Use the left joystick to move around. Try it out and move through the obstacles.";
+"TUTDialogue03" : "Sometimes you might find your vision obstructed. Use the buttons above the joystick to move the camera around";
+"TUTDialogue04" : "Great work. Now try your traversal skills when enemies are looking for you. Beware of their lines of sight and avoid detection.";
+"TUTDialogue05" : "When approaching enemies from behind you can neutralize them silently using the x button on your right. Try it out to move forward.";
+"TUTDialogue06" : "Enemies will detect the fallen bodies of their comrades. Use the same x button when directly above a body to hide it.";
+"TUTDialogue07" : "Let's see how your marksmanship is doing. This is an airsoft gun, so don’t worry about hurting your comrades. Use the right joystick to aim at the enemy and release it to shoot.";
+"TUTDialogue08" : "Wait, this next enemy is your friend. You can cancel the shot by dragging the right joystick back to the center.";
+"TUTDialogue09" : "It is time to test everything you’ve learnt so far. Traverse the remaining base without being detected and take out the commander in the end.";
+"TUTDialogue10" : "If the commander spots you, take him out quickly or he will flee to his helicopter.";
 
 }
