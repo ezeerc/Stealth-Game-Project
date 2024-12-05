@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public DialogueData dialogueData;
+    [SerializeField] private DialogueData dialogueData;
     [SerializeField] private LayerMask playerLayerMask;
     private bool hasTriggered = false;
 

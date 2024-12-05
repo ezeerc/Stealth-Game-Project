@@ -1,14 +1,13 @@
 {
 
 "TUTDialogue01" : "Bienvenido agente. Es hora del entrenamiento basico.";
-"TUTDialogue02" : "Use la palanca de mando izquierda para moverse. Intente avanzar a través de estos obstáculos.";
-"TUTDialogue03" : "A veces puede encontrar su visión obstruida. Utilice los botones a la izquierda para mover la camara.";
-"TUTDialogue04" : "Buen trabajo. Ahora ponga a prueba sus habilidades de navegación con enemigos que lo estan buscando. Esté atento a los conos de visión y evite ser detectado.";
+"TUTDialogue02" : "Use la palanca de mando izquierda para moverse. Intente avanzar a traves de estos obstaculos.";
+"TUTDialogue03" : "A veces puede encontrar su vision obstruida. Utilice los botones a la izquierda para mover la camara.";
+"TUTDialogue04" : "Buen trabajo. Ahora ponga a prueba sus habilidades de navegacion con enemigos que lo estan buscando. Este atento a los conos de vision y evite ser detectado.";
 "TUTDialogue05" : "Si se acerca a enemigos desde atras puede neutralizarlos silenciosamente utilizando el boton x a su derecha. Intentelo para avanzar.";
 "TUTDialogue06" : "Los enemigos van a detectar cadaveres. Utilice el boton x cuando directamente arriba de un cadaver para ocultarlo.";
-"TUTDialogue07" : "Veamos su puntería. Esta es un arma de juguete, no se preocupe por lastimar a sus camaradas. Utilice la palanca de mando derecha para apuntar y sueltela para disparar.";
+"TUTDialogue07" : "Veamos su punteria. Esta es un arma de juguete, no se preocupe por lastimar a sus camaradas. Arrastre la palanca de mando derecha para apuntar y sueltela para disparar.";
 "TUTDialogue08" : "Aguarde, este sujeto es un aliado. Puede cancelar el disparo arrastrando la palanca nuevamente hacia el centro.";
 "TUTDialogue09" : "Es hora de poner a prueba lo aprendido. Avance por la base sin ser detectado y neutralice al comandante.";
-"TUTDialogue10" : "Si el comandante lo vé, neutralicelo rapidamente o huirá a su helicoptero.";
-
+"TUTDialogue10" : "Si el comandante lo ve, neutralicelo rapidamente o huira a su helicoptero.";
 }
