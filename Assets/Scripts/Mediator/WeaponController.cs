@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WeaponController : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class WeaponController : MonoBehaviour
     public float shotCooldown = 1f; //////////////// TOMI //////////////////////////////////
     public bool isShotReady = true; ////////////// TOMI //////////////////////////////////
 
+    public event Action<int> OnWeaponChanged;
     private void Awake()
     {
         _factory = new ObjectPoolFactory(prefab);
@@ -28,8 +30,16 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
+        string activeSceneName = SceneManager.GetActiveScene().name;
         LoadEquippedWeapon();
-        ChangeWeapon(weaponActive);
+        if (activeSceneName != "Level_Tutorial")
+        {
+            ChangeWeapon(weaponActive);
+        }
+        else
+        {
+            ChangeWeapon(6);
+        }
     }
 
     private void Update()
@@ -103,15 +113,23 @@ public class WeaponController : MonoBehaviour
             weaponPrefabs[i].SetActive(false);
         }
 
-        for (int i = 0; i < weaponPrefabs.Length; i++)
+        if (number != 6)
         {
-            if (number == i)
+            for (int i = 0; i < weaponPrefabs.Length; i++)
             {
-                weaponPrefabs[i].SetActive(true);
-                spawnPoint = weaponPrefabs[i].GetComponentInChildren<Transform>().transform;
-                laser = weaponPrefabs[i].GetComponentInChildren<LaserScript>();
-                weaponActiveScript = weaponPrefabs[i].GetComponentInChildren<Weapon>();
+                if (number == i)
+                {
+                    weaponPrefabs[i].SetActive(true);
+                    spawnPoint = weaponPrefabs[i].GetComponentInChildren<Transform>().transform;
+                    laser = weaponPrefabs[i].GetComponentInChildren<LaserScript>();
+                    weaponActiveScript = weaponPrefabs[i].GetComponentInChildren<Weapon>();
+                }
             }
         }
+        else
+        {
+            weaponPrefabs[6].SetActive(true);
+        }
+        OnWeaponChanged?.Invoke(number);
     }
 }

@@ -23,6 +23,7 @@ public class Player : Entity, IDamageable
     [field: SerializeField] public bool CanHide { get; set; }
     [field: SerializeField] public bool InitAttack { get; set; }
     private bool _oneTimeAnimDead;
+    private int _weaponAnim;
 
     [field: SerializeField] public int Speed { get; set; }
 
@@ -72,6 +73,10 @@ public class Player : Entity, IDamageable
     {
         builder.Build(this);
         this.Configure(moveController, aimMoveController);
+        if (weaponController != null)
+        {
+            weaponController.OnWeaponChanged += SetWeaponAnimation;
+        }
     }
 
     private void FixedUpdate()
@@ -85,7 +90,6 @@ public class Player : Entity, IDamageable
         Shot(_canShoot);
         Death();
     }
-
     public override void Move()
     {
         if (_frozen) return;
@@ -110,12 +114,26 @@ public class Player : Entity, IDamageable
         _frozen = true;
         yield return new WaitForSeconds(time);
         _animator.SetBool("Strangling2", false);
-        _animator.SetInteger("WeaponType_int", 1);
+        _animator.SetInteger("WeaponType_int", _weaponAnim);
         Sneaking = false;
         CanStrangling = false;
         _animator.SetBool(Sneak, false);
         _animator.SetBool(Run, false);
         _frozen = false;
+    }
+
+    private void SetWeaponAnimation(int number)
+    {
+        if (number != 6)
+        {
+            _weaponAnim = 1;
+        }
+        else
+        {
+            _weaponAnim = 0;
+        }
+        print("funca");
+        _animator.SetInteger("WeaponType_int", _weaponAnim);
     }
 
     private void Shot(ICanShoot shot)
@@ -250,5 +268,13 @@ public class Player : Entity, IDamageable
     {
         transform.position = memento.PlayerPosition;
         healthController.SetHealth(memento.PlayerHealth);
+    }
+    
+    private void OnDestroy()
+    {
+        if (weaponController != null)
+        {
+            weaponController.OnWeaponChanged -= SetWeaponAnimation;
+        }
     }
 }
