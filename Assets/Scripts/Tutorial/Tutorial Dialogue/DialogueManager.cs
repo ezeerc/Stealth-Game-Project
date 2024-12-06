@@ -20,6 +20,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue (DialogueData dialogue, System.Action onComplete = null)
     {
+        Time.timeScale = 0f;
         dialogueQueue.Clear();
 
         foreach (string id in dialogue.dialogueIDs)
@@ -47,6 +48,7 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         dialoguePanel.SetActive(false);
+        Time.timeScale = 1f;
         onDialogueEnd?.Invoke();
     }
 }
