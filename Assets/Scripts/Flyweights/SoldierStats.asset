@@ -15,7 +15,7 @@ MonoBehaviour:
   baseSpeed: 2.5
   runSpeed: 10
   damage: 34
-  armour: 1
+  armour: 0
   fireRate: 2
   viewRadius: 10
   viewAngle: 55
