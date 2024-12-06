@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameManager
   - Enemy
+  - HideDetector
   layers:
   - Default
   - TransparentFX
