@@ -133,8 +133,7 @@ public class Player : Entity, IDamageable
         {
             _weaponAnim = 0;
         }
-
-        print("funca");
+        
         _animator.SetInteger("WeaponType_int", _weaponAnim);
     }
 

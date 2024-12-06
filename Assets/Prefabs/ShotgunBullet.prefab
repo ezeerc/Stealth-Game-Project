@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c94732b560b23949898dfdb6a1c0838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectPrefab: {fileID: 0}
   rb: {fileID: 7871269612323218824}
   _speed: 200
   _damage: 200
@@ -107,6 +106,10 @@ MonoBehaviour:
     m_Bits: 384
   detectionRadius: 0.5
   timeToRecycle: 0.05
+  soundRadius: 20
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!54 &7871269612323218824
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -41,9 +41,14 @@ public class Enemy : Entity, IDamageable, ISoundObserver
     protected AudioSource _source;
     [SerializeField] private AudioClip _getClipStealthDeath;
     [SerializeField] private AudioClip[] _getClipDeath;
+    
+    public Quaternion initialRotation;
     private void Start()
     {
         InitializeComponents();
+        
+        initialRotation = transform.rotation;
+        
         SetBehavior(new PatrolBehavior());
     }
 
