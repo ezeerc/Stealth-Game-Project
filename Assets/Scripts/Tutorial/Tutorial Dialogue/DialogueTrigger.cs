@@ -31,12 +31,12 @@ public class DialogueTrigger : MonoBehaviour
     {
         
         if (_hasTriggered || (_playerLayerMask.value & (1 << other.gameObject.layer)) == 0) return;
-
+        //GameManager.Instance.SaveGame();
         _hasTriggered = true;
 
 
         _onTriggerEnter.Invoke();
-
+        GameManager.Instance.SaveGame();
         /*
         foreach (GameObject canvasItem in _canvasObjects)
         {

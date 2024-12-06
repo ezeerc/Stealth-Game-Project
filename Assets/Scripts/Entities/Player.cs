@@ -77,6 +77,8 @@ public class Player : Entity, IDamageable
         {
             weaponController.OnWeaponChanged += SetWeaponAnimation;
         }
+
+        GameManager.OnRestart += Revive;
     }
 
     private void FixedUpdate()
@@ -133,7 +135,7 @@ public class Player : Entity, IDamageable
         {
             _weaponAnim = 0;
         }
-        
+
         _animator.SetInteger("WeaponType_int", _weaponAnim);
     }
 
@@ -183,12 +185,6 @@ public class Player : Entity, IDamageable
         OnStranglingOut();
     }
 
-    /*public void CanHideFunc()
-    {
-        CanHide = !CanHide;
-        OnHide();
-    }*/
-
     public void OnHide(bool value)
     {
         if (value)
@@ -216,10 +212,9 @@ public class Player : Entity, IDamageable
         Health = healthController.actualHealth;
         if (Health <= 0)
         {
-            OnDeath?.Invoke();
-
             if (!_oneTimeAnimDead)
             {
+                OnDeath?.Invoke();
                 _oneTimeAnimDead = true;
                 FrozenMove(2);
                 _animator.SetBool(Run, false);
@@ -279,5 +274,13 @@ public class Player : Entity, IDamageable
         {
             weaponController.OnWeaponChanged -= SetWeaponAnimation;
         }
+    }
+
+    private void Revive()
+    {
+        _oneTimeAnimDead = false;
+        _animator.SetInteger("WeaponType_int", _weaponAnim);
+        _animator.SetBool("DeathBool", false);
+        GetFullHealth();
     }
 }

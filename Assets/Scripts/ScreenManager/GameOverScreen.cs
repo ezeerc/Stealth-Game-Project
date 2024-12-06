@@ -17,13 +17,13 @@ public class GameOverScreen : MonoBehaviour, IScreen
     {
         yield return new WaitForSeconds(time);
         gameOverPanel.SetActive(true);
-        Time.timeScale = 0f; // Pausar el juego
+        //Time.timeScale = 0f; // Pausar el juego
     }
 
     public void Hide()
     {
+        //Time.timeScale = 1f; // Reanudar el juego
         gameOverPanel.SetActive(false);
-        Time.timeScale = 1f; // Reanudar el juego
     }
 
     private void Start()

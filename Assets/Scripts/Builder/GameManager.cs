@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public static Action FullActivity;
     public static Action NormalActivity;
+    public static Action OnRestart;
 
     [Header("Menus settings")] 
     public GameObject winMenu;
@@ -103,11 +104,12 @@ public class GameManager : MonoBehaviour
     public void LoadGame()
     {
         _checkpointManager.LoadCheckpoint(playerCheckpoint, enemiesCheckpoint);
+        OnRestart?.Invoke();
+        CoroutineManager.Instance.StartCoroutine(ResetSuscriptionCoroutine(0.1f));
         ResetLoseMenu();
-        StartCoroutine(ResetSuscriptionCoroutine(2));
     }
     
-    IEnumerator ResetSuscriptionCoroutine(int time)
+    IEnumerator ResetSuscriptionCoroutine(float time)
     {
         _detectionStateLut = null;
         yield return new WaitForSeconds(time);
@@ -178,7 +180,6 @@ public class GameManager : MonoBehaviour
     {
         GameManager.Instance.StartCoroutine(WinLoseMusic(_getClipLose));
         ScreenManager.instance.ShowScreen("GameOverScreen");
-        //GetSfx(_getClipLose);
         _loseMenu = true;
     }
 
