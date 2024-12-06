@@ -10,7 +10,7 @@ public class PickUpWeapon : MonoBehaviour
     private int number;
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.layer == 6)
         {
                 var player = other.gameObject.GetComponent<Player>();
                 player.gameObject.GetComponent<WeaponController>().ChangeWeapon(number);
