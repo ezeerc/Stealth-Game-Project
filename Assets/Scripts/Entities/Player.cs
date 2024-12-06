@@ -40,7 +40,7 @@ public class Player : Entity, IDamageable
     public event Action OnStrangling;
     public event Action OnHidingOn;
     public event Action OnHidingOff;
-    
+
     public static Action OnStealthAttack;
     public static Action OnHideMovement;
 
@@ -90,6 +90,7 @@ public class Player : Entity, IDamageable
         Shot(_canShoot);
         Death();
     }
+
     public override void Move()
     {
         if (_frozen) return;
@@ -132,6 +133,7 @@ public class Player : Entity, IDamageable
         {
             _weaponAnim = 0;
         }
+
         print("funca");
         _animator.SetInteger("WeaponType_int", _weaponAnim);
     }
@@ -181,7 +183,7 @@ public class Player : Entity, IDamageable
         CanStrangling = !CanStrangling;
         OnStranglingOut();
     }
-    
+
     /*public void CanHideFunc()
     {
         CanHide = !CanHide;
@@ -203,6 +205,7 @@ public class Player : Entity, IDamageable
 
         CanHide = value;
     }
+
     public void OnStranglingOut()
     {
         if (OnStrangling != null)
@@ -214,7 +217,6 @@ public class Player : Entity, IDamageable
         Health = healthController.actualHealth;
         if (Health <= 0)
         {
-            
             OnDeath?.Invoke();
 
             if (!_oneTimeAnimDead)
@@ -242,7 +244,7 @@ public class Player : Entity, IDamageable
             OnStealthAttack();
         }
     }
-    
+
     public void HideMovement()
     {
         if (CanHide)
@@ -251,6 +253,7 @@ public class Player : Entity, IDamageable
             StartCoroutine(HideCoroutine(1.5f));
         }
     }
+
     IEnumerator HideCoroutine(float time)
     {
         FrozenMove(time);
@@ -259,6 +262,7 @@ public class Player : Entity, IDamageable
         CanHide = false;
         OnHideMovement();
     }
+
     public GameMemento SaveState(List<EnemyState> enemiesState)
     {
         return new GameMemento(transform.position, Health, enemiesState);
@@ -269,7 +273,7 @@ public class Player : Entity, IDamageable
         transform.position = memento.PlayerPosition;
         healthController.SetHealth(memento.PlayerHealth);
     }
-    
+
     private void OnDestroy()
     {
         if (weaponController != null)

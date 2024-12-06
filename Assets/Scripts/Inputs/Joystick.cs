@@ -21,11 +21,19 @@ public class Joystick : Controller, IDragHandler, IEndDragHandler
 
     public override Vector3 GetMovementInput()
     {
-        _iso.rotation = Quaternion.Euler(0, 0, rotationAngle); // modifica el ángulo de rotación de los inputs en función de la cámara (45°)
-        var modifiedDir = new Vector3(_moveDir.x, _moveDir.y, 0);
-        modifiedDir = _iso.TransformDirection(modifiedDir);
-        modifiedDir /= maxMagnitude;
-        return new Vector3(modifiedDir.x, 0, modifiedDir.y).normalized;
+        if (_iso)
+        {
+            _iso.rotation =
+                Quaternion.Euler(0, 0,
+                    rotationAngle); // modifica el ángulo de rotación de los inputs en función de la cámara (45°)
+            var modifiedDir = new Vector3(_moveDir.x, _moveDir.y, 0);
+            modifiedDir = _iso.TransformDirection(modifiedDir);
+            modifiedDir /= maxMagnitude;
+            return new Vector3(modifiedDir.x, 0, modifiedDir.y).normalized;
+            
+        }
+
+        return new Vector3(0, 0, 0);
     }
 
     public void OnDrag(PointerEventData eventData)
