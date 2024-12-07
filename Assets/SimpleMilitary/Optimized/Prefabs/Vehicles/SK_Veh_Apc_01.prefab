@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 453148}
   - component: {fileID: 3333726}
   - component: {fileID: 2328466}
-  - component: {fileID: 64628872856792344}
+  - component: {fileID: 2448435819755128611}
   m_Layer: 0
   m_Name: SK_Veh_Apc_01
   m_TagString: Untagged
@@ -343,8 +343,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64628872856792344
-MeshCollider:
+--- !u!65 &2448435819755128611
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -361,10 +361,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43441674736249912, guid: e87d2d4d43487c24598c0f7e808a92cf, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 4.2457447, y: 4.404075, z: 9.10787}
+  m_Center: {x: -0.013076901, y: 2.7121909, z: 0.0000009536743}
 --- !u!1 &138494
 GameObject:
   m_ObjectHideFlags: 0
