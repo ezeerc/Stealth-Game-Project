@@ -17,4 +17,6 @@
 "TXTAdsWin" : "Puede mirar una publicidad para duplicar sus ganancias";
 "BTNAudio" : "Audio";
 "BTNDelete" : "Borrar datos";
+"BTNEquip" : "Equipar";
+"BTNUnequip" : "Desequipar";
 }

@@ -18,5 +18,7 @@
 "BTNMusic" : "Audio Settings";
 "BTNAudio" : "Audio";
 "BTNDelete" : "Delete data";
+"BTNEquip" : "Equip";
+"BTNUnequip" : "Unequip";
 
 }
