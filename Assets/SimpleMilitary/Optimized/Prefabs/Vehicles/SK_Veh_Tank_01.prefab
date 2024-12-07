@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 409762}
   - component: {fileID: 3335030}
   - component: {fileID: 2319640}
-  - component: {fileID: 64138831143021026}
+  - component: {fileID: 1788384785339629572}
   m_Layer: 0
   m_Name: SK_Veh_Tank_01
   m_TagString: Untagged
@@ -334,8 +334,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64138831143021026
-MeshCollider:
+--- !u!65 &1788384785339629572
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -352,10 +352,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43651300547221962, guid: c4d8a2d7ec4c57b4f954254813588879, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 4.985733, y: 4.8981214, z: 9.276308}
+  m_Center: {x: 0, y: 2.4490607, z: 0.12622857}
 --- !u!1 &140596
 GameObject:
   m_ObjectHideFlags: 0

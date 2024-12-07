@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 454988}
   - component: {fileID: 3379770}
   - component: {fileID: 2323880}
-  - component: {fileID: 64349485651326570}
+  - component: {fileID: 6679956979704699897}
   m_Layer: 0
   m_Name: SK_Veh_ScudTruck_01
   m_TagString: Untagged
@@ -675,8 +675,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64349485651326570
-MeshCollider:
+--- !u!65 &6679956979704699897
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -693,10 +693,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43818356798581858, guid: 9eab4622d46550f4884132c6c9dfac6b, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 3.9144914, y: 4.063664, z: 14.817894}
+  m_Center: {x: 0, y: 2.0183222, z: 0.42846632}
 --- !u!1 &179460
 GameObject:
   m_ObjectHideFlags: 0
