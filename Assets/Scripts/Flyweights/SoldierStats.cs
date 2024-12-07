@@ -8,7 +8,7 @@ public class SoldierStats : ScriptableObject
     public float baseSpeed;
     public float runSpeed;
     public int damage;
-    public float armour;
+    public bool armour;
     public float fireRate;
     public float viewRadius;
     public float viewAngle;

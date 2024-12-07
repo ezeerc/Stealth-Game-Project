@@ -44,8 +44,11 @@ public class ProjectileObjectPool : RecyclableObject
                 {
                     if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
+                        Enemy enemy = hit.GetComponent<Enemy>();
+                        SoldierStats enemyStats = enemy.stats;
+                        
                         var damageable = hit.GetComponent<IDamageable>();
-                        if (damageable != null)
+                        if (damageable != null && !enemyStats.armour)
                         {
                             damageable.TakeDamage(_damage);
                         }

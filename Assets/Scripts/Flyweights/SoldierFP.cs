@@ -9,7 +9,7 @@ public static class SoldierFP
         baseSpeed = 5,
         runSpeed = 12,
         damage = 1,
-        armour = 1,
+        armour = false,
         fireRate = 2,
     };
 
@@ -18,16 +18,16 @@ public static class SoldierFP
         baseSpeed = 5,
         runSpeed = 10,
         damage = 1,
-        armour = 1,
+        armour = false,
         fireRate = 5,
     };
 
-    public static readonly Flyweight machineGunnerSoldier = new Flyweight()
+    public static readonly Flyweight armouredSoldier = new Flyweight()
     {
-        baseSpeed = 5,
+        baseSpeed = 4,
         runSpeed = 7,
         damage = 1,
-        armour = 1,
+        armour = true,
         fireRate = 10,
     };
 }

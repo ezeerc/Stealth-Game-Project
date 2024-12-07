@@ -7,6 +7,6 @@ public struct Flyweight
     public float baseSpeed;
     public float runSpeed;
     public int damage;
-    public float armour;
+    public bool armour;
     public float fireRate;
 }
