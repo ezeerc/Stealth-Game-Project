@@ -23,9 +23,7 @@ public class Enemy : Entity, IDamageable, ISoundObserver
     public RgdollController _ragdollController;
 
     [SerializeField] private GameObject enemy;
-
-    //protected Rigidbody Rigidbody;
-    //private StealthKill _stealthKill;
+    
     private FieldOfView _fov;
 
     [Header("Enemy Status")] public float timeBetweenAttacks = 3f;

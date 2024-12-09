@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class Shotgun : Weapon
 {
+    private void Start()
+    {
+        SetShotStrategy(new BurstShotStrategy());
+    }
 
 }
