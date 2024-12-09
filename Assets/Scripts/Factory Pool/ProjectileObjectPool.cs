@@ -45,16 +45,19 @@ public class ProjectileObjectPool : RecyclableObject
                     if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
                         Enemy enemy = hit.GetComponent<Enemy>();
-                        SoldierStats enemyStats = enemy.stats;
-                        
-                        var damageable = hit.GetComponent<IDamageable>();
-                        if (damageable != null && !enemyStats.armour)
+                        if (enemy != null && enemy.stats != null)
                         {
-                            damageable.TakeDamage(_damage);
-                        }
+                            SoldierStats enemyStats = enemy.stats;
 
-                        this.Recycle();
-                        this.enabled = false;
+                            var damageable = hit.GetComponent<IDamageable>();
+                            if (damageable != null && !enemyStats.armour)
+                            {
+                                damageable.TakeDamage(_damage);
+                            }
+
+                            this.Recycle();
+                            this.enabled = false;
+                        }
                     }
                     else if (hit.gameObject.layer == LayerMask.NameToLayer("Buildings&Props"))
                     {

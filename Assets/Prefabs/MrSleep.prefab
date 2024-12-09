@@ -3422,7 +3422,7 @@ MonoBehaviour:
   timeBtwShots: 0.1
   qtyBullets: 5
   shotRecharge: 0.15
-  _getClip: {fileID: 8300000, guid: d1a8ae57cc3824c41a030afc458ca0a4, type: 3}
+  _getClip: {fileID: 8300000, guid: acb323de154aa2a4fbf50eef2f9c1fff, type: 3}
 --- !u!82 &7104753034939519107
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4007,7 +4007,7 @@ MonoBehaviour:
   timeBtwShots: 0.2
   qtyBullets: 3
   shotRecharge: 0.2
-  _getClip: {fileID: 8300000, guid: acb323de154aa2a4fbf50eef2f9c1fff, type: 3}
+  _getClip: {fileID: 8300000, guid: 005ab39227f126d4f9f9df8ed2885db8, type: 3}
 --- !u!82 &4751622056642694559
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4240,7 +4240,7 @@ MonoBehaviour:
   timeBtwShots: 0.1
   qtyBullets: 4
   shotRecharge: 0.1
-  _getClip: {fileID: 8300000, guid: 005ab39227f126d4f9f9df8ed2885db8, type: 3}
+  _getClip: {fileID: 8300000, guid: d60ad32d1480d724daa5dbb23cd9ca87, type: 3}
 --- !u!82 &7468114443118564252
 AudioSource:
   m_ObjectHideFlags: 0
