@@ -7,7 +7,7 @@ public class SectionOnOff : MonoBehaviour
 {
     [SerializeField] GameObject[] sectionsOn;
     [SerializeField] GameObject[] sectionsOff;
-
+    private bool _oneTime;
     private void Awake()
     {
         foreach (var element in sectionsOn)
@@ -19,7 +19,12 @@ public class SectionOnOff : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.Instance.SaveGame();
+        if (!_oneTime)
+        {
+            GameManager.Instance.SaveGame();
+            _oneTime = true;
+        }
+        
         if (other.gameObject.layer == 6)
         {
             foreach (var element in sectionsOn)
