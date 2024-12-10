@@ -90,9 +90,11 @@ public class FieldOfView : MonoBehaviour
                     if (target.gameObject.layer == 10)
                     {
                         Enemy enemyScript = target.GetComponentInParent<Enemy>();
-                        if (enemyScript != null && enemyScript.Dead)
+                        if (enemyScript != null && enemyScript.Dead && enemyScript.SeenDead == false)
                         {
                             print("encontré un enemigo muerto!2");
+                            _enemy.SetBehavior(new InvestigateDeadBodyBehavior(target.transform.position - Vector3.back * 2));
+                            enemyScript.SeenDead = true;
                         }
                     }
                 }

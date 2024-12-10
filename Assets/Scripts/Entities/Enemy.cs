@@ -11,7 +11,9 @@ public class Enemy : Entity, IDamageable, ISoundObserver
     [Header("Player Interaction")] public Transform _player;
     public bool followPlayer = false;
     private float _distanceToPlayer;
+    public bool SeenDead { get; set; }
     public bool canShoot = true;
+    
 
     [Header("Waypoint navigation")] public Transform[] waypoints;
     public int currentWaypointIndex = 0;
@@ -184,8 +186,13 @@ public class Enemy : Entity, IDamageable, ISoundObserver
     private void ResetDetectionState()
     {
         followPlayer = false;
-        //GameManager.Instance.ChangeDetectionState(0);
         StartCoroutine(WaitFoResetDetectionState(10));
+    }
+
+    public void ChangeDetectionStateForTime(int time)
+    {
+        GameManager.Instance.ChangeDetectionState(2);
+        StartCoroutine(WaitFoResetDetectionState(time));
     }
 
     IEnumerator WaitFoResetDetectionState(int time)
@@ -295,4 +302,5 @@ public class Enemy : Entity, IDamageable, ISoundObserver
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * navMeshAgent.angularSpeed / 2);
     }
+    
 }
