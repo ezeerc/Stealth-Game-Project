@@ -43,11 +43,13 @@ public class Enemy : Entity, IDamageable, ISoundObserver
     [SerializeField] private AudioClip[] _getClipDeath;
     
     public Quaternion initialRotation;
+    public Vector3 initialPosition;
     private void Start()
     {
         InitializeComponents();
         
         initialRotation = transform.rotation;
+        initialPosition = transform.position;
         
         SetBehavior(new PatrolBehavior());
     }

@@ -85,6 +85,7 @@ public class FieldOfView : MonoBehaviour
                     if (target.gameObject.layer == 6)
                     {
                         _enemy.GetPlayer(target);
+                        print("veo al player");
                     }
 
                     if (target.gameObject.layer == 10)

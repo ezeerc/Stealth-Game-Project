@@ -4040,7 +4040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Health>k__BackingField: 50
-  stats: {fileID: 0}
+  stats: {fileID: 11400000, guid: 618231d0c9ad2824e87d0d9062309806, type: 2}
   _player: {fileID: 0}
   followPlayer: 0
   canShoot: 1
@@ -4058,6 +4058,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2c99a2420f2a0f84fbe505050ef72fbe, type: 3}
   - {fileID: 8300000, guid: 0e16f3dfb1dbcfc43a02ca9fedf53411, type: 3}
   - {fileID: 8300000, guid: 6d605e39497a7024a9eadc8016b653af, type: 3}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
   detectionRadius: 5
   detectionLayerFriendEnemies:
     serializedVersion: 2

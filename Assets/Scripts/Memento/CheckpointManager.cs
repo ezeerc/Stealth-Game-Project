@@ -30,6 +30,7 @@ public class CheckpointManager
             if (i < _enemiesMemento.Count)
             {
                 enemies[i].RestoreState(_enemiesMemento[i]);
+                enemies[i].transform.position = enemies[i].initialPosition; //load original position
             }
         }
         

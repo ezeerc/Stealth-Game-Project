@@ -44,7 +44,10 @@ public class Target : Enemy
         {
             currentBehavior?.Execute(this);
             UpdateAnimatorSpeed();
-            ChangeBehaviorBasedOnDistance(DistanceToPlayer(_player));
+            if (_player)
+            {
+                ChangeBehaviorBasedOnDistance(DistanceToPlayer(_player));
+            }
             CheckIfTargetReached();
         }
     }

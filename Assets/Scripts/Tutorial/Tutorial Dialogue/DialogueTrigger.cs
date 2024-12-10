@@ -36,7 +36,6 @@ public class DialogueTrigger : MonoBehaviour
 
 
         _onTriggerEnter.Invoke();
-        GameManager.Instance.SaveGame();
         /*
         foreach (GameObject canvasItem in _canvasObjects)
         {
