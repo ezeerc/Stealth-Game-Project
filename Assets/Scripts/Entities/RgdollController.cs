@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RgdollController : MonoBehaviour
 {
@@ -11,8 +12,11 @@ public class RgdollController : MonoBehaviour
     
     public List<Rigidbody> rbs = new List<Rigidbody>();
     public List<Collider> colliders = new List<Collider>();
+    
+    [SerializeField] private NavMeshAgent navMeshAgent;
     private void Awake()
     {
+        navMeshAgent = GetComponent<NavMeshAgent>();
         rbs = GetComponentsInChildren<Rigidbody>().Skip(1).ToList();
         colliders = GetComponentsInChildren<Collider>().Skip(1).ToList();
         colliders.RemoveAt(7);
@@ -37,6 +41,7 @@ public class RgdollController : MonoBehaviour
     }
     public void ActivateRagdoll()
     {
+        navMeshAgent.enabled = false;
         capsuleCollider.enabled = false;
         rb.isKinematic = true;
         animator.enabled = false;
