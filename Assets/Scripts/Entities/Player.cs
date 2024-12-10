@@ -77,8 +77,7 @@ public class Player : Entity, IDamageable
         {
             weaponController.OnWeaponChanged += SetWeaponAnimation;
         }
-
-        GameManager.OnRestart += Revive;
+        GameManager.Instance.OnRestart += Revive;
     }
 
     private void FixedUpdate()
@@ -152,7 +151,6 @@ public class Player : Entity, IDamageable
     public void GetFullHealth()
     {
         healthController.RestoreHealth();
-        //Health = healthController.maxHealth;
     }
 
     private void CheckAimMovement(Controller controller)
@@ -274,10 +272,12 @@ public class Player : Entity, IDamageable
         {
             weaponController.OnWeaponChanged -= SetWeaponAnimation;
         }
+        GameManager.Instance.OnRestart -= Revive;
     }
 
     private void Revive()
     {
+        print("me restartearon");
         _oneTimeAnimDead = false;
         _animator.SetInteger("WeaponType_int", _weaponAnim);
         _animator.SetBool("DeathBool", false);

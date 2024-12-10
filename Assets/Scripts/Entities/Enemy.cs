@@ -229,9 +229,6 @@ public class Enemy : Entity, IDamageable, ISoundObserver
             if (!_enableBody)
             {
                 _enableBody = true;
-                //player.OnHide();
-                //player.CanHideFunc();
-                print("funca ocultar");
                 enemy.SetActive(false);
             }
         }
@@ -284,7 +281,6 @@ public class Enemy : Entity, IDamageable, ISoundObserver
     {
         if (!Dead)
         {
-            Debug.Log("escuché un disparo");
             MoveToSound(position);
         }
     }
