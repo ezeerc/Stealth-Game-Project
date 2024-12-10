@@ -166,7 +166,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 33
+  AndroidMinSdkVersion: 30
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -824,7 +824,7 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     UNet: 1
-    Unity Ads: 0
+    Unity Ads: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
