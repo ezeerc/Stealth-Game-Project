@@ -8,16 +8,18 @@ public class SectionOnOff : MonoBehaviour
     [SerializeField] GameObject[] sectionsOn;
     [SerializeField] GameObject[] sectionsOff;
 
-    private void Start()
+    private void Awake()
     {
         foreach (var element in sectionsOn)
         {
             element.SetActive(false);
         }
     }
+    
 
     private void OnTriggerEnter(Collider other)
     {
+        GameManager.Instance.SaveGame();
         if (other.gameObject.layer == 6)
         {
             foreach (var element in sectionsOn)
@@ -30,6 +32,5 @@ public class SectionOnOff : MonoBehaviour
                 element.SetActive(false);
             }
         }
-        GameManager.Instance.SaveGame();
     }
 }
