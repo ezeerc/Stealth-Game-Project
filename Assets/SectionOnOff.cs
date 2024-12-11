@@ -7,7 +7,10 @@ public class SectionOnOff : MonoBehaviour
 {
     [SerializeField] GameObject[] sectionsOn;
     [SerializeField] GameObject[] sectionsOff;
+    [SerializeField] Enemy enemyToKill;
+    [SerializeField] float timeToKill;
     private bool _oneTime;
+    
     private void Awake()
     {
         foreach (var element in sectionsOn)
@@ -30,6 +33,7 @@ public class SectionOnOff : MonoBehaviour
             foreach (var element in sectionsOn)
             {
                 element.SetActive(true);
+                KillEnemy();
             }
             
             foreach (var element in sectionsOff)
@@ -37,5 +41,19 @@ public class SectionOnOff : MonoBehaviour
                 element.SetActive(false);
             }
         }
+    }
+
+    private void KillEnemy()
+    {
+        if (enemyToKill)
+        {
+            StartCoroutine(KillEnemyCoroutine(timeToKill));
+        }
+    }
+
+    IEnumerator KillEnemyCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        enemyToKill.TakeDamage(100);
     }
 }

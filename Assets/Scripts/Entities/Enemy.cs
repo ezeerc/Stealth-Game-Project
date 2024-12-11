@@ -111,7 +111,7 @@ public class Enemy : Entity, IDamageable, ISoundObserver
     public void RagdollActivate()
     {
         _ragdollController.ActivateRagdoll();
-        navMeshAgent.isStopped = true;
+        //navMeshAgent.isStopped = true;
         if (_fov) _fov.enabled = false;
     }
 
