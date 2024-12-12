@@ -24,7 +24,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayLvl_2()
     {
-        SceneManager.LoadScene("Level1_MilitaryBase");
+        SceneManager.LoadScene("Level2");
     }
 
     public void Prototype()
