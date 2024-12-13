@@ -9,7 +9,7 @@
 "BTNLang" : "Language Selection";
 "TXTLvlTut" : "Tutorial";
 "TXTLvl1" : "Operation Red Baron";
-"TXTLvl2" : "Operation Stolen Badge";
+"TXTLvl2" : "Operation Hiding Hydra";
 "BTNContinue" : "Continue";
 "BTNRetry" : "Retry";
 "BTNExit" : "Home";
