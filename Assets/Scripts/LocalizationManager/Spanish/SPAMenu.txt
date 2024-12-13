@@ -9,7 +9,7 @@
 "BTNLang" : "Idioma";
 "TXTLvlTut" : "Tutorial";
 "TXTLvl1" : "Operacion Baron Rojo";
-"TXTLvl2" : "Operacion Escudo Robado";
+"TXTLvl2" : "Operacion Hidra Escondida";
 "BTNContinue" : "Continuar";
 "BTNRetry" : "Reintentar";
 "BTNExit" : "Inicio";
