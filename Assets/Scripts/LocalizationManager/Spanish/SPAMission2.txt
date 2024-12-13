@@ -1,6 +1,7 @@
 {
 
 "LVL2MissionWelcome" : "El comandante esta escondido en algun lado de esta ciudad. Encuentrelo y liquidelo.";
+"LVL2Dialogue01" : "Las balas no van a poder matar a los enemigos con armadura. Utilice el cuerpo a cuerpo.";
 "LVL2Defeat" : "El agente murio en combate. Cesen todas las operaciones y retirense de la zona.";
 "LVL2Victory" : "Ha eliminado al comandante. El equipo de extraccion se encuentra 5 kilometros al norte de su posicion, arrivo estimado en 10 minutos. Buen trabajo, agente.";
 
