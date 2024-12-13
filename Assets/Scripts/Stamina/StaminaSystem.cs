@@ -53,7 +53,14 @@ public class StaminaSystem : MonoBehaviour
 
             while (current > _nextStaminaTime)
             {
-                if (_currentStamina >= _maxStamina) break;
+                //if (_currentStamina >= _maxStamina) break;
+                if (_currentStamina >= _maxStamina)
+                {
+                    _recharging = false;
+                    NotificationManager notificationManager = FindObjectOfType<NotificationManager>();
+                    notificationManager?.ScheduleStaminaFullNotification(TimeSpan.Zero);
+                    yield break;
+                }
 
                 _currentStamina++;
                 UpdateStamina();
@@ -138,12 +145,29 @@ public class StaminaSystem : MonoBehaviour
 
     private void OnApplicationPause(bool pause)
     {
-        if (pause) SaveGame();
+        if (pause)
+        {
+            SaveGame();
+            
+            TimeSpan inactivityTime = DateTime.Now - _lastStaminaTime;
+            if (inactivityTime.TotalSeconds >= 60) // verificar tiempo para no volver loco al jugador
+            {
+                NotificationManager notificationManager = FindObjectOfType<NotificationManager>();
+                notificationManager?.ScheduleComeBackNotification();
+            }
+        }
     }
 
     private void OnApplicationQuit()
     {
         SaveGame();
+            
+        TimeSpan inactivityTime = DateTime.Now - _lastStaminaTime;
+        if (inactivityTime.TotalSeconds >= 60) // verificar tiempo para no volver loco al jugador
+        {
+            NotificationManager notificationManager = FindObjectOfType<NotificationManager>();
+            notificationManager?.ScheduleComeBackNotification();
+        }
     }
 
     public void SetStaminaText(TextMeshProUGUI staminaText)
