@@ -14,10 +14,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemyDeadDiscovered.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Factory Pool/Uzi.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Notifications/NotificationManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Notifications/UpdateChecker.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Notifications/UpdateChecker1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScreenManager/WelcomeMessage.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScreenManager/WinMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stamina/StaminaSystem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -101,7 +101,7 @@
       <workItem from="1733407558963" duration="4481000" />
       <workItem from="1733831408382" duration="81000" />
       <workItem from="1733831500026" duration="8730000" />
-      <workItem from="1734090758330" duration="11617000" />
+      <workItem from="1734090758330" duration="13161000" />
     </task>
     <servers />
   </component>

@@ -29,6 +29,11 @@ public class NotificationManager : MonoBehaviour
 
     }
 
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if(!hasFocus) CancelNotifications();
+    }
+
     private void CreateNotificationChannel()
     {
         var channel = new AndroidNotificationChannel()
