@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StaminaSystem : MonoBehaviour
@@ -57,8 +58,6 @@ public class StaminaSystem : MonoBehaviour
                 if (_currentStamina >= _maxStamina)
                 {
                     _recharging = false;
-                    NotificationManager notificationManager = FindObjectOfType<NotificationManager>();
-                    notificationManager?.ScheduleStaminaFullNotification(TimeSpan.Zero);
                     yield break;
                 }
 
@@ -149,12 +148,20 @@ public class StaminaSystem : MonoBehaviour
         {
             SaveGame();
             
-            TimeSpan inactivityTime = DateTime.Now - _lastStaminaTime;
-            if (inactivityTime.TotalSeconds >= 60) // verificar tiempo para no volver loco al jugador
-            {
+            //TimeSpan inactivityTime = DateTime.Now - _lastStaminaTime;
+            //TimeSpan inactivityTime = TimeSpan.FromSeconds(60);
+            //var inactivityTime = DateTime.Now.AddSeconds(60);
+            //if (inactivityTime == DateTime.Now) // verificar tiempo para no volver loco al jugador
+            //if (inactivityTime == DateTime.Now)
+            
                 NotificationManager notificationManager = FindObjectOfType<NotificationManager>();
-                notificationManager?.ScheduleComeBackNotification();
-            }
+                notificationManager?.SchedulePauseNotification();
+                
+                if (_currentStamina < _maxStamina)
+                {
+                    notificationManager?.ScheduleStaminaFullNotification(CalculateTimeToMaxStamina());
+                }
+            
         }
     }
 
@@ -162,12 +169,20 @@ public class StaminaSystem : MonoBehaviour
     {
         SaveGame();
             
-        TimeSpan inactivityTime = DateTime.Now - _lastStaminaTime;
-        if (inactivityTime.TotalSeconds >= 60) // verificar tiempo para no volver loco al jugador
-        {
+        //TimeSpan inactivityTime = DateTime.Now - _lastStaminaTime;
+        //TimeSpan inactivityTime = TimeSpan.FromSeconds(60);
+        //var inactivityTime = DateTime.Now.AddSeconds(60);
+        //if (inactivityTime.TotalSeconds >= 60) // verificar tiempo para no volver loco al jugador
+        //if (inactivityTime == DateTime.Now)
+
             NotificationManager notificationManager = FindObjectOfType<NotificationManager>();
             notificationManager?.ScheduleComeBackNotification();
-        }
+            
+            if (_currentStamina < _maxStamina)
+            {
+                notificationManager?.ScheduleStaminaFullNotification(CalculateTimeToMaxStamina());
+            }
+        
     }
 
     public void SetStaminaText(TextMeshProUGUI staminaText)
@@ -187,5 +202,13 @@ public class StaminaSystem : MonoBehaviour
     {
         _currentStamina += amount;
     }
+
+    private int CalculateTimeToMaxStamina()
+    {
+        var timeToMaxStamina = Mathf.Abs((_maxStamina - _currentStamina) * _timeToRecharge);
+        timeToMaxStamina /= 60;
+        return (int)timeToMaxStamina;
+    }
+
 }
 

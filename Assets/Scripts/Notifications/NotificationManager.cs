@@ -25,6 +25,8 @@ public class NotificationManager : MonoBehaviour
         StartCoroutine(NotificationPermission()); 
         
         CreateNotificationChannel();
+        CancelNotifications();
+
     }
 
     private void CreateNotificationChannel()
@@ -39,7 +41,7 @@ public class NotificationManager : MonoBehaviour
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
     }
 
-    public void ScheduleStaminaFullNotification(TimeSpan timeToWait)
+    public void ScheduleStaminaFullNotification(int timeToWait)
     {
         var notification = new AndroidNotification
         {
@@ -47,20 +49,33 @@ public class NotificationManager : MonoBehaviour
             Text = "Ya puedes jugar con toda tu stamina disponible.",
             SmallIcon = "default",
             LargeIcon = "default",
-            FireTime = DateTime.Now.Add(timeToWait),
+            FireTime = DateTime.Now.AddMinutes(timeToWait),
         };
         AndroidNotificationCenter.SendNotification(notification, "stamina_channel");
     }
 
+    public void SchedulePauseNotification()
+    {
+        var notification = new AndroidNotification
+        {
+            Title = "¡Soldado!",
+            Text = "¡Ven y termina la misión, tu deber te llama!",
+            SmallIcon = "default",
+            LargeIcon = "default",
+            FireTime = DateTime.Now.AddSeconds(10),
+        };
+        AndroidNotificationCenter.SendNotification(notification, "stamina_channel");
+    }
+    
     public void ScheduleComeBackNotification()
     {
         var notification = new AndroidNotification
         {
-            Title = "¡Te extrañamos!",
-            Text = "Regresa al juego, Mr. Sleep te espera.",
+            Title = "¡Te necesitamos!",
+            Text = "Agente, ha pasado mucho tiempo sin que te reportes.",
             SmallIcon = "default",
             LargeIcon = "default",
-            FireTime = DateTime.Now.AddSeconds(80),
+            FireTime = DateTime.Now.AddSeconds(20),
         };
         AndroidNotificationCenter.SendNotification(notification, "stamina_channel");
     }
@@ -85,5 +100,10 @@ public class NotificationManager : MonoBehaviour
         {
             yield return null;
         }
+    }
+
+    private void CancelNotifications()
+    {
+        AndroidNotificationCenter.CancelAllNotifications();
     }
 }
