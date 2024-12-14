@@ -118,7 +118,10 @@ public class NotificationManager : MonoBehaviour
     public void ScheduleUpdateNotification(string timeDate)
     {
         var time = DateTime.Parse(timeDate);
+        var currentTime = DateTime.Now;
         print(timeDate);
+
+        if (currentTime >= time) return;
         var notification = new AndroidNotification
         {
             Title = "¡Nueva actualización disponible!",

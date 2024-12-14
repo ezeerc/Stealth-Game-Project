@@ -26,6 +26,10 @@ public class Player : Entity, IDamageable
     private int _weaponAnim;
 
     [field: SerializeField] public int Speed { get; set; }
+    
+    [Header("Audio")]
+    [SerializeField] private AudioClip deathSound;
+    private AudioSource _audioSource;
 
     private Rigidbody _rb;
     private Animator _animator;
@@ -54,6 +58,7 @@ public class Player : Entity, IDamageable
         movementController = GetComponent<MovementController>();
         weaponController = GetComponent<WeaponController>();
         healthController = GetComponent<HealthController>();
+        _audioSource = GetComponent<AudioSource>();
 
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
@@ -213,6 +218,7 @@ public class Player : Entity, IDamageable
             if (!_oneTimeAnimDead)
             {
                 OnDeath?.Invoke();
+                PlaySound(deathSound);
                 _oneTimeAnimDead = true;
                 FrozenMove(2);
                 _animator.SetBool(Run, false);
@@ -282,5 +288,12 @@ public class Player : Entity, IDamageable
         _animator.SetInteger("WeaponType_int", _weaponAnim);
         _animator.SetBool("DeathBool", false);
         GetFullHealth();
+    }
+    
+    public void PlaySound(AudioClip audio)
+    {
+        _audioSource.clip = audio;
+        _audioSource.Stop();
+        _audioSource.Play();
     }
 }
