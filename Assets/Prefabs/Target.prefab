@@ -4125,10 +4125,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7336868668361337753}
-  capsuleCollider: {fileID: 0}
+  capsuleCollider: {fileID: 3825773724314656435}
   animator: {fileID: 1655872987897250148}
   rbs: []
   colliders: []
+  navMeshAgent: {fileID: 0}
 --- !u!54 &7336868668361337753
 Rigidbody:
   m_ObjectHideFlags: 0
