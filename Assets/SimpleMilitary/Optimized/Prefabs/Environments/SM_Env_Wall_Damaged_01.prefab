@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 482104}
   - component: {fileID: 3382128}
   - component: {fileID: 2358110}
-  - component: {fileID: 64874254453594294}
+  - component: {fileID: 751466830906120189}
+  - component: {fileID: 8084327569024847190}
   m_Layer: 0
   m_Name: SM_Env_Wall_Damaged_01
   m_TagString: Untagged
@@ -84,8 +85,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64874254453594294
-MeshCollider:
+--- !u!65 &751466830906120189
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +103,27 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43034287665588080, guid: a9c7236d2965048469d12523129f32fa, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 6.6606226, y: 2.4849029, z: 0.8224997}
+  m_Center: {x: 1.4972243, y: 1.2424493, z: -1.231302}
+--- !u!65 &8084327569024847190
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150264}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.77841556, y: 2.4849029, z: 5.719847}
+  m_Center: {x: -1.4438791, y: 1.2424493, z: 1.4467003}

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 460138}
   - component: {fileID: 3306916}
   - component: {fileID: 2337244}
-  - component: {fileID: 64667566113431366}
+  - component: {fileID: 8469548662354087367}
+  - component: {fileID: 4877396597080093665}
   m_Layer: 0
   m_Name: SM_Bld_Mud_Hut_02
   m_TagString: Untagged
@@ -84,8 +85,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64667566113431366
-MeshCollider:
+--- !u!65 &8469548662354087367
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +103,27 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43106539392346096, guid: 824fc986f0ad41d4bad5cc6ef55a096d, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 5.8341475, y: 4.5879335, z: 13.752748}
+  m_Center: {x: -2.167861, y: 2.2939239, z: 0.18491697}
+--- !u!65 &4877396597080093665
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120442}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.404215, y: 4.5879335, z: 6.043096}
+  m_Center: {x: 0.031708717, y: 2.2939239, z: -3.861439}
