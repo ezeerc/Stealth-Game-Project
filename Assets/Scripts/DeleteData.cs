@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class DeleteData : MonoBehaviour
 {
-    [SerializeField] ShopBuilder _shopBuilder;
+    [SerializeField] ShopBuilder shopBuilder;
+    [SerializeField] ShopController shopController;
     public void Delete()
     {
         PlayerPrefs.DeleteAll();
-        _shopBuilder.ResetShop();
+        shopBuilder.ResetShop();
+        shopController.ConnectToShop();
         CurrencyManager.Instance.Reset();
         StaminaSystem.Instance.ResetStamina();
     }

@@ -20,5 +20,7 @@
 "BTNDelete" : "Delete data";
 "BTNEquip" : "Equip";
 "BTNUnequip" : "Unequip";
-
+"TXTSureMenu" : "Are you sure?";
+"BTNAgain" : "Play again";
+"TXTConfirmBuy" : "Confirm?"
 }

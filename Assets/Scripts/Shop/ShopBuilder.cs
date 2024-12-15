@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShopBuilder : MonoBehaviour
 {
     [SerializeField] ItemUI _itemPrefab;
-    [SerializeField] Transform shopParent;
+    [SerializeField] public Transform shopParent;
 
     [SerializeField] ItemDTO[] _items = new ItemDTO[0];
 
@@ -26,7 +26,7 @@ public class ShopBuilder : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < _items.Length; i++)
+        /*for (int i = 0; i < _items.Length; i++)
         {
             var newItem = Instantiate(_itemPrefab, shopParent);
             newItem.BuildButton(_items[i]);
@@ -48,10 +48,36 @@ public class ShopBuilder : MonoBehaviour
             newItem.onItemClickedBuy += OnItemBought;
             newItem.onItemClickedEquip += OnItemEquipped;
             newItem.onItemClickedUnequip += OnItemUnequipped;
+        }*/
+        
+        for (int i = 0; i < _items.Length; i++)
+        {
+            var newItem = Instantiate(_itemPrefab, shopParent);
+            newItem.BuildButton(_items[i]);
+
+            bool isBought = PlayerPrefs.GetInt(BoughtKey + _items[i].itemID, 0) == 1;
+            if (isBought)
+            {
+                newItem.buyButton.gameObject.SetActive(false);
+            }
+
+            string equippedID = PlayerPrefs.GetString(EquippedKey, string.Empty);
+            if (_items[i].itemID == equippedID)
+            {
+                _currentlyEquippedItem = newItem;
+                newItem.unequipButton.gameObject.SetActive(true);
+            }
+
+            // No conectamos directamente aquí
+            // newItem.onItemClickedBuy += OnItemBought; 
+
+            newItem.onItemClickedEquip += OnItemEquipped;
+            newItem.onItemClickedUnequip += OnItemUnequipped;
         }
+
     }
 
-    void OnItemBought(ItemDTO itemToBuy, ItemUI itemUIInstance)
+    public void OnItemBought(ItemDTO itemToBuy, ItemUI itemUIInstance)
     {
         _oneTime = false;
         if (CurrencyManager.Instance.currency >= itemToBuy.itemCost)

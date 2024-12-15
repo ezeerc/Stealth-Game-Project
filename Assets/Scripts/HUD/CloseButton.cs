@@ -24,7 +24,7 @@ public class CloseButton : MonoBehaviour
     public void Restart()
     {
         OnRestart?.Invoke();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void MainMenu()

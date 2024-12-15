@@ -227,6 +227,10 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         _source.Stop();
-        //MusicManager.Instance.PlaySameAudio();
+    }
+
+    public void RestartGameOver()
+    {
+        OnRestart?.Invoke();
     }
 }
