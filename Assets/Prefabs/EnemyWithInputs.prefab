@@ -435,14 +435,6 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8710102838181882239, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
-      propertyPath: viewAngle
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8710102838181882239, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
-      propertyPath: viewRadius
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8710102838181882239, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
       propertyPath: meshResolution
       value: 0.1
       objectReference: {fileID: 0}

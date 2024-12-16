@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6359a4bfa4283504292e43228fcb58e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clipToPlayButton: {fileID: 8300000, guid: 0be54f0006ee7904ab1e36bbabaedc43, type: 3}
+  clipToPlayButton: {fileID: 8300000, guid: 553880eddbf699446a4d6ba0724e6cfe, type: 3}
   clipChangeWeapon: {fileID: 8300000, guid: 855fb802f5d91ce49bc873b91de1162e, type: 3}
 --- !u!82 &7953830330201462492
 AudioSource:

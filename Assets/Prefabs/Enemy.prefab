@@ -640,6 +640,7 @@ MonoBehaviour:
   timeBtwShots: 0.1
   qtyBullets: 5
   shotRecharge: 0
+  _getClip: {fileID: 0}
 --- !u!4 &2145493252121789474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 486544, guid: c60108c8eeb1eb24fbead32586fcc558, type: 3}
@@ -798,6 +799,7 @@ MonoBehaviour:
   timeBtwShots: 0.2
   qtyBullets: 1
   shotRecharge: 0
+  _getClip: {fileID: 0}
 --- !u!4 &8192584586389086309 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8015751974703178849, guid: 4e068583e4843514b8c64b30b6a7dc6b, type: 3}
@@ -910,6 +912,7 @@ MonoBehaviour:
   timeBtwShots: 0.2
   qtyBullets: 7
   shotRecharge: 0
+  _getClip: {fileID: 0}
 --- !u!1001 &7673993470935703728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1072,8 +1075,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f2a2d5e2d7d33428b90e2df91b532e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 0
-  viewAngle: 0
+  viewRadius: 15
+  viewAngle: 65
+  _verticalOffsetValue: 0.02
   targetMask:
     serializedVersion: 2
     m_Bits: 0
@@ -1110,10 +1114,11 @@ MonoBehaviour:
   _ragdollController: {fileID: 0}
   enemy: {fileID: 0}
   timeBetweenAttacks: 3
+  _getClipStealthDeath: {fileID: 0}
+  _getClipDeath: []
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
   detectionRadius: 5
-  detectionLayerPlayer:
-    serializedVersion: 2
-    m_Bits: 64
   detectionLayerFriendEnemies:
     serializedVersion: 2
     m_Bits: 128
@@ -1156,6 +1161,7 @@ MonoBehaviour:
   animator: {fileID: 7673993470928255328}
   rbs: []
   colliders: []
+  navMeshAgent: {fileID: 0}
 --- !u!4 &7673993470935841290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400058, guid: 14c9d8e4fc69472408c882bd7abd1bec, type: 3}
