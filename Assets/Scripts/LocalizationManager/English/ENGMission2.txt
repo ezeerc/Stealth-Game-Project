@@ -1,7 +1,7 @@
 {
 
 "LVL2MissionWelcome" : "The commander is hiding somewhere in this city. Find him and take him out.";
-"LVL2Dialogue01" : "Bullets are useless agains armored enemies. Use your sneak kill.";
+"LVL2Dialogue01" : "Bullets are useless against armored enemies. Use your sneak kill.";
 "LVL2Defeat" : "Agent has been KIA, cease all operations immediately.";
 "LVL2Victory" : "You have eliminated the commander. Extract team arriving 5 clicks north of your position, ETA 10 minutes. Good job agent.";
 
