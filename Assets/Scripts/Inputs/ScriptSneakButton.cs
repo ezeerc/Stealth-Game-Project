@@ -20,6 +20,15 @@ public class ScriptSneakButton : Button
         _animator = gameObject.GetComponent<Animator>();
     }
 
+    private void Update() // SOLO PARA TESTEAR EN PC TOMI
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            _player.StealthAttack();
+            _player.HideMovement();
+        }
+    }
+
     public override void OnClick()
     {
         _player.StealthAttack();

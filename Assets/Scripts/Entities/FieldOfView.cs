@@ -13,6 +13,7 @@ public class FieldOfView : MonoBehaviour
     private float currentViewRadius;
     public float viewRadius; // Este
     [Range(0, 360)] public float viewAngle; // Este
+    public float _verticalOffsetValue; // Este
 
     public LayerMask targetMask; // Este
     public LayerMask obstacleMask; // Este
@@ -79,7 +80,8 @@ public class FieldOfView : MonoBehaviour
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                Vector3 _verticalOffset = new Vector3(0, _verticalOffsetValue, 0);
+                if (!Physics.Raycast(transform.position + _verticalOffset, dirToTarget, dstToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
                     if (target.gameObject.layer == 6)
