@@ -1,22 +1,57 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class SceneLoader : MonoBehaviour
 {
     [Header("UI Elements")]
-    public GameObject loadingScreen; // Panel de la pantalla de carga
-    public Slider progressBar;       // Barra de progreso
-    public TextMeshProUGUI progressText;
-    public TextMeshProUGUI tipsText;
+    private GameObject _loadingScreen;
+    private Slider _progressBar;
+    private TextMeshProUGUI _progressText;
+    private TextMeshProUGUI _tipsText;
     public string[] spanishTips;
     public string[] englishTips;
     public string sceneToLoad;
-    
-    public float delayBeforeActivation = 1.0f; // Retardo opcional antes de activar la nueva escena
 
+    public float delayBeforeActivation = 1.0f;
+    
+    public static SceneLoader Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void GetLoadingScreen(GameObject screen)
+    {
+        _loadingScreen = screen;
+    }
+    
+    public void GetSlider(Slider slider)
+    {
+        _progressBar = slider;
+    }
+
+    public void GetTipsText(TextMeshProUGUI text)
+    {
+        _tipsText = text;
+    }
+
+    public void GetProgressText(TextMeshProUGUI text)
+    {
+        _progressText = text;
+    }
     public void LoadScene(string sceneName)
     {
         StartCoroutine(LoadSceneAsync(sceneName));
@@ -35,7 +70,7 @@ public class SceneLoader : MonoBehaviour
     private IEnumerator LoadSceneAsync(string sceneName)
     {
         // Activar la pantalla de carga
-        loadingScreen.SetActive(true);
+        _loadingScreen.SetActive(true);
 
         ChangeTipsLanguage(GetLanguage());
         
@@ -51,11 +86,11 @@ public class SceneLoader : MonoBehaviour
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
 
             // Actualizar la barra de progreso y el texto
-            if (progressBar != null)
-                progressBar.value = progress;
+            if (_progressBar != null)
+                _progressBar.value = progress;
 
-            if (progressText != null)
-                progressText.text = (progress * 100).ToString("F0") + "%";
+            if (_progressText != null)
+                _progressText.text = (progress * 100).ToString("F0") + "%";
 
             // Si el progreso alcanza el 100% (0.9f en realidad indica que terminó)
             if (operation.progress >= 0.9f)
@@ -75,19 +110,19 @@ public class SceneLoader : MonoBehaviour
     {
         if (language == "english")
         {
-            if (tipsText != null && englishTips.Length > 0)
+            if (_tipsText != null && englishTips.Length > 0)
             {
                 // Mostrar un texto aleatorio de los consejos
-                tipsText.text = englishTips[Random.Range(0, englishTips.Length)];
+                _tipsText.text = englishTips[Random.Range(0, englishTips.Length)];
             }
         }
         
         if (language == "spanish")
         {
-            if (tipsText != null && spanishTips.Length > 0)
+            if (_tipsText != null && spanishTips.Length > 0)
             {
                 // Mostrar un texto aleatorio de los consejos
-                tipsText.text = spanishTips[Random.Range(0, spanishTips.Length)];
+                _tipsText.text = spanishTips[Random.Range(0, spanishTips.Length)];
             }
         }
     }

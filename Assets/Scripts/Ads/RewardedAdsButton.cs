@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
+using UnityEngine.SceneManagement;
 
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
@@ -67,6 +68,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             if (!_oneTime)
             {
                 StaminaSystem.Instance.AddStamina(30);
+                StaminaSystem.Instance.UpdateStamina();
                 _oneTime = true;
             }
         }
@@ -87,7 +89,11 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
     public void OnUnityAdsShowStart(string adUnitId)
     {
-        GameManager.Instance.SaveGame();
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            GameManager.Instance.SaveGame();
+        }
+
         Debug.Log("comenzó publicidad");
     }
 
