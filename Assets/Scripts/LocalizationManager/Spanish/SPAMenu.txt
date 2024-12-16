@@ -21,5 +21,7 @@
 "BTNUnequip" : "Desequipar";
 "TXTSureMenu" : "¿Estás seguro?";
 "BTNAgain" : "Jugar otra vez";
-"TXTConfirmBuy" : "¿Seguro?"
+"TXTConfirmBuy" : "¿Seguro?";
+"BTNGetReward" : "Mirar publicidad";
+"TXTAdsDaily" : "¿Ver publicidad diaria por oro?"
 }

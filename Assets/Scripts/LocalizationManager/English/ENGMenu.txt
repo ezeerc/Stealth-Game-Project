@@ -22,5 +22,7 @@
 "BTNUnequip" : "Unequip";
 "TXTSureMenu" : "Are you sure?";
 "BTNAgain" : "Play again";
-"TXTConfirmBuy" : "Confirm?"
+"TXTConfirmBuy" : "Confirm?";
+"BTNGetReward" : "Watch ad";
+"TXTAdsDaily" : "Watch daily ad for gold?"
 }

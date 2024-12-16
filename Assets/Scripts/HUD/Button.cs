@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class Button : MonoBehaviour
 {
+    public bool interactable;
     public abstract void OnClick();
 }
