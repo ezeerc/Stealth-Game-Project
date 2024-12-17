@@ -446,6 +446,10 @@ PrefabInstance:
       propertyPath: obstacleMask.m_Bits
       value: 310
       objectReference: {fileID: 0}
+    - target: {fileID: 8818215665277510356, guid: 4532e03a804e0b6439c1121c7ff8f024, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
