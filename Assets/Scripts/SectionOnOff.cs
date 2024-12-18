@@ -22,14 +22,14 @@ public class SectionOnOff : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!_oneTime)
-        {
-            GameManager.Instance.SaveGame();
-            _oneTime = true;
-        }
-        
+       
         if (other.gameObject.layer == 6)
         {
+            if (!_oneTime)
+            {
+                GameManager.Instance.SaveGame();
+                _oneTime = true;
+            }
             foreach (var element in sectionsOn)
             {
                 element.SetActive(true);
