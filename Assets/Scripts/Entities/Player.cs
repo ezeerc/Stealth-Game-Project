@@ -283,7 +283,6 @@ public class Player : Entity, IDamageable
 
     private void Revive()
     {
-        print("me restartearon");
         _oneTimeAnimDead = false;
         _animator.SetInteger("WeaponType_int", _weaponAnim);
         _animator.SetBool("DeathBool", false);
@@ -295,5 +294,20 @@ public class Player : Entity, IDamageable
         _audioSource.clip = audio;
         _audioSource.Stop();
         _audioSource.Play();
+    }
+
+    public void PlayerCrouch(float time)
+    {
+        _animator.SetBool("Crouch_b", true);
+        StartCoroutine(StopCrouch(time));
+    }
+    
+    IEnumerator StopCrouch(float time)
+    {
+        _frozen = true;
+        //FrozenMove(time);
+        yield return new WaitForSeconds(time);
+        _animator.SetBool("Crouch_b", false);
+        _frozen = false;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SummonEnemy : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyToActivate;
+    [SerializeField] private Enemy enemyToActivate;
     [SerializeField] private Enemy enemy;
     void Start()
     {
@@ -14,9 +14,8 @@ public class SummonEnemy : MonoBehaviour
     
     private void ActivateEnemy()
     {
-        print("funca");
-        enemy.SeenDead = true;
-        enemyToActivate.SetActive(true);
+        enemyToActivate.tutorial = false;
+        Destroy(gameObject);
     }
 
     private void OnDestroy()

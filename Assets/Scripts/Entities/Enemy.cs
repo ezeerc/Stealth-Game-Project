@@ -26,7 +26,7 @@ public class Enemy : Entity, IDamageable, ISoundObserver
     public RgdollController _ragdollController;
 
     [SerializeField] private GameObject enemy;
-    
+    public bool tutorial;
     private FieldOfView _fov;
 
     [Header("Enemy Status")] public float timeBetweenAttacks = 3f;
@@ -47,6 +47,7 @@ public class Enemy : Entity, IDamageable, ISoundObserver
     public Vector3 initialPosition;
     private void Start()
     {
+        GameManager.Instance.OnRestart += OnRestart;
         InitializeComponents();
         
         initialRotation = transform.rotation;
@@ -141,7 +142,7 @@ public class Enemy : Entity, IDamageable, ISoundObserver
 
     public void UpdateFollowPlayer()
     {
-        if (!followPlayer || _player == null || Dead) return;
+        if (!followPlayer || _player == null || Dead || tutorial) return;
         _distanceToPlayer = Vector3.Distance(transform.position, _player.position);
 
         if (_distanceToPlayer <= 25)
@@ -240,8 +241,8 @@ public class Enemy : Entity, IDamageable, ISoundObserver
 
     public void ResetEnemyCheckpoint()
     {
+        Revive();
         InitializeComponents();
-        _player = null;
         _ragdollController.DeactivateRagdoll();
         navMeshAgent.isStopped = false;
         if (_fov) _fov.enabled = true;
@@ -304,4 +305,58 @@ public class Enemy : Entity, IDamageable, ISoundObserver
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * navMeshAgent.angularSpeed / 2);
     }
     
+    public void Revive()
+    {
+        if (Dead)
+        {
+            Dead = false;
+            Health = 1;
+            transform.position = initialPosition;
+            transform.rotation = initialRotation;
+            
+            _ragdollController.DeactivateRagdoll();
+            
+            navMeshAgent.isStopped = false;
+            if (_fov) _fov.enabled = true;
+            
+            ResetDetectionState();
+            SetBehavior(new PatrolBehavior());
+            
+            enemy.SetActive(true);
+            
+            _enableBody = false;
+            _canBeHide = false;
+            
+            _animator.Rebind();
+            _animator.Update(0);
+        }
+        
+        
+        
+        
+    }
+
+    
+    public void OnRestart()
+    {
+        followPlayer = false;
+        _player = null;
+        
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
+        
+        navMeshAgent.isStopped = true;
+        
+        SetBehavior(new PatrolBehavior());
+        
+        navMeshAgent.isStopped = false;
+        
+        ResetDetectionState();
+    }
+
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnRestart -= OnRestart;
+    }
 }

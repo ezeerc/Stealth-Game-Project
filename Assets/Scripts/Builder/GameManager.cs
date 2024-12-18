@@ -87,11 +87,11 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F5)) // Guarda checkpoint
         {
-            _checkpointManager.SaveCheckpoint(playerCheckpoint, enemiesCheckpoint);
+            _checkpointManager.SaveCheckpoint(playerCheckpoint);
         }
         else if (Input.GetKeyDown(KeyCode.F9)) // Carga checkpoint
         {
-            _checkpointManager.LoadCheckpoint(playerCheckpoint, enemiesCheckpoint);
+            _checkpointManager.LoadCheckpoint(playerCheckpoint);
             ResetLoseMenu();
         }
     }
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
     public void SaveGame()
     {
         StartCoroutine(WaitTimeCoroutine());
-        _checkpointManager.SaveCheckpoint(playerCheckpoint, enemiesCheckpoint);
+        _checkpointManager.SaveCheckpoint(playerCheckpoint);
     }
 
     IEnumerator WaitTimeCoroutine()
@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
         ResetLoseMenu();
         OnRestart?.Invoke();
         StartCoroutine(ResetSuscriptionCoroutine(0.1f));
-        _checkpointManager.LoadCheckpoint(playerCheckpoint, enemiesCheckpoint);
+        _checkpointManager.LoadCheckpoint(playerCheckpoint);
     }
     
     IEnumerator ResetSuscriptionCoroutine(float time)
