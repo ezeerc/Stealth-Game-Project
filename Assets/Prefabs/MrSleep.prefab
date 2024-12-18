@@ -4820,7 +4820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249daf99befd48d488a0a97ed68a33ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 2227629259097066149, guid: 74ad8f6a159540e4bbea6dba425371d8, type: 3}
+  _prefab: {fileID: 2227629259097066149, guid: 40719d0a2bc841645949904b8a497051, type: 3}
   spawnPoint: {fileID: 2212831352622017216}
   timeBtwShots: 0
   qtyBullets: 1
