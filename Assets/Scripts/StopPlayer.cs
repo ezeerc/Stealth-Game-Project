@@ -11,7 +11,7 @@ public class StopPlayer : MonoBehaviour
     {
         if (other.GameObject().layer == LayerMask.NameToLayer("Player"))
         {
-            if(_oneTime == false) other.GetComponent<Player>().PlayerCrouch(30);
+            if(_oneTime == false) other.GetComponent<Player>().PlayerCrouch(15);
             _oneTime = true;
         }
     }
