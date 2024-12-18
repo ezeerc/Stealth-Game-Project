@@ -98,11 +98,19 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
+        StartCoroutine(WaitTimeCoroutine());
         _checkpointManager.SaveCheckpoint(playerCheckpoint, enemiesCheckpoint);
+    }
+
+    IEnumerator WaitTimeCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GetActiveEnemies();
     }
 
     public void LoadGame()
     {
+        _oneTimeEnemies = false;
         ResetLoseMenu();
         OnRestart?.Invoke();
         StartCoroutine(ResetSuscriptionCoroutine(0.1f));
@@ -232,5 +240,25 @@ public class GameManager : MonoBehaviour
     public void RestartGameOver()
     {
         OnRestart?.Invoke();
+    }
+    
+    private bool _oneTimeEnemies = false;
+    public void GetActiveEnemies()
+    {
+        if (!_oneTimeEnemies)
+        {
+            enemiesCheckpoint.Clear();
+            
+            Enemy[] allEnemies = FindObjectsOfType<Enemy>();
+            
+            foreach (var enemy in allEnemies)
+            {
+                if (enemy.gameObject.activeSelf)
+                {
+                    enemiesCheckpoint.Add(enemy);
+                }
+            }
+            _oneTimeEnemies = true;
+        }
     }
 }
