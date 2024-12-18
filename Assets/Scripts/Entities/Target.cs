@@ -24,6 +24,8 @@ public class Target : Enemy
         SetBehavior(new IdleTargetBehavior());
         _source = GetComponent<AudioSource>();
         GameManager.Instance.OnRestart += RestartPlayer;
+        
+        GameManager.Instance.OnRestart += OnRestart;
         initialPosition = transform.position;
     }
 
@@ -117,7 +119,6 @@ public class Target : Enemy
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         SetBehavior(new IdleTargetBehavior());
         _firstLook = false;
-        print("me restartearon");
     }
 
     private void OnDestroy()
