@@ -13,6 +13,7 @@ public class Enemy : Entity, IDamageable, ISoundObserver
     private float _distanceToPlayer;
     public bool SeenDead { get; set; }
     public bool canShoot = true;
+    public Action OnDeath;
     
 
     [Header("Waypoint navigation")] public Transform[] waypoints;
@@ -97,6 +98,7 @@ public class Enemy : Entity, IDamageable, ISoundObserver
                 ResetDetectionState();
                 Dead = true;
                 StartCoroutine(ActiveCanBeHide(1f));
+                OnDeath?.Invoke();
             }
         }
     }
@@ -238,6 +240,7 @@ public class Enemy : Entity, IDamageable, ISoundObserver
 
     public void ResetEnemyCheckpoint()
     {
+        InitializeComponents();
         _player = null;
         _ragdollController.DeactivateRagdoll();
         navMeshAgent.isStopped = false;
