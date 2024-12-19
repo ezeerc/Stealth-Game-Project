@@ -54,4 +54,11 @@ public class Joystick : Controller, IDragHandler, IEndDragHandler
     {
         rotationAngle = (angle)*-1;
     }
+
+    public void SetCenter()
+    {
+        transform.position = _initialPosition;
+        _moveDir = Vector3.zero;
+        MovingStick = false;
+    }
 }
