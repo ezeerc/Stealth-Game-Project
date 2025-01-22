@@ -5,17 +5,16 @@ using System.Collections;
 
 public class Target : Enemy
 {
-    [Header("Settings")] 
-    [SerializeField] private float enemyDistanceRun = 11f;
+    [Header("Settings")] [SerializeField] private float enemyDistanceRun = 11f;
     [SerializeField] private float fleeDistanceRun = 10f;
     [SerializeField] private Vector3 targetEnd;
 
-    [Header("Status")] 
-    private bool _firstLook = false;
-    
+    [Header("Status")] private bool _firstLook = false;
+
 
     public static event Action OnTargetDeath;
     public static event Action TargetWon;
+    public static event Action<Transform> OnTargetCreated;
 
     private void Start()
     {
@@ -24,9 +23,9 @@ public class Target : Enemy
         SetBehavior(new IdleTargetBehavior());
         _source = GetComponent<AudioSource>();
         GameManager.Instance.OnRestart += RestartPlayer;
-        
         GameManager.Instance.OnRestart += OnRestart;
         initialPosition = transform.position;
+        SendTarget();
     }
 
     private void InitializeComponents()
@@ -52,6 +51,7 @@ public class Target : Enemy
             {
                 ChangeBehaviorBasedOnDistance(DistanceToPlayer(_player));
             }
+
             CheckIfTargetReached();
         }
     }
@@ -124,5 +124,20 @@ public class Target : Enemy
     private void OnDestroy()
     {
         GameManager.Instance.OnRestart -= RestartPlayer;
+    }
+
+    void SendTarget()
+    {
+        StartCoroutine(WaitForSecondsSendTarget(0.2f));
+    }
+
+    IEnumerator WaitForSecondsSendTarget(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        if (_player)
+        {
+            OnTargetCreated?.Invoke(transform);
+        }
     }
 }

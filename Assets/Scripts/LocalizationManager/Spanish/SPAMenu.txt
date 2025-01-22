@@ -23,5 +23,6 @@
 "BTNAgain" : "Jugar otra vez";
 "TXTConfirmBuy" : "¿Seguro?";
 "BTNGetReward" : "Mirar publicidad";
-"TXTAdsDaily" : "¿Ver publicidad diaria por oro?"
+"TXTAdsDaily" : "¿Ver publicidad diaria por oro?";
+"BTNTarget" : "Indicador objetivo"
 }

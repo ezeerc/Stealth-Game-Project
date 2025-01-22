@@ -24,5 +24,6 @@
 "BTNAgain" : "Play again";
 "TXTConfirmBuy" : "Confirm?";
 "BTNGetReward" : "Watch ad";
-"TXTAdsDaily" : "Watch daily ad for gold?"
+"TXTAdsDaily" : "Watch daily ad for gold?";
+"BTNTarget" : "Target indicator"
 }
