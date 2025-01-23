@@ -11,6 +11,8 @@ public class Joystick : Controller, IDragHandler, IEndDragHandler
     [SerializeField] private float maxMagnitude = 75;
     private Transform _iso;
     public int rotationAngle = 45;
+    
+    private float _speedFactor;//extra
 
     private void Start()
     {
@@ -29,7 +31,7 @@ public class Joystick : Controller, IDragHandler, IEndDragHandler
             var modifiedDir = new Vector3(_moveDir.x, _moveDir.y, 0);
             modifiedDir = _iso.TransformDirection(modifiedDir);
             modifiedDir /= maxMagnitude;
-            return new Vector3(modifiedDir.x, 0, modifiedDir.y).normalized;
+            return new Vector3(modifiedDir.x, 0, modifiedDir.y).normalized * _speedFactor;//extra
             
         }
 
@@ -40,6 +42,8 @@ public class Joystick : Controller, IDragHandler, IEndDragHandler
     {
         _moveDir = Vector3.ClampMagnitude((Vector3)eventData.position - _initialPosition, maxMagnitude);
         transform.position = _initialPosition + _moveDir;
+        
+        _speedFactor = _moveDir.magnitude / maxMagnitude;//extra
         MovingStick = true;
     }
 
@@ -47,6 +51,7 @@ public class Joystick : Controller, IDragHandler, IEndDragHandler
     {
         transform.position = _initialPosition;
         _moveDir = Vector3.zero;
+        _speedFactor = 0;
         MovingStick = false;
     }
 
@@ -59,6 +64,7 @@ public class Joystick : Controller, IDragHandler, IEndDragHandler
     {
         transform.position = _initialPosition;
         _moveDir = Vector3.zero;
+        _speedFactor = 0;
         MovingStick = false;
     }
 }
