@@ -8,11 +8,17 @@ using UnityEngine.SceneManagement;
 public class TargetIndicatorButton : MonoBehaviour
 {
     private bool activated = false;
+    private bool suscribed = false;
     public DirectionArrow directionArrow;
+
+    private void Awake()
+    {
+        DirectionArrow.OnCreatedArrow += GetArrow;
+    }
+
     private void Start()
     {
         DisableObject();
-        DirectionArrow.OnCreatedArrow += GetArrow;
     }
 
     void DisableObject()
@@ -47,4 +53,5 @@ public class TargetIndicatorButton : MonoBehaviour
     {
         DirectionArrow.OnCreatedArrow -= GetArrow;
     }
+
 }

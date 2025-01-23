@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,9 +11,9 @@ public class DirectionArrow : MonoBehaviour
     public static event Action<DirectionArrow> OnCreatedArrow;
     private void Start()
     {
-        OnCreatedArrow?.Invoke(this);
         Target.OnTargetCreated += GetTarget;
         arrow = this.GameObject();
+        OnCreatedArrow?.Invoke(this);
         DeactivateArrow();
     }
 
@@ -24,7 +25,6 @@ public class DirectionArrow : MonoBehaviour
 
     void GetTarget(Transform newTarget)
     {
-        Debug.Log("llaman al target");
         target = newTarget;
     }
 
@@ -44,5 +44,18 @@ public class DirectionArrow : MonoBehaviour
     public void ActivateArrow()
     {
         arrow.SetActive(true);
+    }
+
+    public void SetArrow(float seconds)
+    {
+        StartCoroutine(WaitToSet(seconds));
+    }
+
+    IEnumerator WaitToSet(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        OnCreatedArrow?.Invoke(this);
+        Debug.Log("Arrow activated");
+        DeactivateArrow();
     }
 }
