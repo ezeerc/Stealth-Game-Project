@@ -153,4 +153,9 @@ public class Joystick : Controller, IDragHandler, IEndDragHandler, IPointerDownH
         _speedFactor = 0;
         MovingStick = false;
     }
+
+    private void OnDisable()
+    {
+        ResetJoystick();
+    }
 }

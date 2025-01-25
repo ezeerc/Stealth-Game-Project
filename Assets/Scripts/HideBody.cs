@@ -6,7 +6,7 @@ public class HideBody : MonoBehaviour
 {
     public Player _player;
     private GameObject _enemy;
-    public float detectionRadius = 1.5f;
+    public float detectionDistance = 2f;
     public LayerMask playerLayer;
     [SerializeField] private Enemy _enemyScript;
 
@@ -35,7 +35,7 @@ public class HideBody : MonoBehaviour
 
     private void HideBodyMovement()
     {
-        if (_player && Vector3.Distance(this.transform.position, _player.transform.position) < 2)
+        if (_player && Vector3.Distance(this.transform.position, _player.transform.position) < detectionDistance)
         {
             _enemyScript.HideBody(_player);
             _player.OnHide(false);

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  detectionRadius: 1.5
+  detectionDistance: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -70,7 +70,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.44
   m_Height: 1.17
   m_Direction: 1
   m_Center: {x: -0.01, y: -0.009587925, z: -2.1517966e-18}

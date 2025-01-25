@@ -7,8 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class TargetIndicatorButton : MonoBehaviour
 {
-    private bool activated = false;
-    private bool suscribed = false;
+    private bool _activated;
     public DirectionArrow directionArrow;
 
     private void Awake()
@@ -32,14 +31,14 @@ public class TargetIndicatorButton : MonoBehaviour
     public void OnClickActivate()
     {
         if (!directionArrow) return;
-        if (!activated)
+        if (!_activated)
         {
-            activated = true;
+            _activated = true;
             directionArrow.ActivateArrow();
         }
         else
         {
-            activated = false;
+            _activated = false;
             directionArrow.DeactivateArrow();
         }
     }
