@@ -53299,6 +53299,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4583017751498715300, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 642346120}
+    - target: {fileID: 4583017751498715300, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
+      propertyPath: maxMagnitude
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4583017751498715300, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
+      propertyPath: joystickHandle
+      value: 
+      objectReference: {fileID: 642346121}
+    - target: {fileID: 4583017751498715300, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
+      propertyPath: _dynamicJoystick
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4583017751498715300, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
+      propertyPath: joystickBackground
+      value: 
+      objectReference: {fileID: 642346122}
     - target: {fileID: 4749654597145515853, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -53859,6 +53879,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8394429554664130464, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
+      propertyPath: m_RaycastPadding.w
+      value: -600
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394429554664130464, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
+      propertyPath: m_RaycastPadding.x
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394429554664130464, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
+      propertyPath: m_RaycastPadding.y
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394429554664130464, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
+      propertyPath: m_RaycastPadding.z
+      value: -600
+      objectReference: {fileID: 0}
     - target: {fileID: 8567412017339268919, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 6
@@ -53930,6 +53966,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9775a78d80b904c44ba80635d5425391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &642346120 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 8289695830374626444, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
+  m_PrefabInstance: {fileID: 642346116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &642346121 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3956066700256113497, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
+  m_PrefabInstance: {fileID: 642346116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &642346122 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2201089232540009779, guid: 4319dcbffceec2c479570cbd28b0708a, type: 3}
+  m_PrefabInstance: {fileID: 642346116}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &643127587
 PrefabInstance:
   m_ObjectHideFlags: 0
